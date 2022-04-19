@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authorizationFragment">
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_boardScreenFragment"
+            app:destination="@id/boardScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.BoardScreenFragment"
+        android:label="fragment_board_screen"
+        tools:layout="@layout/fragment_board_screen" >
+        <action
+            android:id="@+id/action_boardScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/copyOfCreateAccountFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.CopyOfCreateAccountFragment"
+        android:label="fragment_copy_of_create_account"
+        tools:layout="@layout/fragment_copy_of_create_account" />
+</navigation>
