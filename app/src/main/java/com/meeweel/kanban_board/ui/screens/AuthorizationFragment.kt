@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
+import com.meeweel.kanban_board.ui.MAIN
 
 class AuthorizationFragment : Fragment() {
 

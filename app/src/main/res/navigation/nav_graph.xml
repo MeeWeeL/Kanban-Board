@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_authorization" >
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
+            app:destination="@id/mainScreenFragment"/>
+        <action
+            android:id="@+id/action_authorizationFragment_to_copyOfCreateAccountFragment"
+            app:destination="@id/copyOfCreateAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"

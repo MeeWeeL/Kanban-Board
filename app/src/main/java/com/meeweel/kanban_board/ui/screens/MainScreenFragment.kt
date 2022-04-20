@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
+import com.meeweel.kanban_board.ui.MAIN
 
 class MainScreenFragment : Fragment() {
 
@@ -22,5 +23,8 @@ class MainScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.mainScreenFragment.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
+        }
     }
 }
