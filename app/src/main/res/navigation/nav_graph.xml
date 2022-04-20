@@ -3,19 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authorizationFragment">
+    app:startDestination="@id/textViewLogin">
 
     <fragment
-        android:id="@+id/authorizationFragment"
+        android:id="@+id/textViewLogin"
         android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization" >
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"/>
-        <action
-            android:id="@+id/action_authorizationFragment_to_copyOfCreateAccountFragment"
-            app:destination="@id/copyOfCreateAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -24,10 +21,13 @@
         tools:layout="@layout/fragment_main_screen" >
         <action
             android:id="@+id/action_mainScreenFragment_to_authorizationFragment"
-            app:destination="@id/authorizationFragment" />
+            app:destination="@id/textViewLogin" />
         <action
             android:id="@+id/action_mainScreenFragment_to_boardScreenFragment"
             app:destination="@id/boardScreenFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_copyOfCreateAccountFragment"
+            app:destination="@id/copyOfCreateAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"

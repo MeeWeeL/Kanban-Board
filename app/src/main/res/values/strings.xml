@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Kanban-Board</string>
-    <string name="authorizationfragment">AuthorizationFragment</string>
+    <string name="textViewLogin">Inter your Login:</string>
+    <string name="textViewPassword">Inter your Password:</string>
     <string name="broadscreen">BroadScreen</string>
     <string name="copyofcreateaccountfragment">CopyOfCreateAccountFragment</string>
     <string name="mainscreenfragment">MainScreenFragment</string>
+    <string name="buttonTextSignUp">Sign Up</string>
+    <string name="buttonTextSignIn">Sign In</string>
 </resources>

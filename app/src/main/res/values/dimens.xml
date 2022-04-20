@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textFromAuthorizationFragment">35sp</dimen>
+    <dimen name="sizeTextButtonAuthorizationFragment">25sp</dimen>
+</resources>

@@ -11,19 +11,19 @@ import com.meeweel.kanban_board.ui.MAIN
 
 class AuthorizationFragment : Fragment() {
 
-    lateinit var binding: FragmentAuthorizationBinding
+    private lateinit var binding: FragmentAuthorizationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.authorizationFragment.setOnClickListener {
+        binding.buttonSignIn.setOnClickListener {
             MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
         }
     }
