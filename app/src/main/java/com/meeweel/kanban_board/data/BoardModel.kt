@@ -1,9 +1,12 @@
 package com.meeweel.kanban_board.data
 
+import androidx.room.PrimaryKey
+
 data class BoardModel(
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String,
+    var name: String,
     val host: String,
-    val toDoList: List<TaskModel>,
-    val key: String
+    val key: String,
+    val toDoList: MutableList<TaskModel> = mutableListOf()
 )
