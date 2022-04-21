@@ -1,9 +1,7 @@
 package com.meeweel.kanban_board.ui.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
@@ -26,5 +24,17 @@ class MainScreenFragment : Fragment() {
         binding.mainScreenFragment.setOnClickListener {
             MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main_screen_add, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            //TODO
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
