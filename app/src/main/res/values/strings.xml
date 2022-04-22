@@ -10,4 +10,5 @@
     <string name="hint_create_a_password">Create a password</string>
     <string name="hint_create_a_login">Create a login</string>
     <string name="add_board_menu">add_board_menu</string>
+    <string name="fab_main_screen_description">FAB</string>
 </resources>

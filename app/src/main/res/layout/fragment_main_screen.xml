@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.screens.MainScreenFragment">
 
-    <TextView
-        android:id="@+id/mainScreenFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainScreenFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/mainscreenfragment" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMainScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/margin_main_screen_end"
+        android:layout_marginBottom="@dimen/margin_main_screen_bottom"
+        android:contentDescription="@string/fab_main_screen_description"
+        android:src="@drawable/ic_search" />
 </FrameLayout>

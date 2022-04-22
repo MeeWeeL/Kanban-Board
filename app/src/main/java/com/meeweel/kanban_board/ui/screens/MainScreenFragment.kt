@@ -18,20 +18,20 @@ class MainScreenFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMainScreenBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.mainScreenFragment.setOnClickListener {
+        binding.fabMainScreen.setOnClickListener {
             MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
         }
     }
@@ -43,6 +43,9 @@ class MainScreenFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            androidx.appcompat.R.id.home->{
+                MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
+            }
 //            R.id.action_add_board_menu ->{
 //               MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
 //            }
