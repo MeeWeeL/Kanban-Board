@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
@@ -25,6 +26,9 @@ class AuthorizationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonSignIn.setOnClickListener {
             MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
+        }
+        binding.buttonSignUp.setOnClickListener {
+            Toast.makeText(context, "Go to login", Toast.LENGTH_SHORT).show()
         }
     }
 }

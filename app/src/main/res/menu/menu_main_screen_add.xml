@@ -6,5 +6,5 @@
         android:title="@string/add_board_menu"
         android:icon="@drawable/ic_plus_fab"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom|withText" />
 </menu>

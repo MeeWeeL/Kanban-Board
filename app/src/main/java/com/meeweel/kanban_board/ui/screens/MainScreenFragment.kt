@@ -9,13 +9,23 @@ import com.meeweel.kanban_board.ui.MAIN
 
 class MainScreenFragment : Fragment() {
 
-    lateinit var binding: FragmentMainScreenBinding
+    private var _binding: FragmentMainScreenBinding? = null
+    private val binding: FragmentMainScreenBinding
+    get(){
+        return _binding!!
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+        
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMainScreenBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -33,8 +43,15 @@ class MainScreenFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            //TODO
+//            R.id.action_add_board_menu ->{
+//               MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
+//            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
