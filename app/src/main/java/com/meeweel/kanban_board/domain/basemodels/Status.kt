@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data
+package com.meeweel.kanban_board.domain.basemodels
 
 enum class Status {
     TO_DO,

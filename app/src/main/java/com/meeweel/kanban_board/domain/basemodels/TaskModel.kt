@@ -1,9 +1,6 @@
-package com.meeweel.kanban_board.data
-
-import androidx.room.PrimaryKey
+package com.meeweel.kanban_board.domain.basemodels
 
 data class TaskModel(
-    @PrimaryKey(autoGenerate = true)
     val id: Int,
     var name: String = "Task",
     var description: String = "",
