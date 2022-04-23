@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data
+package com.meeweel.kanban_board.domain.basemodels
 
 class FakeRepository {
     private val repo = mutableListOf(
