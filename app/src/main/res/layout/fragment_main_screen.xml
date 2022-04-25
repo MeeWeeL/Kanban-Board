@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.screens.MainScreenFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/leftTopAppBarMainScreenFragment"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:menu="@menu/menu_main_screen_add"
+        app:navigationIcon="@drawable/ic_baseline_account"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainScreenFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,4 +36,4 @@
         android:layout_marginBottom="@dimen/margin_main_screen_bottom"
         android:contentDescription="@string/fab_main_screen_description"
         android:src="@drawable/ic_search" />
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
