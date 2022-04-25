@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_add_board_menu"
-        android:title="@string/add_board_menu"
         android:icon="@drawable/ic_plus_fab"
         android:orderInCategory="100"
+        android:title="@string/add_board_menu"
         app:showAsAction="ifRoom|withText" />
-
 </menu>

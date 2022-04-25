@@ -11,4 +11,6 @@
     <string name="hint_create_a_login">Create a login</string>
     <string name="add_board_menu">add_board_menu</string>
     <string name="fab_main_screen_description">FAB</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
