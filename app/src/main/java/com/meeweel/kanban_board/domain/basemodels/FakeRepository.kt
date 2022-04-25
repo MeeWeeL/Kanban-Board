@@ -1,9 +1,4 @@
-package com.meeweel.kanban_board.data
-
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.Priority
-import com.meeweel.kanban_board.domain.basemodels.Status
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
+package com.meeweel.kanban_board.domain.basemodels
 
 class FakeRepository {
     private val repo = mutableListOf(
