@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.fragments_from_board_screen.InProgressFragment">
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:navGraph="@navigation/nav_graph"
-        app:defaultNavHost = "true"
-        android:name="androidx.navigation.fragment.NavHostFragment"/>
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

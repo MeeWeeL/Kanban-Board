@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentCopyOfCreateAccountBinding
 
 class CopyOfCreateAccountFragment : Fragment() {
@@ -15,12 +14,13 @@ class CopyOfCreateAccountFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCopyOfCreateAccountBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO
     }
 }
