@@ -23,6 +23,17 @@ class MainScreenFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        onFabListener()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun onFabListener() {
+        binding.fabMainScreen.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
+        }
+    }
+
     private fun actionBar() {
         setHasOptionsMenu(true)
     }
@@ -35,17 +46,6 @@ class MainScreenFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fabActionOnClick()
-    }
-
-    private fun fabActionOnClick() {
-        binding.fabMainScreen.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main_screen_add, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -53,11 +53,8 @@ class MainScreenFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-//            androidx.appcompat.R.id.home->{
-//                MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
-//            }
-            R.id.fabMainScreen ->{
-                Toast.makeText(context, "FAB", Toast.LENGTH_SHORT).show()
+            androidx.appcompat.R.id.home->{
+                MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
             }
         }
         return super.onOptionsItemSelected(item)
