@@ -19,13 +19,16 @@ class MainScreenFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        actionBar()
         super.onCreate(savedInstanceState)
+        actionBar()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        onFabListener()
         super.onViewCreated(view, savedInstanceState)
+        onFabListener()
+        binding.leftTopAppBarMainScreenFragment.setNavigationOnClickListener {
+            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
+        }
     }
 
     private fun onFabListener() {
@@ -49,15 +52,6 @@ class MainScreenFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main_screen_add, menu)
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            androidx.appcompat.R.id.home->{
-                MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
