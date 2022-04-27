@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.MainScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragment"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen">
         <action
