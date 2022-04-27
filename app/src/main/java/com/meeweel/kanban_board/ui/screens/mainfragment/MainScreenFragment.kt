@@ -30,18 +30,29 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onFabListener()
-        binding.leftTopAppBarMainScreenFragment.setNavigationOnClickListener {
-            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
-        }
+        onActionBarListener()
+        workLivedata()
+    }
 
+    private fun workLivedata() {
         binding.mainScreenFragmentRecyclerView.adapter =
             adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
 
-        val observer = Observer<AppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
-            renderData(a)
-        }
-        viewModel.getData().observe(viewLifecycleOwner, observer) // Подписываем нашего подписчика на лайвдату из вьюмодели
+        val observer =
+            Observer<AppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+                renderData(a)
+            }
+        viewModel.getData().observe(
+            viewLifecycleOwner,
+            observer
+        ) // Подписываем нашего подписчика на лайвдату из вьюмодели
         viewModel.getLocalData() // Просим вьюмодель обновить свои данные (На всякий случай)
+    }
+
+    private fun onActionBarListener() {
+        binding.leftTopAppBarMainScreenFragment.setNavigationOnClickListener {
+            MAIN.navController.navigate(R.id.action_mainScreenFragment_to_copyOfCreateAccountFragment)
+        }
     }
 
     private fun renderData(data: AppState) = when (data) {

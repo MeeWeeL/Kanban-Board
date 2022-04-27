@@ -6,7 +6,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.transition.TransitionInflater
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.ui.MAIN
@@ -28,12 +27,14 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonGoToLeft.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
-        }
-        binding.buttonGoToRight.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
-        }
+        binding.flipperLeft.setOnTouchListener(this)
+        binding.flipperRight.setOnTouchListener(this)
+//        binding.buttonGoToLeft.setOnClickListener {
+//            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
+//        }
+//        binding.buttonGoToRight.setOnClickListener {
+//            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
+//        }
     }
 
     override fun onDestroy() {
@@ -42,14 +43,21 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
     }
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
-        when(view){
-//            next->{
-//                when(motionEvent.action){
-//                    MotionEvent.ACTION_MOVE ->{
-//                        R.id.action_boardScreenFragment_to_toDoFragment
-//                    }
-//                }
-//            }
+        when (view) {
+            binding.flipperLeft -> {
+                when (motionEvent.action) {
+                    MotionEvent.ACTION_MOVE -> {
+                        MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
+                    }
+                }
+            }
+            binding.flipperRight -> {
+                when (motionEvent.action) {
+                    MotionEvent.ACTION_MOVE -> {
+                        MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
+                    }
+                }
+            }
         }
         return true
     }

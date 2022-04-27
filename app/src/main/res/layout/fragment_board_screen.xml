@@ -33,4 +33,22 @@
             android:layout_weight="1"
             android:text="Go to right" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ViewFlipper
+            android:id="@+id/flipperLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ViewFlipper
+            android:id="@+id/flipperRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 </FrameLayout>
