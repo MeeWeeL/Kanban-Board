@@ -11,18 +11,11 @@ import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.ui.MAIN
 
 class BoardScreenFragment : Fragment() {
-
     private var _binding: FragmentBoardScreenBinding? = null
     private val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
         }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

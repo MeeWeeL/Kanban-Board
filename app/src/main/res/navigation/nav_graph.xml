@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -27,7 +31,10 @@
             app:destination="@id/boardScreenFragment" />
         <action
             android:id="@+id/action_mainScreenFragment_to_copyOfCreateAccountFragment"
-            app:destination="@id/copyOfCreateAccountFragment" />
+            app:destination="@id/copyOfCreateAccountFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"
@@ -42,14 +49,12 @@
             app:destination="@id/doneFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_out_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popExitAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_boardScreenFragment_to_toDoFragment"
             app:destination="@id/toDoFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_out_right"
             app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
