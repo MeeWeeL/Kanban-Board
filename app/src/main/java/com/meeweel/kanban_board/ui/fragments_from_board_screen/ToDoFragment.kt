@@ -1,13 +1,12 @@
 package com.meeweel.kanban_board.ui.fragments_from_board_screen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
 import com.meeweel.kanban_board.ui.MAIN
 
@@ -22,7 +21,7 @@ class ToDoFragment : Fragment(), View.OnTouchListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentToDoBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -43,5 +42,10 @@ class ToDoFragment : Fragment(), View.OnTouchListener {
             }
         }
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

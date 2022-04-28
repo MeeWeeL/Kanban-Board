@@ -29,12 +29,6 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         super.onViewCreated(view, savedInstanceState)
         binding.flipperLeft.setOnTouchListener(this)
         binding.flipperRight.setOnTouchListener(this)
-//        binding.buttonGoToLeft.setOnClickListener {
-//            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
-//        }
-//        binding.buttonGoToRight.setOnClickListener {
-//            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
-//        }
     }
 
     override fun onDestroy() {

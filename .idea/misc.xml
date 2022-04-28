@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/layout/fragment_authorization.xml" value="0.18659420289855072" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/layout/fragment_board_screen.xml" value="0.18659420289855072" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/layout/fragment_done.xml" value="0.18659420289855072" />
+        <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/layout/fragment_main_screen.xml" value="0.18659420289855072" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/layout/fragment_to_do.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_board_screen.xml" value="0.2760416666666667" />

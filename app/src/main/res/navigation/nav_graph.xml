@@ -78,5 +78,12 @@
         android:id="@+id/doneFragment"
         android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.DoneFragment"
         android:label="fragment_done"
-        tools:layout="@layout/fragment_done" />
+        tools:layout="@layout/fragment_done" >
+        <action
+            android:id="@+id/action_doneFragment_to_boardScreenFragment"
+            app:destination="@id/boardScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

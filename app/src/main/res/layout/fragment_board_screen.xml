@@ -6,32 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.screens.BoardScreenFragment">
 
-    <TextView
-        android:id="@+id/broadScreen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="In Progress"
-        android:textSize="100sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonGoToLeft"
+        <TextView
+            android:id="@+id/broadScreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Go to left" />
+            android:text="In Progress"
+            android:textSize="100sp" />
 
-        <Button
-            android:id="@+id/buttonGoToRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Go to right" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/boardScreenFragmentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
