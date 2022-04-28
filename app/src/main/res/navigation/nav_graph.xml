@@ -61,12 +61,19 @@
         android:id="@+id/copyOfCreateAccountFragment"
         android:name="com.meeweel.kanban_board.ui.screens.CopyOfCreateAccountFragment"
         android:label="fragment_copy_of_create_account"
-        tools:layout="@layout/fragment_copy_of_create_account" />
+        tools:layout="@layout/fragment_copy_of_create_account" >
+        <action
+            android:id="@+id/action_copyOfCreateAccountFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
     <fragment
         android:id="@+id/toDoFragment"
         android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" >
+        tools:layout="@layout/fragment_to_do">
         <action
             android:id="@+id/action_toDoFragment_to_boardScreenFragment"
             app:destination="@id/boardScreenFragment"
@@ -78,7 +85,7 @@
         android:id="@+id/doneFragment"
         android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.DoneFragment"
         android:label="fragment_done"
-        tools:layout="@layout/fragment_done" >
+        tools:layout="@layout/fragment_done">
         <action
             android:id="@+id/action_doneFragment_to_boardScreenFragment"
             app:destination="@id/boardScreenFragment"

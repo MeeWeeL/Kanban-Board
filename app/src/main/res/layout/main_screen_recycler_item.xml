@@ -23,11 +23,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_plus_fab"
-            style="@style/Widget.MaterialComponents.Button"
             android:background="@color/teal_200"
+            android:src="@drawable/ic_plus_fab"
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
