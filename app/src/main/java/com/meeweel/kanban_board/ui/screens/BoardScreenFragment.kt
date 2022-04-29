@@ -1,10 +1,8 @@
 package com.meeweel.kanban_board.ui.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
@@ -16,6 +14,15 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         get() {
             return _binding!!
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        actionBar()
+    }
+
+    private fun actionBar() {
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +43,21 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main_screen_add, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_add -> {
+                Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

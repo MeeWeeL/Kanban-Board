@@ -1,7 +1,11 @@
 package com.meeweel.kanban_board.ui.screens.mainfragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.ui.MAIN
 
@@ -37,5 +41,15 @@ class MainScreenFragment : BaseMainScreenFragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main_screen_add, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_add -> {
+                Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

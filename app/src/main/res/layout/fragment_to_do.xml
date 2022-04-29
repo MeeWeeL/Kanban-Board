@@ -22,4 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabToDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/margin_main_screen_end"
+        android:layout_marginBottom="@dimen/margin_main_screen_bottom"
+        android:contentDescription="@string/fab_main_screen_description"
+        android:src="@drawable/ic_plus_fab" />
 </FrameLayout>
