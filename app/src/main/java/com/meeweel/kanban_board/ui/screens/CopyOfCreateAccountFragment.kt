@@ -11,7 +11,7 @@ import com.meeweel.kanban_board.ui.MAIN
 
 class CopyOfCreateAccountFragment : Fragment() {
 
-    lateinit var binding: FragmentCopyOfCreateAccountBinding
+    private lateinit var binding: FragmentCopyOfCreateAccountBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
