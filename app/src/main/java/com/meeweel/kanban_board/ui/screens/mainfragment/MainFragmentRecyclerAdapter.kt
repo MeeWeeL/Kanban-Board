@@ -10,7 +10,8 @@ class MainFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainFragmentRecyclerAdapter.MainViewHolder>() {
 
     private var dataList: MutableList<BoardModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
-    // В нашем случает тут это список досок
+                                                                    // В нашем случает тут это список досок
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding = MainScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
             LayoutInflater.from(parent.context),
