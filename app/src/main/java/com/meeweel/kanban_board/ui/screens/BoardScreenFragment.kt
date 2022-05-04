@@ -15,14 +15,14 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
             return _binding!!
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        actionBar()
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+////        actionBar()
+//    }
 
-    private fun actionBar() {
-        setHasOptionsMenu(true)
-    }
+//    private fun actionBar() {
+//        setHasOptionsMenu(true)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,22 +43,26 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main_screen_add, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_add -> {
-                Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
-                return true
-            }
+        
+        binding.appBarBoardScreen.setOnClickListener {
+            Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
         }
-        return super.onOptionsItemSelected(item)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.menu_main_screen_add, menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.action_add -> {
+//                Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
+//                return true
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
