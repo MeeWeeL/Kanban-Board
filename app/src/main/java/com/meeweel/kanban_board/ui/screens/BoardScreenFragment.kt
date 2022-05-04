@@ -1,8 +1,8 @@
 package com.meeweel.kanban_board.ui.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
@@ -14,15 +14,6 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         get() {
             return _binding!!
         }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-////        actionBar()
-//    }
-
-//    private fun actionBar() {
-//        setHasOptionsMenu(true)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,32 +28,27 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         binding.flipperLeft.setOnTouchListener(this)
         binding.flipperRight.setOnTouchListener(this)
         onActionBarListener()
+        workWhitItemMenuInToolbar()
+    }
+
+    private fun workWhitItemMenuInToolbar() {
+        binding.leftTopAppBarBoardScreen.inflateMenu(R.menu.menu_main_screen_add)
+        binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_add -> {
+                    binding.broadScreen.text = "Юхху)"
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun onActionBarListener() {
         binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
         }
-        
-        binding.appBarBoardScreen.setOnClickListener {
-            Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
-        }
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu_main_screen_add, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.action_add -> {
-//                Toast.makeText(context, "You push button +", Toast.LENGTH_SHORT).show()
-//                return true
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

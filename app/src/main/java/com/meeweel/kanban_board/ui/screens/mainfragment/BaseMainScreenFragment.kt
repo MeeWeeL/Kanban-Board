@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
 abstract class BaseMainScreenFragment : Fragment() {
 
     private var _binding: FragmentMainScreenBinding? = null
-    internal val binding: FragmentMainScreenBinding
+    internal open val binding: FragmentMainScreenBinding
         get() {
             return _binding!!
         }

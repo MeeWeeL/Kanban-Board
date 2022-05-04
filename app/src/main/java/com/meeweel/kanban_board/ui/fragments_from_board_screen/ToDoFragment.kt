@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
@@ -29,6 +30,13 @@ class ToDoFragment : Fragment(), View.OnTouchListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toDo.setOnTouchListener(this)
+        fabToDo()
+    }
+
+    private fun fabToDo() {
+        binding.fabToDo.setOnClickListener {
+            Toast.makeText(context, "FabToDo", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
