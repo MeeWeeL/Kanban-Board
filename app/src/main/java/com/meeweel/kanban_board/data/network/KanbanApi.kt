@@ -8,4 +8,7 @@ interface KanbanApi {
 
     @GET("api.php?q=get_fake_repository")
     fun getFakeBoards() : Single<List<Response>>
+
+    @GET("api.php?q=posts")
+    fun getBoards() : Single<List<Response>>
 }

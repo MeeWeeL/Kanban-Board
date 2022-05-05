@@ -10,4 +10,10 @@ class RemoteRepositoryImpl(private val service: KanbanApi = RetrofitService().ge
             convertResponseListToBoardModelList(it)
         }
     }
+
+    override fun getBoards(): Single<List<BoardModel>> {
+        return service.getBoards().map {
+            convertResponseListToBoardModelList(it)
+        }
+    }
 }
