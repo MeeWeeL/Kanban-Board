@@ -2,9 +2,9 @@ package com.meeweel.kanban_board.domain.responsemodels
 
 data class TaskResponse(
     val id: Int,
-    var name: String = "Task",
+    var title: String = "Task",
     var description: String?,
-    var status: Int,
-    var priority: Int,
-    var performer: String = "None"
+    var task_status: Int,
+    var task_priority: Int,
+    var task_performer: String = "None"
 )

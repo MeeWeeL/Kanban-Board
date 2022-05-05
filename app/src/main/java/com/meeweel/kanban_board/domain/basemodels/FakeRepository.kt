@@ -1,5 +1,7 @@
 package com.meeweel.kanban_board.domain.basemodels
 
+import io.reactivex.rxjava3.core.Single
+
 class FakeRepository {
     private val repo = mutableListOf(
         BoardModel(0,"Board 1", "Bai777","KeyYk23",
@@ -24,5 +26,5 @@ class FakeRepository {
         )
     )
 
-    fun getBoards() : MutableList<BoardModel> = repo
+    fun getBoards() : Single<List<BoardModel>> = Single.just(repo)
 }

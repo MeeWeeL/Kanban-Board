@@ -31,6 +31,6 @@ class RetrofitService {
     }
 
     companion object {
-        private const val BASE_URL_LOCATIONS = "https://kanban.pserver.ru/"
+        private const val BASE_URL_LOCATIONS = "https://www.kanban.pserver.ru/"
     }
 }

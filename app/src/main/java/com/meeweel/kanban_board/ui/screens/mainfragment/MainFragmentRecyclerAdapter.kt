@@ -32,9 +32,9 @@ class MainFragmentRecyclerAdapter :
     inner class MainViewHolder(private val binding: MainScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(dataList: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
-
+                title.text = data.name
             }
         }
     }

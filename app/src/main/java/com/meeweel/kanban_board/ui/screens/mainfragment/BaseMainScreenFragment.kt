@@ -47,7 +47,7 @@ abstract class BaseMainScreenFragment : Fragment() {
             viewLifecycleOwner,
             observer
         ) // Подписываем нашего подписчика на лайвдату из вьюмодели
-        viewModel.getLocalData() // Просим вьюмодель обновить свои данные (На всякий случай)
+        viewModel.getBoards() // Просим вьюмодель обновить свои данные (На всякий случай)
     }
 
     private fun renderData(data: AppState) = when (data) {

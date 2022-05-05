@@ -3,9 +3,12 @@ package com.meeweel.kanban_board.ui.screens.mainfragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.meeweel.kanban_board.domain.basemodels.FakeRepository
+import com.meeweel.kanban_board.data.interactor.Interactor
+import com.meeweel.kanban_board.data.interactor.InteractorImpl
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainFragmentViewModel(private val repo: FakeRepository = FakeRepository()) : ViewModel() {
+class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
 
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
 
@@ -13,17 +16,19 @@ class MainFragmentViewModel(private val repo: FakeRepository = FakeRepository())
         return liveDataToObserve
     }
 
-    fun getLocalData() = getDataFromLocalSource() // Обновить данные во вьюмоделе
+    fun getBoards() = getDataFromInterceptor() // Обновить данные во вьюмоделе
 
-    private fun getDataFromLocalSource() {
-        liveDataToObserve.value = AppState.Loading
-        Thread {
-            Thread.sleep(100)
-            liveDataToObserve.postValue(
-                AppState.Success(
-                    repo.getBoards().sortedBy { it.id }
-                )
-            )
-        }.start()
+    private fun getDataFromInterceptor() {
+        interactor.getBoards()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                liveDataToObserve.postValue(AppState.Loading)
+            }
+            .subscribe({
+                liveDataToObserve.postValue(AppState.Success(it))
+            }, {
+                liveDataToObserve.postValue(AppState.Error(Throwable("Connection error")))
+            })
     }
 }
