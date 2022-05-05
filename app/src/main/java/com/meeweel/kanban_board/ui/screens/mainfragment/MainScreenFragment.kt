@@ -1,6 +1,9 @@
 package com.meeweel.kanban_board.ui.screens.mainfragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,13 +41,48 @@ class MainScreenFragment : BaseMainScreenFragment() {
         binding.leftTopAppBarMainScreenFragment.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_add -> {
-                    Toast.makeText(context, "Юххуу", Toast.LENGTH_SHORT).show()
+                    alertDialogWithCustomStyle()
                     true
                 }
                 else -> false
             }
         }
     }
+
+    private fun alertDialogWithCustomStyle() {
+        val builder =
+            AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogCustom))
+        with(builder) {
+            setTitle("Work with board")
+            setNeutralButton(
+                "Create new board",
+                DialogInterface.OnClickListener(function = createNewBoard)
+            )
+            setNegativeButton(
+                "Add board",
+                DialogInterface.OnClickListener(function = addBoard)
+            )
+            show()
+        }
+    }
+
+    private val createNewBoard = { _: DialogInterface, _: Int ->
+        Toast.makeText(
+            context,
+            getString(R.string.aler_dialog_main_screen_fragvent_creating_new_board),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private val addBoard = { _: DialogInterface, _: Int ->
+        Toast.makeText(
+            context,
+            getString(R.string.aler_dialog_main_screen_fragvent_add_board),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+
 
     private fun onActionBarListener() {
         binding.leftTopAppBarMainScreenFragment.setNavigationOnClickListener {

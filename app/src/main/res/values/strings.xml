@@ -16,4 +16,6 @@
     <string name="theme">Theme</string>
     <string name="text_log_out_copy_of_create_account">Log out</string>
     <string name="text_delete_my_account_copy_of_create_account">Delete my account</string>
+    <string name="aler_dialog_main_screen_fragvent_creating_new_board">Creating new board</string>
+    <string name="aler_dialog_main_screen_fragvent_add_board">Add board</string>
 </resources>
