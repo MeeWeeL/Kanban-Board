@@ -9,38 +9,94 @@
         android:id="@+id/textViewLogin"
         android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
         android:label="fragment_authorization"
-        tools:layout="@layout/fragment_authorization" >
+        tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment"/>
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.MainScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" >
+        tools:layout="@layout/fragment_main_screen">
         <action
             android:id="@+id/action_mainScreenFragment_to_authorizationFragment"
             app:destination="@id/textViewLogin" />
         <action
             android:id="@+id/action_mainScreenFragment_to_boardScreenFragment"
-            app:destination="@id/boardScreenFragment" />
+            app:destination="@id/boardScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_mainScreenFragment_to_copyOfCreateAccountFragment"
-            app:destination="@id/copyOfCreateAccountFragment" />
+            app:destination="@id/copyOfCreateAccountFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"
         android:name="com.meeweel.kanban_board.ui.screens.BoardScreenFragment"
         android:label="fragment_board_screen"
-        tools:layout="@layout/fragment_board_screen" >
+        tools:layout="@layout/fragment_board_screen">
         <action
             android:id="@+id/action_boardScreenFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_boardScreenFragment_to_doneFragment"
+            app:destination="@id/doneFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/action_boardScreenFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/copyOfCreateAccountFragment"
         android:name="com.meeweel.kanban_board.ui.screens.CopyOfCreateAccountFragment"
         android:label="fragment_copy_of_create_account"
-        tools:layout="@layout/fragment_copy_of_create_account" />
+        tools:layout="@layout/fragment_copy_of_create_account" >
+        <action
+            android:id="@+id/action_copyOfCreateAccountFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.ToDoFragment"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do">
+        <action
+            android:id="@+id/action_toDoFragment_to_boardScreenFragment"
+            app:destination="@id/boardScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/doneFragment"
+        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.DoneFragment"
+        android:label="fragment_done"
+        tools:layout="@layout/fragment_done">
+        <action
+            android:id="@+id/action_doneFragment_to_boardScreenFragment"
+            app:destination="@id/boardScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>
