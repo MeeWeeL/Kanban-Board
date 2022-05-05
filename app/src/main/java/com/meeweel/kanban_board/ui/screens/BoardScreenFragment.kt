@@ -6,6 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
+import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
 class BoardScreenFragment : Fragment(), View.OnTouchListener {
@@ -73,5 +74,9 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
             }
         }
         return true
+    }
+
+    companion object {
+        var board: BoardModel? = null
     }
 }

@@ -3,8 +3,11 @@ package com.meeweel.kanban_board.ui.screens.mainfragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.ui.screens.BoardScreenFragment
 
 class MainFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainFragmentRecyclerAdapter.MainViewHolder>() {
@@ -35,6 +38,10 @@ class MainFragmentRecyclerAdapter :
         fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
                 title.text = data.name
+                root.setOnClickListener {
+                    BoardScreenFragment.board = data
+                    MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
+                }
             }
         }
     }
