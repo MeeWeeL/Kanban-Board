@@ -98,4 +98,5 @@
             android:layout_marginRight="7dp"
             android:src="@drawable/swipe_indicator_passive" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
