@@ -4,4 +4,5 @@
     <dimen name="sizeTextButtonAuthorizationFragment">25sp</dimen>
     <dimen name="margin_main_screen_end">15dp</dimen>
     <dimen name="margin_main_screen_bottom">15dp</dimen>
+    <dimen name="marginBottomRecyclerView">100dp</dimen>
 </resources>

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1685" />
+        <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable-v24/swipe_indicator_active.xml" value="0.218" />
+        <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable-v24/swipe_indicator_passive.xml" value="0.218" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable/ic_baseline_account.xml" value="0.1685" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable/ic_favourite_menu.xml" value="0.1685" />
         <entry key="..\:/AndroidProjects/Kanban-Board/app/src/main/res/drawable/ic_hamburger_menu.xml" value="0.1685" />
