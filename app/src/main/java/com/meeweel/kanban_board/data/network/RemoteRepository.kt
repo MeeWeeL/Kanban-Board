@@ -5,6 +5,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface RemoteRepository {
 
-    fun getFakeBoards() : Single<List<BoardModel>>
-    fun getBoards() : Single<List<BoardModel>>
+    fun getFakeBoards(): Single<List<BoardModel>>
+    fun getBoards(): Single<List<BoardModel>>
 }
