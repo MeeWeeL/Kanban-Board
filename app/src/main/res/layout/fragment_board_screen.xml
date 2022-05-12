@@ -98,5 +98,15 @@
             android:layout_marginRight="7dp"
             android:src="@drawable/swipe_indicator_passive" />
     </LinearLayout>
+    <FrameLayout
+        android:id="@+id/loadingLayoutBoardScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone">
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

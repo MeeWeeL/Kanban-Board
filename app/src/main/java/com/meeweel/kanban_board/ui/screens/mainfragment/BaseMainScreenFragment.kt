@@ -53,14 +53,14 @@ abstract class BaseMainScreenFragment : Fragment() {
     private fun renderData(data: AppState) = when (data) {
         is AppState.Success -> {
             val dataList = data.data
-            binding.loadingLayout.visibility = View.GONE
+            binding.loadingLayoutMainScreen.visibility = View.GONE
             adapter.setData(dataList)
         }
         is AppState.Loading -> {
-            binding.loadingLayout.visibility = View.VISIBLE
+            binding.loadingLayoutMainScreen.visibility = View.VISIBLE
         }
         is AppState.Error -> {
-            binding.loadingLayout.visibility = View.GONE
+            binding.loadingLayoutMainScreen.visibility = View.GONE
 
         }
     }

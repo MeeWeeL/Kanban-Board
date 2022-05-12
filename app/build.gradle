@@ -33,6 +33,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.meeweel.kanban_board'
 }
 
 dependencies {
