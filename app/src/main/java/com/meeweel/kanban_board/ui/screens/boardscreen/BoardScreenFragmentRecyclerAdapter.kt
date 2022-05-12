@@ -40,7 +40,6 @@ class BoardScreenFragmentRecyclerAdapter :
                 titleBoardScreen.text = data.name
                 root.setOnClickListener {
                     BoardScreenFragment.board = data
-                    MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
                 }
             }
         }

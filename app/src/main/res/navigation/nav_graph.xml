@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.ToDoFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.todoscreen.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do">
         <action

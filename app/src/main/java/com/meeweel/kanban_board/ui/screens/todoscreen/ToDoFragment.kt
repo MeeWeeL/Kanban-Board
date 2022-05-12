@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.fragments_from_board_screen
+package com.meeweel.kanban_board.ui.screens.todoscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
+import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
 
-class ToDoFragment : Fragment(), View.OnTouchListener {
+class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
     private var _binding: FragmentToDoBinding? = null
-    private val binding: FragmentToDoBinding
+    override val binding: FragmentToDoBinding
         get() {
             return _binding!!
         }
@@ -55,5 +55,9 @@ class ToDoFragment : Fragment(), View.OnTouchListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        var board: BoardModel? = null
     }
 }
