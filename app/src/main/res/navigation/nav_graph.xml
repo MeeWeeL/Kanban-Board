@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.BoardScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragment"
         android:label="fragment_board_screen"
         tools:layout="@layout/fragment_board_screen">
         <action

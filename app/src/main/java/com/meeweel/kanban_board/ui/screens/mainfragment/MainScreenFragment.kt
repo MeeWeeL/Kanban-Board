@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
+import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
 class MainScreenFragment : BaseMainScreenFragment() {
@@ -139,5 +140,9 @@ class MainScreenFragment : BaseMainScreenFragment() {
         binding.fabMainScreen.setOnClickListener {
             MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
         }
+    }
+
+    companion object {
+        var board: BoardModel? = null
     }
 }

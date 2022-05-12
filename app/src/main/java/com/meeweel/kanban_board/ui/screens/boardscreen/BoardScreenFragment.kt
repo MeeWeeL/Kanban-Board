@@ -1,17 +1,16 @@
-package com.meeweel.kanban_board.ui.screens
+package com.meeweel.kanban_board.ui.screens.boardscreen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
-class BoardScreenFragment : Fragment(), View.OnTouchListener {
+class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
     private var _binding: FragmentBoardScreenBinding? = null
-    private val binding: FragmentBoardScreenBinding
+    override val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
         }
@@ -37,7 +36,7 @@ class BoardScreenFragment : Fragment(), View.OnTouchListener {
         binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_add -> {
-                    binding.broadScreen.text = "Юхху)"
+                    Toast.makeText(requireContext(), "You push button", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false

@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.mainfragment
+package com.meeweel.kanban_board.ui.screens.boardscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,27 +7,27 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
+import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.ui.screens.AppState
 
-abstract class BaseMainScreenFragment : Fragment() {
+abstract class BaseBoardScreenFragment : Fragment() {
 
-    private var _binding: FragmentMainScreenBinding? = null
-    internal open val binding: FragmentMainScreenBinding
+    private var _binding: FragmentBoardScreenBinding? = null
+    internal open val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
         }
 
-    private val viewModel: MainFragmentViewModel by lazy { // Вьюмодель
-        ViewModelProvider(this).get(MainFragmentViewModel::class.java) //
+    private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
+        ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
     }
-    private val adapter = MainScreenFragmentRecyclerAdapter() // Адаптер
+    private val adapter = BoardScreenFragmentRecyclerAdapter() // Адаптер
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentBoardScreenBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -37,7 +37,7 @@ abstract class BaseMainScreenFragment : Fragment() {
     }
 
     private fun workLivedata() {
-        binding.mainScreenFragmentRecyclerView.adapter =
+        binding.boardScreenFragmentRecyclerView.adapter =
             adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
 
         val observer =
@@ -54,14 +54,14 @@ abstract class BaseMainScreenFragment : Fragment() {
     private fun renderData(data: AppState) = when (data) {
         is AppState.Success -> {
             val dataList = data.data
-            binding.loadingLayoutMainScreen.visibility = View.GONE
+            binding.loadingLayoutBoardScreen.visibility = View.GONE
             adapter.setData(dataList)
         }
         is AppState.Loading -> {
-            binding.loadingLayoutMainScreen.visibility = View.VISIBLE
+            binding.loadingLayoutBoardScreen.visibility = View.VISIBLE
         }
         is AppState.Error -> {
-            binding.loadingLayoutMainScreen.visibility = View.GONE
+            binding.loadingLayoutBoardScreen.visibility = View.GONE
 
         }
     }

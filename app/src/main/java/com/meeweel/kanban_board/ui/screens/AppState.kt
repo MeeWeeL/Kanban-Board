@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.mainfragment
+package com.meeweel.kanban_board.ui.screens
 
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 

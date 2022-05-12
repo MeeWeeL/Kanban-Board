@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.mainfragment
+package com.meeweel.kanban_board.ui.screens.boardscreen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.meeweel.kanban_board.ui.screens.AppState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
+class BoardScreenFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
 
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
 
