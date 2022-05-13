@@ -11,14 +11,18 @@ import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
 import com.meeweel.kanban_board.ui.MAIN
 
 class AuthorizationFragment : Fragment() {
+    private var _binding: FragmentAuthorizationBinding? = null
+    private val binding: FragmentAuthorizationBinding
+        get() {
+            return _binding!!
+        }
 
-    private lateinit var binding: FragmentAuthorizationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -28,7 +32,12 @@ class AuthorizationFragment : Fragment() {
             MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
         }
         binding.buttonSignUp.setOnClickListener {
-            Toast.makeText(context, "Go to login", Toast.LENGTH_SHORT).show()
+            MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
