@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.fragments_from_board_screen
+package com.meeweel.kanban_board.ui.screens.donefragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.databinding.FragmentDoneBinding
+import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
-class DoneFragment : Fragment(), View.OnTouchListener {
+class DoneFragment : BaseDoneScreenFragment(), View.OnTouchListener {
 
     private var _binding: FragmentDoneBinding? = null
-    private val binding: FragmentDoneBinding
+    override val binding: FragmentDoneBinding
         get() {
             return _binding!!
         }
@@ -44,5 +45,7 @@ class DoneFragment : Fragment(), View.OnTouchListener {
         }
         return true
     }
-
+    companion object {
+        var board: BoardModel? = null
+    }
 }

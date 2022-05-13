@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/doneFragment"
-        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.DoneFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.donefragment.DoneFragment"
         android:label="fragment_done"
         tools:layout="@layout/fragment_done">
         <action

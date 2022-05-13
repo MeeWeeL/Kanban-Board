@@ -42,7 +42,7 @@ class ToDoScreenFragmentRecyclerAdapter :
 
         fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
-                titleTodoScreen.text = data.name
+                titleDoneScreen.text = data.name
                 root.setOnClickListener {
                     ToDoFragment.board = data
                 }

@@ -17,12 +17,12 @@
             android:layout_height="wrap_content"
             android:hint="Default text of description"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/recyclerItemToDoScreen"
+            app:layout_constraintEnd_toStartOf="@id/recyclerItemDoneScreen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/recyclerItemToDoScreen"
+            android:id="@+id/recyclerItemDoneScreen"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -5,23 +5,19 @@
     android:id="@+id/done"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments_from_board_screen.DoneFragment">
+    tools:context=".ui.screens.donefragment.DoneFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Done"
-            android:textSize="100sp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doneScreenFragmentRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
     </LinearLayout>
 
     <LinearLayout
