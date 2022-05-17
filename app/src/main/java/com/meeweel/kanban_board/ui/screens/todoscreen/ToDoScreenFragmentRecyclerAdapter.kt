@@ -1,7 +1,10 @@
 package com.meeweel.kanban_board.ui.screens.todoscreen
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
@@ -44,7 +47,7 @@ class ToDoScreenFragmentRecyclerAdapter :
                     ToDoFragment.board = data
                 }
                 recyclerItemToDoScreen.setOnClickListener {
-                    toDoFragment.alertDialog()
+                    toDoFragment.popupMenu(root)
                 }
             }
         }

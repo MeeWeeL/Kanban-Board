@@ -1,18 +1,14 @@
 package com.meeweel.kanban_board.ui.screens.todoscreen
 
-import android.app.AlertDialog
-import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding as ToDoScreenRecyclerItemBinding1
 
 
 class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
@@ -36,12 +32,27 @@ class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
         fabToDo()
     }
 
-    fun alertDialog(): AlertDialog{
-        val builder = AlertDialog.Builder(requireContext())
-        return with(builder) {
-            setView(R.layout.alert_dialog_from_board_screen)
-            show()
+    fun popupMenu(view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.inflate(R.menu.popup_menu)
+        popupMenu.setOnMenuItemClickListener { item: MenuItem? ->
+            when (item!!.itemId) {
+                R.id.moveTo -> {
+
+                }
+                R.id.changePriority -> {
+
+                }
+                R.id.delete -> {
+
+                }
+            }
+            true
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true)
+        }
+        popupMenu.show()
     }
 
     private fun fabToDo() {
