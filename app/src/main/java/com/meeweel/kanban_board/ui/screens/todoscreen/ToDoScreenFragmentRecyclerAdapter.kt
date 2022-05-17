@@ -3,11 +3,8 @@ package com.meeweel.kanban_board.ui.screens.todoscreen
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragment
 
 class ToDoScreenFragmentRecyclerAdapter :
     RecyclerView.Adapter<ToDoScreenFragmentRecyclerAdapter.MainViewHolder>() {
@@ -39,12 +36,15 @@ class ToDoScreenFragmentRecyclerAdapter :
 
     inner class MainViewHolder(private val binding: ToDoScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
-
+        private val toDoFragment = ToDoFragment()
         fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
-                titleDoneScreen.text = data.name
+                titleToDoScreen.text = data.name
                 root.setOnClickListener {
                     ToDoFragment.board = data
+                }
+                recyclerItemToDoScreen.setOnClickListener {
+                    toDoFragment.alertDialog()
                 }
             }
         }

@@ -1,5 +1,7 @@
 package com.meeweel.kanban_board.ui.screens.todoscreen
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -10,6 +12,7 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding as ToDoScreenRecyclerItemBinding1
 
 
 class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
@@ -31,6 +34,14 @@ class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
         super.onViewCreated(view, savedInstanceState)
         binding.toDo.setOnTouchListener(this)
         fabToDo()
+    }
+
+    fun alertDialog(): AlertDialog{
+        val builder = AlertDialog.Builder(requireContext())
+        return with(builder) {
+            setView(R.layout.alert_dialog_from_board_screen)
+            show()
+        }
     }
 
     private fun fabToDo() {
@@ -56,6 +67,7 @@ class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
         super.onDestroy()
         _binding = null
     }
+
 
     companion object {
         var board: BoardModel? = null
