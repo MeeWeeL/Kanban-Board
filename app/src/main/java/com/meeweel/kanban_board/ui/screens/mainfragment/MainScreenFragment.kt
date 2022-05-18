@@ -141,8 +141,4 @@ class MainScreenFragment : BaseMainScreenFragment() {
             MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
         }
     }
-
-    companion object {
-        var board: BoardModel? = null
-    }
 }

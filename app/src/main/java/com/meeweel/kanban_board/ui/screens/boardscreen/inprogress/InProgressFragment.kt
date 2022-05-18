@@ -1,19 +1,23 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen
+package com.meeweel.kanban_board.ui.screens.boardscreen.inprogress
 
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.kanban_board.domain.basemodels.Status
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
-class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
-    private var _binding: FragmentBoardScreenBinding? = null
+class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
+
     override val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
         }
+
+    private val adapter = InProgressRecyclerAdapter() // Адаптер
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +29,21 @@ class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.flipperLeft.setOnTouchListener(this)
-        binding.flipperRight.setOnTouchListener(this)
+        binding.swipe.setOnTouchListener(this)
+        binding.swipe.setOnTouchListener(this)
         onActionBarListener()
         workWhitItemMenuInToolbar()
+    }
+
+    override fun setAdapter() {
+        binding.boardScreenFragmentRecyclerView.adapter =
+            adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
+    }
+
+    override fun setAdapterData(dataList: List<TaskModel>) {
+        val list = mutableListOf<TaskModel>()
+        for (item in dataList) if (item.status == Status.IN_PROGRESS) list.add(item)
+        adapter.setData(list)
     }
 
     private fun workWhitItemMenuInToolbar() {
@@ -44,12 +59,6 @@ class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
         }
     }
 
-    private fun onActionBarListener() {
-        binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
-            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -57,14 +66,14 @@ class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
         when (view) {
-            binding.flipperLeft -> {
+            binding.swipe -> {
                 when (motionEvent.action) {
                     MotionEvent.ACTION_MOVE -> {
                         MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
                     }
                 }
             }
-            binding.flipperRight -> {
+            binding.swipe -> {
                 when (motionEvent.action) {
                     MotionEvent.ACTION_MOVE -> {
                         MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
@@ -73,9 +82,5 @@ class BoardScreenFragment : BaseBoardScreenFragment(), View.OnTouchListener {
             }
         }
         return true
-    }
-
-    companion object {
-        var board: BoardModel? = null
     }
 }

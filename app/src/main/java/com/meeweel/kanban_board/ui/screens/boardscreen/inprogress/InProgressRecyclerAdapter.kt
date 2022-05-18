@@ -1,18 +1,15 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen
+package com.meeweel.kanban_board.ui.screens.boardscreen.inprogress
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
-import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
 
-class BoardScreenFragmentRecyclerAdapter :
-    RecyclerView.Adapter<BoardScreenFragmentRecyclerAdapter.MainViewHolder>() {
+class InProgressRecyclerAdapter :
+    RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
-    private var dataList: MutableList<BoardModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
+    private var dataList: MutableList<TaskModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
                                                                     // В нашем случает тут это список досок
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -35,17 +32,14 @@ class BoardScreenFragmentRecyclerAdapter :
     inner class MainViewHolder(private val binding: BoardScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(data: TaskModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
                 titleBoardScreen.text = data.name
-                root.setOnClickListener {
-                    BoardScreenFragment.board = data
-                }
             }
         }
     }
 
-    fun setData(data: List<BoardModel>) {
+    fun setData(data: List<TaskModel>) {
         dataList = data.toMutableList()
         notifyDataSetChanged()
     }

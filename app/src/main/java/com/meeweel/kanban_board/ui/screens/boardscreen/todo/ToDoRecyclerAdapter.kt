@@ -1,17 +1,17 @@
-package com.meeweel.kanban_board.ui.screens.todoscreen
+package com.meeweel.kanban_board.ui.screens.boardscreen.todo
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
 
-class ToDoScreenFragmentRecyclerAdapter(private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<ToDoScreenFragmentRecyclerAdapter.MainViewHolder>() {
+class ToDoRecyclerAdapter() :
+    RecyclerView.Adapter<ToDoRecyclerAdapter.MainViewHolder>() {
 
-    private var dataList: MutableList<BoardModel> =
+    private var dataList: MutableList<TaskModel> =
         mutableListOf() // Список данных, которые хотим отобразить ресайклером
     // В нашем случает тут это список досок
 
@@ -29,7 +29,7 @@ class ToDoScreenFragmentRecyclerAdapter(private val listener: OnItemClickListene
         holder: MainViewHolder,
         position: Int
     ) { // Вызывает заполнение лайаута
-        holder.bind(dataList[position], listener)
+        holder.bind(dataList[position])
     }
 
     override fun getItemCount(): Int { // Порядковый номер в списке
@@ -38,13 +38,9 @@ class ToDoScreenFragmentRecyclerAdapter(private val listener: OnItemClickListene
 
     inner class MainViewHolder(private val binding: ToDoScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: BoardModel, listener: OnItemClickListener) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(data: TaskModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
                 titleToDoScreen.text = data.name
-                root.setOnClickListener {
-                    ToDoFragment.board = data
-                }
-                listener.onItemClick(recyclerItemToDoScreen)
             }
         }
     }
@@ -53,7 +49,7 @@ class ToDoScreenFragmentRecyclerAdapter(private val listener: OnItemClickListene
         fun onItemClick(view: View)
     }
 
-    fun setData(data: List<BoardModel>) {
+    fun setData(data: List<TaskModel>) {
         dataList = data.toMutableList()
         notifyDataSetChanged()
     }

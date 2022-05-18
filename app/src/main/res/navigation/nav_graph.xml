@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.inprogress.InProgressFragment"
         android:label="fragment_board_screen"
         tools:layout="@layout/fragment_board_screen">
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.todoscreen.ToDoFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.todo.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do">
         <action
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/doneFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.donefragment.DoneFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.done.DoneFragment"
         android:label="fragment_done"
         tools:layout="@layout/fragment_done">
         <action

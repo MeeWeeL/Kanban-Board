@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragment.Companion.board
+import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment.Companion.board
 
 class MainScreenFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainScreenFragmentRecyclerAdapter.MainViewHolder>() {
@@ -40,7 +39,7 @@ class MainScreenFragmentRecyclerAdapter :
             binding.apply {
                 titleBoardScreen.text = data.name
                 root.setOnClickListener {
-                    MainScreenFragment.board = data
+                    board = data // BaseFragment.CompanionObject.board
                     MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
                 }
             }

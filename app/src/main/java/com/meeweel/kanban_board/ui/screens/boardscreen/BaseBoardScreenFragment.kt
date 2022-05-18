@@ -7,12 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
-import com.meeweel.kanban_board.ui.screens.AppState
+import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
+import com.meeweel.kanban_board.ui.MAIN
 
 abstract class BaseBoardScreenFragment : Fragment() {
 
-    private var _binding: FragmentBoardScreenBinding? = null
+    internal var _binding: FragmentBoardScreenBinding? = null
     internal open val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
@@ -21,7 +25,6 @@ abstract class BaseBoardScreenFragment : Fragment() {
     private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
         ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
     }
-    private val adapter = BoardScreenFragmentRecyclerAdapter() // Адаптер
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,37 +40,49 @@ abstract class BaseBoardScreenFragment : Fragment() {
     }
 
     private fun workLivedata() {
-        binding.boardScreenFragmentRecyclerView.adapter =
-            adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
+        setAdapter()
 
         val observer =
-            Observer<AppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+            Observer<TasksAppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
                 renderData(a)
             }
         viewModel.getData().observe(
             viewLifecycleOwner,
             observer
         ) // Подписываем нашего подписчика на лайвдату из вьюмодели
-        viewModel.getBoards() // Просим вьюмодель обновить свои данные (На всякий случай)
     }
 
-    private fun renderData(data: AppState) = when (data) {
-        is AppState.Success -> {
+    abstract fun setAdapter()
+
+    private fun renderData(data: TasksAppState) = when (data) {
+        is TasksAppState.Success -> {
             val dataList = data.data
             binding.loadingLayoutBoardScreen.visibility = View.GONE
-            adapter.setData(dataList)
+            setAdapterData(dataList)
         }
-        is AppState.Loading -> {
+        is TasksAppState.Loading -> {
             binding.loadingLayoutBoardScreen.visibility = View.VISIBLE
         }
-        is AppState.Error -> {
+        is TasksAppState.Error -> {
             binding.loadingLayoutBoardScreen.visibility = View.GONE
 
+        }
+    }
+
+    abstract fun setAdapterData(dataList: List<TaskModel>)
+
+    internal fun onActionBarListener() {
+        binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
+            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        var board: BoardModel? = null
     }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/inProgress"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.boardscreen.BoardScreenFragment">
+    tools:context=".ui.screens.boardscreen.inprogress.InProgressFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_board_screen"
@@ -34,27 +34,6 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ViewFlipper
-            android:id="@+id/flipperLeft"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_board_screen" />
-
-        <ViewFlipper
-            android:id="@+id/flipperRight"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_board_screen" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,4 +84,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ViewFlipper
+            android:id="@+id/swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
