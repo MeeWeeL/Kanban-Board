@@ -17,7 +17,7 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
             return _binding!!
         }
 
-    private val adapter = InProgressRecyclerAdapter() // Адаптер
+    private val adapter = InProgressRecyclerAdapter()  // Адаптеры для фрагментов отличаются, поэтому они создаются тут, а не в базовом фрагменте
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +33,23 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
         binding.swipe.setOnTouchListener(this)
         onActionBarListener()
         workWhitItemMenuInToolbar()
+
+        adapter.setBurgerClickListener(object : OnBurgerClickListener {
+            override fun onBurgerClick() {
+                TODO("Вот тут нужно указать, что делать при нажатии на бургер")
+            }
+        })
     }
 
-    override fun setAdapter() {
+    override fun setAdapter() { // В базовом фрагменте ещё нет адаптера, поэтому приаттачиваю его здесь
         binding.boardScreenFragmentRecyclerView.adapter =
-            adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
+            adapter
     }
 
-    override fun setAdapterData(dataList: List<TaskModel>) {
-        val list = mutableListOf<TaskModel>()
-        for (item in dataList) if (item.status == Status.IN_PROGRESS) list.add(item)
-        adapter.setData(list)
+    override fun setAdapterData(dataList: List<TaskModel>) { // Тут получаем список тасок всех
+        val list = mutableListOf<TaskModel>() // Создаём список для нужных в этом фрагменте тасок
+        for (item in dataList) if (item.status == Status.IN_PROGRESS) list.add(item) // Тут уже добавляем подходящие (С нужным статусом)
+        adapter.setData(list) // Отправляем в адаптер
     }
 
     private fun workWhitItemMenuInToolbar() {
@@ -62,6 +68,7 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        adapter.removeClickListeners() // Зануляю листенеры на бургерах, которые в адаптере навешивал
     }
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
@@ -82,5 +89,9 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
             }
         }
         return true
+    }
+
+    interface OnBurgerClickListener {
+        fun onBurgerClick()
     }
 }

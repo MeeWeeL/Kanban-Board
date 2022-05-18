@@ -9,11 +9,14 @@ import com.meeweel.kanban_board.domain.basemodels.TaskModel
 class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
-    private var dataList: MutableList<TaskModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
-                                                                    // В нашем случает тут это список досок
+    private var burgerListener: InProgressFragment.OnBurgerClickListener? = null // Этот бургер будем навешивать на бургер
+    // Настраивается он из фрагмента, через функцию setBurgerClickListener() в этом адаптере (И зануляется тоже)
+    // Сам этот интерфейс создан тоже во фрагменте
+
+    private var dataList: MutableList<TaskModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val binding = BoardScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
+        val binding = BoardScreenRecyclerItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -21,22 +24,33 @@ class InProgressRecyclerAdapter :
         return MainViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) { // Вызывает заполнение лайаута
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(dataList[position])
     }
 
-    override fun getItemCount(): Int { // Порядковый номер в списке
+    override fun getItemCount(): Int {
         return dataList.size
     }
 
-    inner class MainViewHolder(private val binding: BoardScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
+    inner class MainViewHolder(private val binding: BoardScreenRecyclerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: TaskModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(data: TaskModel) {
             binding.apply {
                 titleBoardScreen.text = data.name
+                binding.burger.setOnClickListener {
+                    burgerListener?.onBurgerClick() // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
+                }
             }
         }
+    }
+
+    fun setBurgerClickListener(onBurgerClickListener: InProgressFragment.OnBurgerClickListener) {
+        this.burgerListener = onBurgerClickListener
+    }
+
+    fun removeClickListeners() {
+        this.burgerListener = null
     }
 
     fun setData(data: List<TaskModel>) {
