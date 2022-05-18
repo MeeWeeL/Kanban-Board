@@ -1,15 +1,14 @@
 package com.meeweel.kanban_board.ui.screens.todoscreen
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.ToDoScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 
-class ToDoScreenFragmentRecyclerAdapter :
+class ToDoScreenFragmentRecyclerAdapter(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<ToDoScreenFragmentRecyclerAdapter.MainViewHolder>() {
 
     private var dataList: MutableList<BoardModel> =
@@ -30,7 +29,7 @@ class ToDoScreenFragmentRecyclerAdapter :
         holder: MainViewHolder,
         position: Int
     ) { // Вызывает заполнение лайаута
-        holder.bind(dataList[position])
+        holder.bind(dataList[position], listener)
     }
 
     override fun getItemCount(): Int { // Порядковый номер в списке
@@ -39,18 +38,19 @@ class ToDoScreenFragmentRecyclerAdapter :
 
     inner class MainViewHolder(private val binding: ToDoScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
-        private val toDoFragment = ToDoFragment()
-        fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(data: BoardModel, listener: OnItemClickListener) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
                 titleToDoScreen.text = data.name
                 root.setOnClickListener {
                     ToDoFragment.board = data
                 }
-                recyclerItemToDoScreen.setOnClickListener {
-                    toDoFragment.popupMenu(root)
-                }
+                listener.onItemClick(recyclerItemToDoScreen)
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View)
     }
 
     fun setData(data: List<BoardModel>) {

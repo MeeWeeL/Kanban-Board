@@ -1,9 +1,9 @@
 package com.meeweel.kanban_board.ui.screens.todoscreen
 
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.PopupMenu
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
@@ -30,29 +30,6 @@ class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
         super.onViewCreated(view, savedInstanceState)
         binding.toDo.setOnTouchListener(this)
         fabToDo()
-    }
-
-    fun popupMenu(view: View) {
-        val popupMenu = PopupMenu(requireContext(), view)
-        popupMenu.inflate(R.menu.popup_menu)
-        popupMenu.setOnMenuItemClickListener { item: MenuItem? ->
-            when (item!!.itemId) {
-                R.id.moveTo -> {
-
-                }
-                R.id.changePriority -> {
-
-                }
-                R.id.delete -> {
-
-                }
-            }
-            true
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            popupMenu.setForceShowIcon(true)
-        }
-        popupMenu.show()
     }
 
     private fun fabToDo() {
@@ -82,5 +59,27 @@ class ToDoFragment : BaseToDoScreenFragment(), View.OnTouchListener {
 
     companion object {
         var board: BoardModel? = null
+    }
+
+    override fun onItemClick(view: View) {
+        Toast.makeText(context, "Buuuu ${view.id}", Toast.LENGTH_SHORT).show()
+//        val popupMenu = PopupMenu(requireContext(), view)
+//        popupMenu.inflate(R.menu.popup_menu)
+//        popupMenu.setForceShowIcon(true)
+//        popupMenu.setOnMenuItemClickListener {
+//            when (it.itemId) {
+//                R.id.moveTo -> {
+//
+//                }
+//                R.id.changePriority -> {
+//
+//                }
+//                R.id.delete -> {
+//
+//                }
+//            }
+//            true
+//        }
+//        popupMenu.show()
     }
 }

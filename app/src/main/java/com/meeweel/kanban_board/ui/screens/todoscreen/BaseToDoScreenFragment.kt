@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.databinding.FragmentToDoBinding
 import com.meeweel.kanban_board.ui.screens.AppState
 
-abstract class BaseToDoScreenFragment : Fragment() {
+abstract class BaseToDoScreenFragment : Fragment(),
+    ToDoScreenFragmentRecyclerAdapter.OnItemClickListener {
 
     private var _binding: FragmentToDoBinding? = null
     internal open val binding: FragmentToDoBinding
@@ -21,7 +22,7 @@ abstract class BaseToDoScreenFragment : Fragment() {
     private val viewModel: ToDoFragmentViewModel by lazy { // Вьюмодель
         ViewModelProvider(this).get(ToDoFragmentViewModel::class.java) //
     }
-    private val adapter = ToDoScreenFragmentRecyclerAdapter() // Адаптер
+    private val adapter = ToDoScreenFragmentRecyclerAdapter(this) // Адаптер
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
