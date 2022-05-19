@@ -4,25 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.DoneScreenRecyclerItemBinding
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 
 class DoneRecyclerAdapter :
     RecyclerView.Adapter<DoneRecyclerAdapter.MainViewHolder>() {
 
-    private var dataList: MutableList<TaskModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
-                                                                    // В нашем случает тут это список досок
+    private var dataList: MutableList<TaskModel> =
+        mutableListOf() // Список данных, которые хотим отобразить ресайклером
+    // В нашем случает тут это список досок
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val binding = DoneScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding =
+            DoneScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return MainViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) { // Вызывает заполнение лайаута
+    override fun onBindViewHolder(
+        holder: MainViewHolder,
+        position: Int
+    ) { // Вызывает заполнение лайаута
         holder.bind(dataList[position])
     }
 

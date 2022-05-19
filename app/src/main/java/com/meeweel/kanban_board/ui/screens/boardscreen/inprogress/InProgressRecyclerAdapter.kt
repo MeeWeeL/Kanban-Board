@@ -9,7 +9,8 @@ import com.meeweel.kanban_board.domain.basemodels.TaskModel
 class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
-    private var burgerListener: InProgressFragment.OnBurgerClickListener? = null // Этот бургер будем навешивать на бургер
+    private var burgerListener: InProgressFragment.OnBurgerClickListener? =
+        null // Этот бургер будем навешивать на бургер
     // Настраивается он из фрагмента, через функцию setBurgerClickListener() в этом адаптере (И зануляется тоже)
     // Сам этот интерфейс создан тоже во фрагменте
 

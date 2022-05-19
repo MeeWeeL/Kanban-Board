@@ -1,23 +1,25 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.inprogress
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
-class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
+class InProgressFragment : BaseBoardScreenFragment(){
 
     override val binding: FragmentBoardScreenBinding
         get() {
             return _binding!!
         }
 
-    private val adapter = InProgressRecyclerAdapter()  // Адаптеры для фрагментов отличаются, поэтому они создаются тут, а не в базовом фрагменте
+    private val adapter =
+        InProgressRecyclerAdapter()  // Адаптеры для фрагментов отличаются, поэтому они создаются тут, а не в базовом фрагменте
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +31,12 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipe.setOnTouchListener(this)
-        binding.swipe.setOnTouchListener(this)
         onActionBarListener()
         workWhitItemMenuInToolbar()
 
         adapter.setBurgerClickListener(object : OnBurgerClickListener {
             override fun onBurgerClick() {
-                TODO("Вот тут нужно указать, что делать при нажатии на бургер")
+                Toast.makeText(context, "Buuuu ${view.id}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -69,26 +69,6 @@ class InProgressFragment : BaseBoardScreenFragment(), View.OnTouchListener {
         super.onDestroy()
         _binding = null
         adapter.removeClickListeners() // Зануляю листенеры на бургерах, которые в адаптере навешивал
-    }
-
-    override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
-        when (view) {
-            binding.swipe -> {
-                when (motionEvent.action) {
-                    MotionEvent.ACTION_MOVE -> {
-                        MAIN.navController.navigate(R.id.action_boardScreenFragment_to_toDoFragment)
-                    }
-                }
-            }
-            binding.swipe -> {
-                when (motionEvent.action) {
-                    MotionEvent.ACTION_MOVE -> {
-                        MAIN.navController.navigate(R.id.action_boardScreenFragment_to_doneFragment)
-                    }
-                }
-            }
-        }
-        return true
     }
 
     interface OnBurgerClickListener {
