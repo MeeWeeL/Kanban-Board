@@ -1,17 +1,19 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.inprogress
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
-class InProgressFragment : BaseBoardScreenFragment(){
+class InProgressFragment : BaseBoardScreenFragment() {
 
     override val binding: FragmentBoardScreenBinding
         get() {
@@ -36,7 +38,24 @@ class InProgressFragment : BaseBoardScreenFragment(){
 
         adapter.setBurgerClickListener(object : OnBurgerClickListener {
             override fun onBurgerClick() {
-                Toast.makeText(context, "Buuuu ${view.id}", Toast.LENGTH_SHORT).show()
+                        val popupMenu = PopupMenu(requireContext(), view, Gravity.CENTER)
+        popupMenu.inflate(R.menu.popup_menu)
+        popupMenu.setForceShowIcon(true)
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.moveTo -> {
+
+                }
+                R.id.changePriority -> {
+
+                }
+                R.id.delete -> {
+
+                }
+            }
+            true
+        }
+        popupMenu.show()
             }
         })
     }
