@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
+import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
 class DoneFragment : BaseBoardScreenFragment() {
 
-    override val binding: FragmentBoardScreenBinding
+    override val binding: FragmentInProgressBinding
         get() {
             return _binding!!
         }
@@ -23,7 +23,7 @@ class DoneFragment : BaseBoardScreenFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBoardScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentInProgressBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

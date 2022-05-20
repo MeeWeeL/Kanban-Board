@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
+import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
 class InProgressFragment : BaseBoardScreenFragment() {
 
-    override val binding: FragmentBoardScreenBinding
+    override val binding: FragmentInProgressBinding
         get() {
             return _binding!!
         }
@@ -27,7 +27,7 @@ class InProgressFragment : BaseBoardScreenFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBoardScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentInProgressBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,24 +38,24 @@ class InProgressFragment : BaseBoardScreenFragment() {
 
         adapter.setBurgerClickListener(object : OnBurgerClickListener {
             override fun onBurgerClick() {
-                        val popupMenu = PopupMenu(requireContext(), view, Gravity.CENTER)
-        popupMenu.inflate(R.menu.popup_menu)
-        popupMenu.setForceShowIcon(true)
-        popupMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.moveTo -> {
+                val popupMenu = PopupMenu(requireContext(), view, Gravity.CENTER)
+                popupMenu.inflate(R.menu.popup_menu)
+                popupMenu.setForceShowIcon(true)
+                popupMenu.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.moveTo -> {
 
-                }
-                R.id.changePriority -> {
+                        }
+                        R.id.changePriority -> {
 
-                }
-                R.id.delete -> {
+                        }
+                        R.id.delete -> {
 
+                        }
+                    }
+                    true
                 }
-            }
-            true
-        }
-        popupMenu.show()
+                popupMenu.show()
             }
         })
     }

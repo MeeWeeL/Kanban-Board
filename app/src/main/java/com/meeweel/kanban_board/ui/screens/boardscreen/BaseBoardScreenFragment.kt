@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.FragmentBoardScreenBinding
+import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
@@ -16,8 +16,8 @@ import com.meeweel.kanban_board.ui.MAIN
 
 abstract class BaseBoardScreenFragment : Fragment() {
 
-    internal var _binding: FragmentBoardScreenBinding? = null
-    internal open val binding: FragmentBoardScreenBinding
+    internal var _binding: FragmentInProgressBinding? = null
+    internal open val binding: FragmentInProgressBinding
         get() {
             return _binding!!
         }
@@ -30,7 +30,7 @@ abstract class BaseBoardScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBoardScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentInProgressBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
