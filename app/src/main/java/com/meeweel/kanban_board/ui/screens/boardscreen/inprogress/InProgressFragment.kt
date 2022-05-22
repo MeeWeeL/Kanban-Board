@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.viewpager2.widget.ViewPager2
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
@@ -33,6 +34,8 @@ class InProgressFragment : BaseBoardScreenFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        binding.inProgressPager.adapter = adapter
         onActionBarListener()
         workWhitItemMenuInToolbar()
 
