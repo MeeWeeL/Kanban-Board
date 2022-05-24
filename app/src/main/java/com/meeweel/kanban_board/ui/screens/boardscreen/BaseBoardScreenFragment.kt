@@ -7,14 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
+import com.meeweel.kanban_board.databinding.FragmentViewpagerBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
 import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.ui.screens.boardscreen.inprogress.ViewPagerAdapter
 
 abstract class BaseBoardScreenFragment : Fragment() {
+
+    private val countBoards = 3
+
+    private lateinit var adapterViewPager: ViewPager2
+     private val bindingViewPager: FragmentViewpagerBinding? = null
 
     internal var _binding: FragmentInProgressBinding? = null
     internal open val binding: FragmentInProgressBinding
@@ -24,6 +32,16 @@ abstract class BaseBoardScreenFragment : Fragment() {
 
     private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
         ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val pagerAdapter = ViewPagerAdapter(
+            countBoards,
+            childFragmentManager,
+            lifecycle
+        )
+        bindingViewPager?.viewPager?.adapter = pagerAdapter
     }
 
     override fun onCreateView(
@@ -84,5 +102,6 @@ abstract class BaseBoardScreenFragment : Fragment() {
 
     companion object {
         var board: BoardModel? = null
+        var POSITION_ARG = "position_arg"
     }
 }

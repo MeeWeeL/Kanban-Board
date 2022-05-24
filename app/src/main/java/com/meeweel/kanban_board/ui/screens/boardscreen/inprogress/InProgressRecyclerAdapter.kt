@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.done.DoneFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.todo.ToDoFragment
 
 class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {

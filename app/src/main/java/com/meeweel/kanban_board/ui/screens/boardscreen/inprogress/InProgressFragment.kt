@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
-import androidx.viewpager2.widget.ViewPager2
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
@@ -34,8 +33,42 @@ class InProgressFragment : BaseBoardScreenFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        with(binding) {
+//            viewPager.adapter = object : FragmentStateAdapter(this@InProgressFragment){
+//                override fun getItemCount(): Int {
+//                    return 3
+//                }
+//
+//                override fun createFragment(position: Int): Fragment {
+//                    TODO("Not yet implemented")
+//                }
+//
+//            }
+//            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//                override fun onPageSelected(position: Int) {
+//                    super.onPageSelected(position)
+//                    Toast.makeText(requireContext(), "Hi", Toast.LENGTH_SHORT).show()
+//                }
+//            })
+//            viewPager.setPageTransformer { page, position ->
+//                val viewPager = page.parent.parent as ViewPager2
+//                val offset = position * -(2 * 120)
+//                if (viewPager.orientation == ORIENTATION_HORIZONTAL) {
+//                    if (ViewCompat.getLayoutDirection(viewPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+//                        page.translationX = -offset
+//                    } else {
+//                        page.translationX = offset
+//                    }
+//                } else {
+//                    page.translationY = offset
+//                }
+//            }
+//
+//            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+//                tab.text = "1"
+//            }.attach()
+//        }
 
-//        binding.inProgressPager.adapter = adapter
         onActionBarListener()
         workWhitItemMenuInToolbar()
 
