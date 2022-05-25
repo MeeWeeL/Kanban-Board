@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.AuthorizationFragment">
+    tools:context=".ui.screens.authorization.AuthorizationFragment">
 
     <LinearLayout
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,66 +23,80 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/textViewLogin"
-            android:textSize="@dimen/textFromAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@+id/editTextLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="@dimen/textFromAuthorizationFragment" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_create_a_login"
-            app:layout_constraintBottom_toTopOf="@id/textViewPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
+            android:hint="@string/hint_enter_your_login" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/textViewPassword"
-            android:textSize="@dimen/textFromAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextLogin" />
+            android:textSize="@dimen/textFromAuthorizationFragment" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_create_a_password"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPassword" />
+            android:hint="@string/hint_enter_your_password" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSignUp"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewRepeatPassword"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buttonTextSignUp"
-            android:textAllCaps="false"
-            android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+            android:text="@string/textViewRepeatPassword"
+            android:textSize="@dimen/textFromAuthorizationFragment"
+            android:visibility="gone" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSignIn"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextRepeatPassword"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buttonTextSignIn"
-            android:textAllCaps="false"
-            android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
+            android:hint="@string/hint_repeat_your_password"
+            android:visibility="gone" />
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignIn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonTextSignIn"
+        android:textAllCaps="false"
+        android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
+        app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignUp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/buttonTextSignUp"
+        android:textAllCaps="false"
+        android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/black"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

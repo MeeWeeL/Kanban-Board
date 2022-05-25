@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/textViewLogin"
-        android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization">
         <action

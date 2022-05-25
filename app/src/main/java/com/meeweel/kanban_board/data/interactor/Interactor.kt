@@ -1,7 +1,6 @@
 package com.meeweel.kanban_board.data.interactor
 
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import io.reactivex.rxjava3.core.Single
 
 interface Interactor {
