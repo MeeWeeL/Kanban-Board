@@ -42,8 +42,7 @@ class AuthorizationFragment : Fragment() {
             viewModel.signIn(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
         }
         binding.buttonSignUp.setOnClickListener {
-//            viewModel.signUp(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
-            viewModel.checkAuthorization()
+            viewModel.signUp(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
         }
     }
 
