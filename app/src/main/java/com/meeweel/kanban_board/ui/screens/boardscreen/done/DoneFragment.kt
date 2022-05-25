@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
-class DoneFragment : BaseBoardScreenFragment() {
+class DoneFragment : BaseBoardScreenFragment(R.layout.fragment_done) {
 
     override val binding: FragmentInProgressBinding
         get() {

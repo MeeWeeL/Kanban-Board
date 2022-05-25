@@ -8,11 +8,12 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
-    get(){
-        return _binding!!
-    }
+        get() {
+            return _binding!!
+        }
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {

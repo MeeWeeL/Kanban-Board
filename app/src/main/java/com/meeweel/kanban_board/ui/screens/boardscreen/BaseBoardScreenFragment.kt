@@ -7,22 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
-import com.meeweel.kanban_board.databinding.FragmentViewpagerBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
+import com.meeweel.kanban_board.ui.FragmentReplacer
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.boardscreen.inprogress.ViewPagerAdapter
+import kotlin.random.Random
 
-abstract class BaseBoardScreenFragment : Fragment() {
+abstract class BaseBoardScreenFragment(private val layoutId: Int) : Fragment() {
 
-    private val countBoards = 3
+    val pageId = Random.nextLong(2021, 2021*3)
+    var pagePos = -1
+    protected lateinit var fragmentReplacer: FragmentReplacer
 
-    private lateinit var adapterViewPager: ViewPager2
-     private val bindingViewPager: FragmentViewpagerBinding? = null
 
     internal var _binding: FragmentInProgressBinding? = null
     internal open val binding: FragmentInProgressBinding
@@ -34,27 +33,22 @@ abstract class BaseBoardScreenFragment : Fragment() {
         ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val pagerAdapter = ViewPagerAdapter(
-            countBoards,
-            childFragmentManager,
-            lifecycle
-        )
-        bindingViewPager?.viewPager?.adapter = pagerAdapter
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInProgressBinding.inflate(layoutInflater, container, false)
-        return binding.root
+        return inflater.inflate(layoutId, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         workLivedata()
+    }
+
+    fun setPageInfo(pagePos: Int, fragmentReplacer: FragmentReplacer) {
+        this.pagePos = pagePos
+        this.fragmentReplacer = fragmentReplacer
     }
 
     private fun workLivedata() {
@@ -102,6 +96,5 @@ abstract class BaseBoardScreenFragment : Fragment() {
 
     companion object {
         var board: BoardModel? = null
-        var POSITION_ARG = "position_arg"
     }
 }

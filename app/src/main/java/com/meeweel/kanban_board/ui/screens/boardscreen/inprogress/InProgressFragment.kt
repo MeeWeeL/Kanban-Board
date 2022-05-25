@@ -13,7 +13,11 @@ import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
-class InProgressFragment : BaseBoardScreenFragment() {
+class InProgressFragment : BaseBoardScreenFragment(R.layout.fragment_in_progress) {
+
+//    private lateinit var viewPager: ViewPager2
+//    private lateinit var adapterViewPager: ViewPagerAdapter
+//    private lateinit var bindingViewPager: FragmentViewpagerBinding
 
     override val binding: FragmentInProgressBinding
         get() {
@@ -31,8 +35,15 @@ class InProgressFragment : BaseBoardScreenFragment() {
         return binding.root
     }
 
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        adapterViewPager = ViewPagerAdapter(childFragmentManager, lifecycle)
+//       viewPager.adapter = adapterViewPager
+//    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 //        with(binding) {
 //            viewPager.adapter = object : FragmentStateAdapter(this@InProgressFragment){
 //                override fun getItemCount(): Int {

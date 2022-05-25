@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
 
 
-class ToDoFragment : BaseBoardScreenFragment() {
+class ToDoFragment : BaseBoardScreenFragment(R.layout.fragment_to_do) {
 
     override val binding: FragmentInProgressBinding
         get() {
@@ -31,6 +31,7 @@ class ToDoFragment : BaseBoardScreenFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fragmentReplacer.replace(pagePos, this)
         fabToDo()
     }
 
@@ -59,27 +60,5 @@ class ToDoFragment : BaseBoardScreenFragment() {
 
     companion object {
         var board: BoardModel? = null
-    }
-
-    fun onItemClick(view: View) { //
-        Toast.makeText(context, "Buuuu ${view.id}", Toast.LENGTH_SHORT).show()
-//        val popupMenu = PopupMenu(requireContext(), view)
-//        popupMenu.inflate(R.menu.popup_menu)
-//        popupMenu.setForceShowIcon(true)
-//        popupMenu.setOnMenuItemClickListener {
-//            when (it.itemId) {
-//                R.id.moveTo -> {
-//
-//                }
-//                R.id.changePriority -> {
-//
-//                }
-//                R.id.delete -> {
-//
-//                }
-//            }
-//            true
-//        }
-//        popupMenu.show()
     }
 }
