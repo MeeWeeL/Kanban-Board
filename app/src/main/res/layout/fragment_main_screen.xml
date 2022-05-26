@@ -37,7 +37,7 @@
         android:src="@drawable/ic_search" />
 
     <FrameLayout
-        android:id="@+id/loadingLayout"
+        android:id="@+id/loadingLayoutMainScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="gone">

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.databinding.FragmentMainScreenBinding
+import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
 
 abstract class BaseMainScreenFragment : Fragment() {
 
@@ -20,7 +21,7 @@ abstract class BaseMainScreenFragment : Fragment() {
     private val viewModel: MainFragmentViewModel by lazy { // Вьюмодель
         ViewModelProvider(this).get(MainFragmentViewModel::class.java) //
     }
-    private val adapter = MainFragmentRecyclerAdapter() // Адаптер
+    private val adapter = MainScreenFragmentRecyclerAdapter() // Адаптер
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +41,7 @@ abstract class BaseMainScreenFragment : Fragment() {
             adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
 
         val observer =
-            Observer<AppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+            Observer<BoardsAppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
                 renderData(a)
             }
         viewModel.getData().observe(
@@ -50,17 +51,17 @@ abstract class BaseMainScreenFragment : Fragment() {
         viewModel.getBoards() // Просим вьюмодель обновить свои данные (На всякий случай)
     }
 
-    private fun renderData(data: AppState) = when (data) {
-        is AppState.Success -> {
+    private fun renderData(data: BoardsAppState) = when (data) {
+        is BoardsAppState.Success -> {
             val dataList = data.data
-            binding.loadingLayout.visibility = View.GONE
+            binding.loadingLayoutMainScreen.visibility = View.GONE
             adapter.setData(dataList)
         }
-        is AppState.Loading -> {
-            binding.loadingLayout.visibility = View.VISIBLE
+        is BoardsAppState.Loading -> {
+            binding.loadingLayoutMainScreen.visibility = View.VISIBLE
         }
-        is AppState.Error -> {
-            binding.loadingLayout.visibility = View.GONE
+        is BoardsAppState.Error -> {
+            binding.loadingLayoutMainScreen.visibility = View.GONE
 
         }
     }

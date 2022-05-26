@@ -3,16 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/textViewLogin">
+    app:startDestination="@id/textViewLoginRegistration">
 
     <fragment
-        android:id="@+id/textViewLogin"
+        android:id="@+id/textViewLoginRegistration"
         android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_textViewLoginRegistration_to_registrationFragment"
+            app:destination="@id/registrationFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_out_left"
@@ -25,7 +32,7 @@
         tools:layout="@layout/fragment_main_screen">
         <action
             android:id="@+id/action_mainScreenFragment_to_authorizationFragment"
-            app:destination="@id/textViewLogin" />
+            app:destination="@id/textViewLoginRegistration" />
         <action
             android:id="@+id/action_mainScreenFragment_to_boardScreenFragment"
             app:destination="@id/boardScreenFragment"
@@ -41,9 +48,9 @@
     </fragment>
     <fragment
         android:id="@+id/boardScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.BoardScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.inprogress.InProgressFragment"
         android:label="fragment_board_screen"
-        tools:layout="@layout/fragment_board_screen">
+        tools:layout="@layout/fragment_in_progress">
         <action
             android:id="@+id/action_boardScreenFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
@@ -77,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.ToDoFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.todo.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do">
         <action
@@ -89,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/doneFragment"
-        android:name="com.meeweel.kanban_board.ui.fragments_from_board_screen.DoneFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.done.DoneFragment"
         android:label="fragment_done"
         tools:layout="@layout/fragment_done">
         <action
@@ -98,5 +105,14 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_textViewLoginRegistration"
+            app:destination="@id/textViewLoginRegistration" />
     </fragment>
 </navigation>

@@ -7,10 +7,10 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.BoardScreenFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment.Companion.board
 
-class MainFragmentRecyclerAdapter :
-    RecyclerView.Adapter<MainFragmentRecyclerAdapter.MainViewHolder>() {
+class MainScreenFragmentRecyclerAdapter :
+    RecyclerView.Adapter<MainScreenFragmentRecyclerAdapter.MainViewHolder>() {
 
     private var dataList: MutableList<BoardModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
                                                                     // В нашем случает тут это список досок
@@ -37,9 +37,9 @@ class MainFragmentRecyclerAdapter :
 
         fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
-                title.text = data.name
+                titleBoardScreen.text = data.name
                 root.setOnClickListener {
-                    BoardScreenFragment.board = data
+                    board = data // BaseFragment.CompanionObject.board
                     MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
                 }
             }

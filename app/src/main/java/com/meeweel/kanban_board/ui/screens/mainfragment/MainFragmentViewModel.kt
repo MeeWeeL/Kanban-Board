@@ -5,14 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.Interactor
 import com.meeweel.kanban_board.data.interactor.InteractorImpl
+import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
 
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
+    private val liveDataToObserve: MutableLiveData<BoardsAppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
 
-    fun getData(): LiveData<AppState> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
+    fun getData(): LiveData<BoardsAppState> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
         return liveDataToObserve
     }
 
@@ -23,12 +24,12 @@ class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                liveDataToObserve.postValue(AppState.Loading)
+                liveDataToObserve.postValue(BoardsAppState.Loading)
             }
             .subscribe({
-                liveDataToObserve.postValue(AppState.Success(it))
+                liveDataToObserve.postValue(BoardsAppState.Success(it))
             }, {
-                liveDataToObserve.postValue(AppState.Error(Throwable("Connection error")))
+                liveDataToObserve.postValue(BoardsAppState.Error(Throwable("Connection error")))
             })
     }
 }

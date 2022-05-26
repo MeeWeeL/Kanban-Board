@@ -33,6 +33,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.meeweel.kanban_board'
 }
 
 dependencies {
@@ -72,4 +73,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    //ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.1.0-beta01")
+    implementation("com.tbuonomo:dotsindicator:4.2")
 }
