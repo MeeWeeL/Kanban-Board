@@ -12,8 +12,8 @@
     <string name="changePriority">Change priority</string>
     <string name="delete">Delete</string>
     <string name="buttonTextSignIn">Sign In</string>
-    <string name="hint_create_a_password">Create a password</string>
-    <string name="hint_confirm_a_password">Confirm a password</string>
+    <string name="hint_enter_your_password">Enter your password</string>
+    <string name="hint_enter_your_login">Enter your login</string>
     <string name="hint_create_a_login">Create a login</string>
     <string name="add_board_menu">add_board_menu</string>
     <string name="fab_main_screen_description">FAB</string>
@@ -26,4 +26,6 @@
     <string name="aler_dialog_main_screen_fragvent_add_board">Add board</string>
     <string name="alert_dialog_hint_enter_board_name">Enter board name</string>
     <string name="alert_dialog_hint_enter_board_key">Enter board key</string>
+    <string name="hint_repeat_your_password">Repeat your password</string>
+    <string name="textViewRepeatPassword">repeat password</string>
 </resources>

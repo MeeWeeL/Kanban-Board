@@ -8,13 +8,9 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class RetrofitService {
+open class BaseRetrofitService {
 
-    fun getService(): KanbanApi {
-        return createRetrofit(BaseInterceptor.interceptor).create(KanbanApi::class.java)
-    }
-
-    private fun createRetrofit(interceptor: Interceptor): Retrofit {
+    internal fun createRetrofit(interceptor: Interceptor): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_LOCATIONS)
             .addConverterFactory(GsonConverterFactory.create())
