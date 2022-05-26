@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
+import com.meeweel.kanban_board.data.room.LocalUserRepository
+import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
 import com.meeweel.kanban_board.databinding.FragmentCopyOfCreateAccountBinding
 import com.meeweel.kanban_board.ui.MAIN
 
-class CopyOfCreateAccountFragment : Fragment() {
+class CopyOfCreateAccountFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) : Fragment() {
 
     private lateinit var binding: FragmentCopyOfCreateAccountBinding
 
@@ -24,6 +26,10 @@ class CopyOfCreateAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onActionBarListener()
+        binding.buttonLogOut.setOnClickListener {
+            localRepo.logOut()
+            MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
+        }
     }
 
     private fun onActionBarListener() {

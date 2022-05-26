@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/textViewLoginRegistration"
-        android:name="com.meeweel.kanban_board.ui.screens.AuthorizationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization">
         <action
@@ -78,6 +78,12 @@
         <action
             android:id="@+id/action_copyOfCreateAccountFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_copyOfCreateAccountFragment_to_authorizationScreen"
+            app:destination="@id/textViewLoginRegistration"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
