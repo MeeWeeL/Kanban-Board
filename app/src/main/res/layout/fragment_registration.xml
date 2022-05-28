@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.screens.RegistrationFragment">
 
     <LinearLayout
@@ -32,8 +32,8 @@
             android:id="@+id/editTextLoginRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_your_login"
-            app:layout_constraintBottom_toTopOf="@id/textViewConfirmPasswordRegistration"
+            android:hint="@string/hint_create_a_login"
+            app:layout_constraintBottom_toTopOf="@id/textViewPasswordRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewLoginRegistration" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/textViewPassword"
             android:textSize="@dimen/textFromAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@id/editTextConfirmPasswordRegistration"
+            app:layout_constraintBottom_toTopOf="@id/editTextPasswordRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextLoginRegistration" />
@@ -53,11 +53,11 @@
             android:id="@+id/editTextPasswordRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_your_password"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
+            android:hint="@string/hint_create_a_password"
+            app:layout_constraintBottom_toTopOf="@id/textViewConfirmPasswordRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewConfirmPasswordRegistration" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPasswordRegistration" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewConfirmPasswordRegistration"
@@ -68,17 +68,30 @@
             app:layout_constraintBottom_toTopOf="@id/editTextConfirmPasswordRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextLoginRegistration" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistration" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextConfirmPasswordRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_repeat_your_password"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
+            android:hint="@string/hint_confirm_your_password"
+            app:layout_constraintBottom_toTopOf="@id/buttonSignInRegistration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConfirmPasswordRegistration" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSignInRegistration"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonTextSignIn"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
+            app:layout_constraintBottom_toTopOf="@id/buttonSignUpRegistration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPasswordRegistration" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSignUpRegistration"
@@ -90,6 +103,6 @@
             android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPasswordRegistration" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonSignInRegistration" />
     </LinearLayout>
 </FrameLayout>
