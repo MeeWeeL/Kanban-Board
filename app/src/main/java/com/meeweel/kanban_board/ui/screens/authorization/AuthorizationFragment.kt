@@ -41,6 +41,7 @@ class AuthorizationFragment : Fragment() {
         binding.buttonSignIn.setOnClickListener {
             viewModel.signIn(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
         }
+
         binding.buttonSignUp.setOnClickListener {
             viewModel.signUp(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
             MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
