@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen
+package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,49 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
+import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
-import com.meeweel.kanban_board.ui.FragmentReplacer
-import com.meeweel.kanban_board.ui.MAIN
-import kotlin.random.Random
+import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 
-abstract class BaseBoardScreenFragment(private val layoutId: Int) : Fragment() {
+abstract class BaseBoardScreenFragment(private val viewModel: BoardScreenFragmentViewModel) : Fragment() {
 
-    val pageId = Random.nextLong(2021, 2021*3)
-    var pagePos = -1
-    protected lateinit var fragmentReplacer: FragmentReplacer
-
-
-    internal var _binding: FragmentInProgressBinding? = null
-    internal open val binding: FragmentInProgressBinding
+    internal var _binding: FragmentListOfTasksBinding? = null
+    internal open val binding: FragmentListOfTasksBinding
         get() {
             return _binding!!
         }
-
-    private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
-        ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(layoutId, container, false)
+        _binding = FragmentListOfTasksBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         workLivedata()
-    }
-
-    fun setPageInfo(pagePos: Int, fragmentReplacer: FragmentReplacer) {
-        this.pagePos = pagePos
-        this.fragmentReplacer = fragmentReplacer
     }
 
     private fun workLivedata() {
@@ -82,12 +64,6 @@ abstract class BaseBoardScreenFragment(private val layoutId: Int) : Fragment() {
     }
 
     abstract fun setAdapterData(dataList: List<TaskModel>)
-
-    internal fun onActionBarListener() {
-        binding.leftTopAppBarBoardScreen.setNavigationOnClickListener {
-            MAIN.navController.navigate(R.id.action_boardScreenFragment_to_mainScreenFragment)
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()

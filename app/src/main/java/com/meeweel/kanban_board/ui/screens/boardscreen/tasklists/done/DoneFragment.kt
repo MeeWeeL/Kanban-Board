@@ -1,19 +1,20 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.done
+package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.databinding.FragmentInProgressBinding
+import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
 
-class DoneFragment : BaseBoardScreenFragment(R.layout.fragment_done) {
+class DoneFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFragment(viewModel) {
 
-    override val binding: FragmentInProgressBinding
+    override val binding: FragmentListOfTasksBinding
         get() {
             return _binding!!
         }
@@ -24,7 +25,7 @@ class DoneFragment : BaseBoardScreenFragment(R.layout.fragment_done) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInProgressBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentListOfTasksBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

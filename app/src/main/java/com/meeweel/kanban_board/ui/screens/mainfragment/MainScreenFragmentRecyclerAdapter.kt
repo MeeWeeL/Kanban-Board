@@ -7,7 +7,7 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment.Companion.board
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment.Companion.board
 
 class MainScreenFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainScreenFragmentRecyclerAdapter.MainViewHolder>() {
@@ -40,7 +40,7 @@ class MainScreenFragmentRecyclerAdapter :
                 titleBoardScreen.text = data.name
                 root.setOnClickListener {
                     board = data // BaseFragment.CompanionObject.board
-                    MAIN.navController.navigate(R.id.action_mainScreenFragment_to_boardScreenFragment)
+                    MAIN.navController.navigate(R.id.action_mainScreenFragment_to_taskScreenFragment)
                 }
             }
         }

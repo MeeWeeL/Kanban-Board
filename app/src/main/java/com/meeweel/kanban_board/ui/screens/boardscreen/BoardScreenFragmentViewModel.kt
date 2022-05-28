@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
-import com.meeweel.kanban_board.ui.screens.boardscreen.BaseBoardScreenFragment.Companion.board
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment.Companion.board
 
 class BoardScreenFragmentViewModel : ViewModel() {
 
