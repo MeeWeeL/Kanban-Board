@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KanbanBoard">
         <activity
-            android:name=".ui.ViewPagerActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">

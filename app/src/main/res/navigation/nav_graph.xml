@@ -26,6 +26,19 @@
             app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
+        android:id="@+id/taskScreen"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.taskscreen.TasksScreenFragment"
+        android:label="fragment_tasks"
+        tools:layout="@layout/fragment_tasks_screen">
+
+        <action
+            android:id="@+id/action_taskScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragment"
         android:label="fragment_main_screen"
@@ -34,38 +47,14 @@
             android:id="@+id/action_mainScreenFragment_to_authorizationFragment"
             app:destination="@id/textViewLoginRegistration" />
         <action
-            android:id="@+id/action_mainScreenFragment_to_boardScreenFragment"
-            app:destination="@id/boardScreenFragment"
+            android:id="@+id/action_mainScreenFragment_to_taskScreenFragment"
+            app:destination="@id/taskScreen"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_mainScreenFragment_to_copyOfCreateAccountFragment"
             app:destination="@id/copyOfCreateAccountFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/boardScreenFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.inprogress.InProgressFragment"
-        android:label="fragment_board_screen"
-        tools:layout="@layout/fragment_in_progress">
-        <action
-            android:id="@+id/action_boardScreenFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
-        <action
-            android:id="@+id/action_boardScreenFragment_to_doneFragment"
-            app:destination="@id/doneFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/action_boardScreenFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
@@ -87,30 +76,6 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/toDoFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.todo.ToDoFragment"
-        android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do">
-        <action
-            android:id="@+id/action_toDoFragment_to_boardScreenFragment"
-            app:destination="@id/boardScreenFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/doneFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.done.DoneFragment"
-        android:label="fragment_done"
-        tools:layout="@layout/fragment_done">
-        <action
-            android:id="@+id/action_doneFragment_to_boardScreenFragment"
-            app:destination="@id/boardScreenFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
