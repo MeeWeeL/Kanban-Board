@@ -64,9 +64,18 @@ class TasksScreenFragment : Fragment() {
     private fun initPositionListener(position: Int) {
         dropPositions()
         when (position) {
-            0 -> binding.position0.setImageResource(R.drawable.swipe_indicator_active)
-            1 -> binding.position1.setImageResource(R.drawable.swipe_indicator_active)
-            else -> binding.position2.setImageResource(R.drawable.swipe_indicator_active)
+            0 -> {
+                binding.position0.setImageResource(R.drawable.swipe_indicator_active)
+                binding.leftTopAppBarBoardScreen.title = TODO
+            }
+            1 -> {
+                binding.position1.setImageResource(R.drawable.swipe_indicator_active)
+                binding.leftTopAppBarBoardScreen.title = IN_PROGRESS
+            }
+            else -> {
+                binding.position2.setImageResource(R.drawable.swipe_indicator_active)
+                binding.leftTopAppBarBoardScreen.title = DONE
+            }
         }
     }
 
@@ -87,7 +96,7 @@ class TasksScreenFragment : Fragment() {
         binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_add -> {
-                    Toast.makeText(requireContext(), "You push button", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), PUSH_BUTTON, Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
@@ -106,5 +115,12 @@ class TasksScreenFragment : Fragment() {
             }
             return fragment
         }
+    }
+
+    companion object {
+        const val TODO = "ToDo"
+        const val IN_PROGRESS = "In progress"
+        const val DONE = "Done"
+        const val PUSH_BUTTON = "You push button"
     }
 }
