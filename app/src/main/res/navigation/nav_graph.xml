@@ -84,6 +84,10 @@
         tools:layout="@layout/fragment_registration" >
         <action
             android:id="@+id/action_registrationFragment_to_textViewLoginRegistration"
-            app:destination="@id/textViewLoginRegistration" />
+            app:destination="@id/textViewLoginRegistration"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 </navigation>

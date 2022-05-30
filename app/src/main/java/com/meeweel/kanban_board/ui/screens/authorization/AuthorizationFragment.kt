@@ -17,7 +17,12 @@ class AuthorizationFragment : Fragment() {
     private val loginValidator = LoginValidator()
     private val passwordValidator = PasswordValidator()
 
-    private lateinit var binding: FragmentAuthorizationBinding
+    private var _binding: FragmentAuthorizationBinding? = null
+    private val binding: FragmentAuthorizationBinding
+        get() {
+            return _binding!!
+        }
+
     private val viewModel: AuthorizationViewModel by lazy {
         ViewModelProvider(this).get(AuthorizationViewModel::class.java)
     }
@@ -26,7 +31,7 @@ class AuthorizationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -83,6 +88,7 @@ class AuthorizationFragment : Fragment() {
             }
         }
     }
+
     private fun renderIsSingIn(b: Boolean) {
         if (!b) {
             binding.loadingLayout.visibility = View.GONE
@@ -90,5 +96,10 @@ class AuthorizationFragment : Fragment() {
         } else {
             MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -140,4 +140,9 @@ class MainScreenFragment : BaseMainScreenFragment() {
             MAIN.navController.navigate(R.id.action_mainScreenFragment_to_taskScreenFragment)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
