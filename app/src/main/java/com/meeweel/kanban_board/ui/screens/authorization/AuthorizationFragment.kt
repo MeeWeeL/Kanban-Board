@@ -65,11 +65,16 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun listenerButtonSignIn() {
-        binding.buttonSignIn.setOnClickListener {
-            viewModel.signIn(
-                binding.editTextLogin.text.toString(),
-                binding.editTextPassword.text.toString()
-            )
+        with(binding) {
+            editTextLogin.addTextChangedListener(loginValidator)
+            editTextPassword.addTextChangedListener(passwordValidator)
+
+            buttonSignIn.setOnClickListener {
+                viewModel.signIn(
+                    editTextLogin.text.toString(),
+                    editTextPassword.text.toString()
+                )
+            }
         }
     }
 
