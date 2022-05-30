@@ -14,6 +14,9 @@ import com.meeweel.kanban_board.ui.MAIN
 
 class AuthorizationFragment : Fragment() {
 
+    private val loginValidator = LoginValidator()
+    private val passwordValidator = PasswordValidator()
+
     private lateinit var binding: FragmentAuthorizationBinding
     private val viewModel: AuthorizationViewModel by lazy {
         ViewModelProvider(this).get(AuthorizationViewModel::class.java)
@@ -38,13 +41,26 @@ class AuthorizationFragment : Fragment() {
 
         viewModel.checkAuthorization()
 
-        binding.buttonSignIn.setOnClickListener {
-            viewModel.signIn(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
-        }
+        listenerButtonSignIn()
+        listenerButtonSignUp()
+    }
 
+    private fun listenerButtonSignUp() {
         binding.buttonSignUp.setOnClickListener {
-            viewModel.signUp(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
+            viewModel.signUp(
+                binding.editTextLogin.text.toString(),
+                binding.editTextPassword.text.toString()
+            )
             MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
+        }
+    }
+
+    private fun listenerButtonSignIn() {
+        binding.buttonSignIn.setOnClickListener {
+            viewModel.signIn(
+                binding.editTextLogin.text.toString(),
+                binding.editTextPassword.text.toString()
+            )
         }
     }
 
