@@ -5,7 +5,7 @@ import android.text.TextWatcher
 import java.util.regex.Pattern
 
 class PasswordValidator : TextWatcher {
-    private var isValidPassword = false
+    internal var isValidPassword = false
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 

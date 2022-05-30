@@ -11,11 +11,12 @@
     <string name="moveTo">Move to</string>
     <string name="changePriority">Change priority</string>
     <string name="delete">Delete</string>
+    <string name="error_validation">Invalid login</string>
     <string name="buttonTextSignIn">Sign In</string>
     <string name="hint_enter_your_password">Enter your password</string>
     <string name="hint_enter_your_login">Enter your login</string>
-    <string name="hint_create_a_login">Create a login</string>
-    <string name="hint_create_a_password">Create a password</string>
+    <string name="hint_input_a_login">Input a login</string>
+    <string name="hint_input_a_password">Input a password</string>
     <string name="hint_confirm_your_password">Confirm your password</string>
     <string name="add_board_menu">add_board_menu</string>
     <string name="fab_main_screen_description">FAB</string>

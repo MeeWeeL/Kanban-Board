@@ -27,6 +27,7 @@ class AuthorizationFragment : Fragment() {
         ViewModelProvider(this).get(AuthorizationViewModel::class.java)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,17 +66,7 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun listenerButtonSignIn() {
-        with(binding) {
-            editTextLogin.addTextChangedListener(loginValidator)
-            editTextPassword.addTextChangedListener(passwordValidator)
 
-            buttonSignIn.setOnClickListener {
-                viewModel.signIn(
-                    editTextLogin.text.toString(),
-                    editTextPassword.text.toString()
-                )
-            }
-        }
     }
 
     private fun renderAuth(state: AuthorizationState) {

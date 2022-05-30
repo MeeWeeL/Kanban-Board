@@ -5,7 +5,7 @@ import android.text.TextWatcher
 import java.util.regex.Pattern
 
 class LoginValidator : TextWatcher {
-    private var isValidLogin = false
+    internal var isValidLogin = false
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 
@@ -17,7 +17,7 @@ class LoginValidator : TextWatcher {
 
     companion object {
         private val PASSWORD_PATTERN = Pattern.compile(
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\$_-])(?=\\S+\$).{20,}\$"
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+\$).{20,}\$"
         )
 
         fun isValidLogin(password: CharSequence?): Boolean {

@@ -32,7 +32,8 @@
             android:id="@+id/editTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_create_a_login"
+            android:hint="@string/hint_input_a_login"
+            android:maxLength="20"
             app:layout_constraintBottom_toTopOf="@id/textViewPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,8 +54,9 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_create_a_password"
+            android:hint="@string/hint_input_a_password"
             android:inputType="textPassword"
+            android:maxLength="12"
             app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +87,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/loadingLayout"
         android:layout_width="match_parent"
