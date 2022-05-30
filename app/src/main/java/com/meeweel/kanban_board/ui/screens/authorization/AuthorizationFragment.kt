@@ -33,6 +33,13 @@ class AuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initObserver()
+
+        listenerButtonSignIn()
+        listenerButtonSignUp()
+    }
+
+    private fun initObserver() {
         val authObserver = Observer<AuthorizationState> { renderAuth(it) }
         val isSignObserver = Observer<Boolean> { renderIsSingIn(it) }
 
@@ -40,9 +47,6 @@ class AuthorizationFragment : Fragment() {
         viewModel.isAuth().observe(viewLifecycleOwner, isSignObserver)
 
         viewModel.checkAuthorization()
-
-        listenerButtonSignIn()
-        listenerButtonSignUp()
     }
 
     private fun listenerButtonSignUp() {
