@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
 import com.meeweel.kanban_board.ui.MAIN
 
-class AuthorizationFragment : Fragment() {
+class AuthorizationFragment : Fragment(), View.OnClickListener {
 
     private val loginValidator = LoginValidator()
     private val passwordValidator = PasswordValidator()
@@ -36,13 +36,13 @@ class AuthorizationFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initObserver()
-
-        listenerButtonSignIn()
-        listenerButtonSignUp()
+        binding.buttonSignUp.setOnClickListener(this)
+        binding.buttonSignIn.setOnClickListener(this)
     }
 
     private fun initObserver() {
@@ -55,18 +55,34 @@ class AuthorizationFragment : Fragment() {
         viewModel.checkAuthorization()
     }
 
-    private fun listenerButtonSignUp() {
-        binding.buttonSignUp.setOnClickListener {
-            viewModel.signUp(
-                binding.editTextLogin.text.toString(),
-                binding.editTextPassword.text.toString()
-            )
-            MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
+    override fun onClick(view: View) {
+        when(view.id) {
+            R.id.buttonSignUp->{
+                viewModel.signUp(
+                    binding.editTextLogin.text.toString(),
+                    binding.editTextPassword.text.toString()
+                )
+                MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
+            }
+
+            R.id.buttonSignIn->{
+                with(binding) {
+                    editTextLogin.addTextChangedListener(loginValidator)
+                    editTextPassword.addTextChangedListener(passwordValidator)
+
+                    if (loginValidator.isValidLogin) {
+                            viewModel.signIn(
+                                editTextLogin.text.toString(),
+                                editTextPassword.text.toString()
+                            )
+                    } else {
+                        val errorAction = getString(R.string.error_validation)
+                        editTextLogin.error = errorAction
+                        Toast.makeText(requireContext(), errorAction, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
-    }
-
-    private fun listenerButtonSignIn() {
-
     }
 
     private fun renderAuth(state: AuthorizationState) {

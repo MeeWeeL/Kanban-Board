@@ -17,7 +17,7 @@ class PasswordValidator : TextWatcher {
 
     companion object {
         private val PASSWORD_PATTERN = Pattern.compile(
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=_*])(?=\\S+\$).{12,}\$"
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+\$).{12,}\$"
         )
 
         fun isValidPassword(password: CharSequence?): Boolean {
