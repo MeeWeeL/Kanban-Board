@@ -1,6 +1,7 @@
 package com.meeweel.kanban_board.ui.screens.authorization
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,7 +69,7 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
             R.id.buttonSignIn->{
                 with(binding) {
                     editTextLogin.addTextChangedListener(loginValidator)
-                    editTextPassword.addTextChangedListener(passwordValidator)
+//                    editTextPassword.addTextChangedListener(passwordValidator)
 
                     if (loginValidator.isValidLogin) {
                             viewModel.signIn(
@@ -78,7 +79,7 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
                     } else {
                         val errorAction = getString(R.string.error_validation)
                         editTextLogin.error = errorAction
-                        Toast.makeText(requireContext(), errorAction, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "${loginValidator.isValidLogin}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
