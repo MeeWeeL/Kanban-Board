@@ -69,17 +69,19 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
             R.id.buttonSignIn->{
                 with(binding) {
                     editTextLogin.addTextChangedListener(loginValidator)
-//                    editTextPassword.addTextChangedListener(passwordValidator)
+                    editTextPassword.addTextChangedListener(passwordValidator)
 
-                    if (loginValidator.isValidLogin) {
+                    if (loginValidator.isValidLogin && passwordValidator.isValidPassword) {
                             viewModel.signIn(
                                 editTextLogin.text.toString(),
                                 editTextPassword.text.toString()
                             )
                     } else {
-                        val errorAction = getString(R.string.error_validation)
-                        editTextLogin.error = errorAction
-                        Toast.makeText(requireContext(), "${loginValidator.isValidLogin}", Toast.LENGTH_SHORT).show()
+                        val errorLogin = getString(R.string.error_login_validation)
+                        val errorPassword = getString(R.string.error_password_validation)
+                        editTextLogin.error = errorLogin
+                        editTextPassword.error = errorPassword
+//                        Toast.makeText(requireContext(), "${loginValidator.isValidLogin}${passwordValidator.isValidPassword}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

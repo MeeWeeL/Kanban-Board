@@ -17,7 +17,7 @@ class LoginValidator : TextWatcher {
 
     companion object {
         private val LOGIN_PATTERN = Pattern.compile(
-            "^([\\p{Alpha}\\d]+)*$"
+            "^(([\\p{Alpha}\\d\\S]+)*)$"
         )
 
         fun isValidLogin(login: CharSequence?): Boolean {
