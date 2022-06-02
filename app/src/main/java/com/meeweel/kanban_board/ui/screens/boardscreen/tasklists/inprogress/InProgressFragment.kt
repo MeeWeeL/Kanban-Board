@@ -5,16 +5,20 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.PopupMenu
 import com.meeweel.kanban_board.R
+import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
 
-class InProgressFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFragment(viewModel) {
-
+class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
+    BaseBoardScreenFragment(viewModel) {
+    val binding2: BoardScreenRecyclerItemBinding? = null
     override val binding: FragmentListOfTasksBinding
         get() {
             return _binding!!
@@ -33,22 +37,30 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        burgerClick()
+    }
 
+    private fun burgerClick() {
         adapter.setBurgerClickListener(object : OnBurgerClickListener {
-            override fun onBurgerClick() {
-                val popupMenu = PopupMenu(requireContext(), view, Gravity.CENTER)
+            override fun onBurgerClick(view: AppCompatImageButton) {
+                val popupMenu = PopupMenu(
+                    requireContext(),
+                    view,
+                    Gravity.CENTER
+                )
                 popupMenu.inflate(R.menu.popup_menu)
                 popupMenu.setForceShowIcon(true)
                 popupMenu.setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.moveTo -> {
-
+                            Toast.makeText(requireContext(), "moveTo", Toast.LENGTH_SHORT).show()
                         }
                         R.id.changePriority -> {
-
+                            Toast.makeText(requireContext(), "changePriority", Toast.LENGTH_SHORT)
+                                .show()
                         }
                         R.id.delete -> {
-
+                            Toast.makeText(requireContext(), "delete", Toast.LENGTH_SHORT).show()
                         }
                     }
                     true
@@ -76,6 +88,6 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScr
     }
 
     interface OnBurgerClickListener {
-        fun onBurgerClick()
+        fun onBurgerClick(binding: AppCompatImageButton)
     }
 }

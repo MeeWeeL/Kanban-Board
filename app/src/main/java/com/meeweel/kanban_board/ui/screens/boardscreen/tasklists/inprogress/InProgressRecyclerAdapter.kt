@@ -40,7 +40,7 @@ class InProgressRecyclerAdapter :
             binding.apply {
                 titleBoardScreen.text = data.name
                 binding.burger.setOnClickListener {
-                    burgerListener?.onBurgerClick() // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
+                    burgerListener?.onBurgerClick(binding.burger) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
                 }
             }
         }
