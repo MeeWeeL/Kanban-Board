@@ -6,11 +6,12 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
 
 class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
-    private var burgerListener: InProgressFragment.OnBurgerClickListener? =
+    private var burgerListener: OnBurgerClickListener? =
         null // Этот бургер будем навешивать на бургер
     // Настраивается он из фрагмента, через функцию setBurgerClickListener() в этом адаптере (И зануляется тоже)
     // Сам этот интерфейс создан тоже во фрагменте
@@ -47,8 +48,8 @@ class InProgressRecyclerAdapter :
         }
     }
 
-    fun setBurgerClickListener(onBurgerClickListener: InProgressFragment.OnBurgerClickListener) {
-        this.burgerListener = onBurgerClickListener
+    fun setBurgerClickListener(param: OnBurgerClickListener) {
+        this.burgerListener = param
     }
 
     fun removeClickListeners() {
