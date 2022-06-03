@@ -15,6 +15,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- AlertDialogCustom style. -->
     <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Dialog">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
