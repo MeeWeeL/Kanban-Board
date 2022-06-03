@@ -2,6 +2,7 @@ package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
@@ -40,7 +41,7 @@ class InProgressRecyclerAdapter :
             binding.apply {
                 titleBoardScreen.text = data.name
                 binding.burger.setOnClickListener {
-                    burgerListener?.onBurgerClick(binding.burger) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
+                    burgerListener?.onBurgerClick(it as AppCompatImageButton) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
                 }
             }
         }
