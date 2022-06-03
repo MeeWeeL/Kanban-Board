@@ -41,7 +41,7 @@ class InProgressRecyclerAdapter :
         fun bind(data: TaskModel) {
             binding.apply {
                 titleBoardScreen.text = data.name
-                binding.burger.setOnClickListener {
+                burger.setOnClickListener {
                     burgerListener?.onBurgerClick(it as AppCompatImageButton) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
                 }
             }

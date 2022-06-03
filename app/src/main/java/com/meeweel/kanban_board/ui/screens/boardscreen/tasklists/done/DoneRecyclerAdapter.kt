@@ -2,12 +2,17 @@ package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.DoneScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
 
 class DoneRecyclerAdapter :
     RecyclerView.Adapter<DoneRecyclerAdapter.MainViewHolder>() {
+
+    private var burgerListener: OnBurgerClickListener? =
+        null
 
     private var dataList: MutableList<TaskModel> =
         mutableListOf() // Список данных, которые хотим отобразить ресайклером
@@ -40,8 +45,17 @@ class DoneRecyclerAdapter :
         fun bind(data: TaskModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
                 titleDoneScreen.text = data.name
+                burgerDone.setOnClickListener {
+                    burgerListener?.onBurgerClick(it as AppCompatImageButton)
+                }
             }
         }
+    }
+    fun setBurgerClickListener(param: OnBurgerClickListener) {
+        this.burgerListener = param
+    }
+    fun removeClickListeners() {
+        this.burgerListener = null
     }
 
     fun setData(data: List<TaskModel>) {
