@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.RegistrationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.registration.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action

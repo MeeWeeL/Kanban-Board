@@ -13,6 +13,7 @@
     <string name="delete">Delete</string>
     <string name="error_login_validation">Invalid login</string>
     <string name="error_password_validation">Invalid password</string>
+    <string name="error_confirm_password_validation">Invalid confirm password</string>
     <string name="buttonTextSignIn">Sign In</string>
     <string name="hint_enter_your_password">Enter your password</string>
     <string name="hint_enter_your_login">Enter your login</string>

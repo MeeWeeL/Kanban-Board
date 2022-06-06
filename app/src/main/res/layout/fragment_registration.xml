@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.RegistrationFragment">
+    tools:context=".ui.screens.registration.RegistrationFragment">
 
     <LinearLayout
         android:id="@+id/registrationLinearLayout"
@@ -49,6 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextLoginRegistration" />
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPasswordRegistration"
