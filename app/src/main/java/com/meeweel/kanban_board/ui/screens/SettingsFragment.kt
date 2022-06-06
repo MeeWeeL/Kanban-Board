@@ -8,18 +8,19 @@ import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.data.room.LocalUserRepository
 import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
-import com.meeweel.kanban_board.databinding.FragmentCopyOfCreateAccountBinding
+import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
 
-class CopyOfCreateAccountFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) : Fragment() {
+class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
+    Fragment() {
 
-    private lateinit var binding: FragmentCopyOfCreateAccountBinding
+    private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCopyOfCreateAccountBinding.inflate(layoutInflater, container, false)
+        binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

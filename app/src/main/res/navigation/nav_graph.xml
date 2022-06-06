@@ -61,9 +61,9 @@
     </fragment>
     <fragment
         android:id="@+id/copyOfCreateAccountFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.CopyOfCreateAccountFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.SettingsFragment"
         android:label="fragment_copy_of_create_account"
-        tools:layout="@layout/fragment_copy_of_create_account" >
+        tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_copyOfCreateAccountFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"

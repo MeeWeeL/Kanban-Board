@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:layoutDescription="@xml/to_do_screen_recycler_item_scene">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewToDo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -15,6 +15,9 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:state_dragged="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,5 +48,5 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.motion.widget.MotionLayout>
