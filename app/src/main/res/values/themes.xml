@@ -12,9 +12,48 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.AppCompat.Dialog" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryVariant">#00796b</item>
+        <item name="colorOnPrimary">#e0f2f1</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.Design.Light" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#673ab7</item>
+        <item name="colorPrimaryVariant">#512da8</item>
+        <item name="colorOnPrimary">#ede7f6</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.Material3.Light" parent="ThemeOverlay.MaterialComponents.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#ffc107</item>
+        <item name="colorPrimaryVariant">#ffa000</item>
+        <item name="colorOnPrimary">#fff8e1</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+    </style>
+
+
+
+
+
+
     <!-- AlertDialogCustom style. -->
     <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Dialog">
         <item name="android:textColor">@android:color/white</item>
