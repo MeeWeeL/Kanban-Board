@@ -18,7 +18,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     private val loginValidator = LoginValidator()
     private val passwordValidator = PasswordValidator()
     private val confirmPasswordValidator = ConfirmPasswordValidator()
-    
+
 
     private var _binding: FragmentRegistrationBinding? = null
     private val binding: FragmentRegistrationBinding
@@ -39,38 +39,45 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         binding.buttonSignUpRegistration.setOnClickListener(this)
         binding.buttonSignInRegistration.setOnClickListener(this)
     }
-    
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
     override fun onClick(view: View) {
-        when(view.id){
-            R.id.buttonSignUpRegistration->{
-                with(binding){
+        when (view.id) {
+            R.id.buttonSignUpRegistration -> {
+                with(binding) {
                     editTextLoginRegistration.addTextChangedListener(loginValidator)
                     editTextPasswordRegistration.addTextChangedListener(passwordValidator)
-                    editTextConfirmPasswordRegistration.addTextChangedListener(confirmPasswordValidator)
+                    editTextConfirmPasswordRegistration.addTextChangedListener(
+                        confirmPasswordValidator
+                    )
 
-//                    loginValidator.isValidLogin &&
-                            if (passwordValidator.isValidPassword && confirmPasswordValidator.isConfirmPassword) {
+
+                    if (loginValidator.isValidLogin && passwordValidator.isValidPassword && confirmPasswordValidator.isConfirmPassword) {
                         Toast.makeText(
-                            requireContext(),"Created a new user ", Toast.LENGTH_SHORT
+                            requireContext(), "Created a new user ", Toast.LENGTH_SHORT
                         ).show()
                     } else {
-//                        val errorLogin = getString(R.string.error_login_validation)
+                        val errorLogin = getString(R.string.error_login_validation)
                         val errorPassword = getString(R.string.error_password_validation)
-                        val errorConfirmPassword = getString(R.string.error_confirm_password_validation)
+                        val errorConfirmPassword =
+                            getString(R.string.error_confirm_password_validation)
 
-//                        editTextLoginRegistration.error = errorLogin
+                        editTextLoginRegistration.error = errorLogin
                         editTextPasswordRegistration.error = errorPassword
                         editTextConfirmPasswordRegistration.error = errorConfirmPassword
-                        Toast.makeText(requireContext(), "${confirmPasswordValidator.isConfirmPassword}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "${confirmPasswordValidator.isConfirmPassword}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
-            R.id.buttonSignInRegistration->{
+            R.id.buttonSignInRegistration -> {
                 MAIN.navController.navigate(R.id.action_registrationFragment_to_textViewLoginRegistration)
             }
         }

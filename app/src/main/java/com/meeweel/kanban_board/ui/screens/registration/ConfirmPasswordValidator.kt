@@ -25,6 +25,7 @@ class ConfirmPasswordValidator : TextWatcher {
     }
 
     private fun isConfirmPassword(confirmPassword: CharSequence?): Boolean {
+//        return confirmPassword != null && result == confirmPassword
         return confirmPassword != null && CONFIRM_PASSWORD_PATTERN.matcher(confirmPassword)
             .matches()
     }
