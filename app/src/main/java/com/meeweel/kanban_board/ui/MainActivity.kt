@@ -1,11 +1,13 @@
 package com.meeweel.kanban_board.ui
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        val theme = sp.getInt("THEME", R.style.Theme_KanbanBoard)
+        setTheme(theme)
+
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

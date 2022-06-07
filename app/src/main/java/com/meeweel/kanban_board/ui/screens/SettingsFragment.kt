@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
 
 class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
-    Fragment() {
+    Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentSettingsBinding
 
@@ -27,6 +27,10 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onActionBarListener()
+        listenerButtonLogOut()
+    }
+
+    private fun listenerButtonLogOut() {
         binding.buttonLogOut.setOnClickListener {
             localRepo.logOut()
             MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
@@ -36,6 +40,25 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
     private fun onActionBarListener() {
         binding.leftTopAppBarCopyOfCreateAccount.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_mainScreenFragment)
+        }
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.buttonThemeKanbanBoard -> {
+                activity?.setTheme(R.style.Theme_KanbanBoard)
+            }
+            R.id.buttonThemeAppCompatDialog -> {
+                activity?.setTheme(R.style.Theme_AppCompat_Dialog)
+            }
+            R.id.buttonThemeDesignLight -> {
+                activity?.setTheme(R.style.Theme_Design_Light)
+            }
+            R.id.buttonThemeMaterial3Light -> {
+                activity?.setTheme(R.style.Theme_Material3_Light)
+            }
+
+
         }
     }
 }
