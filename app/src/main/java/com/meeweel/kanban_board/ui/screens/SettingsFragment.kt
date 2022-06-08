@@ -8,19 +8,24 @@ import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.data.room.LocalUserRepository
 import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
+import com.meeweel.kanban_board.databinding.ActivityMainBinding
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
 
 class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
     Fragment() {
 
-    private lateinit var binding: FragmentSettingsBinding
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding: FragmentSettingsBinding
+        get() {
+            return _binding!!
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -59,5 +64,10 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
         binding.leftTopAppBarCopyOfCreateAccount.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_mainScreenFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
