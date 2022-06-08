@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.Interactor
 import com.meeweel.kanban_board.data.interactor.InteractorImpl
 import com.meeweel.kanban_board.domain.basemodels.Status
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.getTaskListByStatus
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -36,6 +37,17 @@ class BoardScreenFragmentViewModel(
     }
 
     fun synchronizeData() = getDataFromInterceptor()
+
+    fun createTask(task: TaskModel) = createNewTask(task)
+
+    private fun createNewTask(task: TaskModel) {
+        interactor.addTask(boardId!!, task)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                getDataFromInterceptor()
+            },{})
+    }
 
     private fun getDataFromInterceptor() {
         boardId?.let {

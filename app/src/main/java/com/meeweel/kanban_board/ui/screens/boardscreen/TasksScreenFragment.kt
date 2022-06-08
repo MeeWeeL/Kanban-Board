@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
+import com.meeweel.kanban_board.databinding.BottomSheetCreateNewTaskBinding
+import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentTasksScreenBinding
+import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done.DoneFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress.InProgressFragment
@@ -99,12 +103,28 @@ class TasksScreenFragment : Fragment() {
         binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_add -> {
-                    Toast.makeText(requireContext(), PUSH_BUTTON, Toast.LENGTH_SHORT).show()
+                    showCreatingSheet()
                     true
                 }
                 else -> false
             }
         }
+    }
+
+    private fun showCreatingSheet() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bottomSheetBinding = BottomSheetCreateNewTaskBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        bottomSheetBinding.taskBtn.setOnClickListener {
+            viewModel.createTask(
+                TaskModel(
+                    0,
+                    bottomSheetBinding.taskTitle.text.toString(),
+                    bottomSheetBinding.taskDescription.text.toString()
+                )
+            )
+        }
+        bottomSheetDialog.show()
     }
 
     inner class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
