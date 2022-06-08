@@ -1,6 +1,7 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,17 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
+import com.meeweel.kanban_board.databinding.BottomSheetEditTaskBinding
 import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
+import com.meeweel.kanban_board.domain.basemodels.Priority
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
+import com.meeweel.kanban_board.util.setBrands
 
 class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
     BaseBoardScreenFragment(viewModel) {
@@ -46,7 +50,11 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
             override fun showTaskSheet(task: TaskModel) {
                 showBottomSheet(task)
             }
-
+        })
+        adapter.setLongItemListener(object : OnLongTaskClickListener {
+            override fun showTaskEditSheet(task: TaskModel) {
+                showEditBottomSheet(task)
+            }
         })
     }
 
@@ -59,6 +67,36 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
             taskDescription.text = task.description
             taskPriority.text = task.priority.text
             taskPerformer.text = task.performer
+        }
+        bottomSheetDialog.show()
+    }
+
+    private fun showEditBottomSheet(task: TaskModel) {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bottomSheetBinding = BottomSheetEditTaskBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        val brands = Priority.values()
+        bottomSheetBinding.apply {
+            taskTitle.text = SpannableStringBuilder(task.name)
+            taskDescription.text = SpannableStringBuilder(task.description)
+            taskPriority.apply {
+                setBrands(requireContext(), brands.map { it.text })
+                setSelection(task.priority.int)
+            }
+            taskPerformer.text = SpannableStringBuilder(task.performer)
+            taskBtn.setOnClickListener {
+                viewModel.updateTask(
+                    TaskModel(
+                        task.id,
+                        taskTitle.text.toString(),
+                        taskDescription.text.toString(),
+                        task.status,
+                        brands[taskPriority.selectedItemPosition],
+                        taskPerformer.text.toString()
+                    )
+                )
+                bottomSheetDialog.dismiss()
+            }
         }
         bottomSheetDialog.show()
     }
@@ -116,6 +154,10 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
 
     interface OnTaskClickListener {
         fun showTaskSheet(task: TaskModel)
+    }
+
+    interface OnLongTaskClickListener {
+        fun showTaskEditSheet(task: TaskModel)
     }
 
     override fun onDestroy() {

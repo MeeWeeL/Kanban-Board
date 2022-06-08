@@ -12,6 +12,7 @@ class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
     private var itemListener: InProgressFragment.OnTaskClickListener? = null
+    private var itemLongListener: InProgressFragment.OnLongTaskClickListener? = null
 
     private var burgerListener: OnBurgerClickListener? =
         null // Этот бургер будем навешивать на бургер
@@ -49,6 +50,10 @@ class InProgressRecyclerAdapter :
                 root.setOnClickListener {
                     itemListener?.showTaskSheet(data)
                 }
+                root.setOnLongClickListener {
+                    itemLongListener?.showTaskEditSheet(data)
+                    true
+                }
             }
         }
     }
@@ -61,9 +66,14 @@ class InProgressRecyclerAdapter :
         this.itemListener = itemListener
     }
 
+    fun setLongItemListener(itemLongListener: InProgressFragment.OnLongTaskClickListener) {
+        this.itemLongListener = itemLongListener
+    }
+
     fun removeClickListeners() {
         this.burgerListener = null
         this.itemListener = null
+        this.itemLongListener = null
     }
 
     fun setData(data: List<TaskModel>) {
