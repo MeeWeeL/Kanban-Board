@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/taskScreen"
-        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.taskscreen.TasksScreenFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragment"
         android:label="fragment_tasks"
         tools:layout="@layout/fragment_tasks_screen">
 
@@ -37,6 +37,9 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
+        <argument
+            android:name="Board ID"
+            app:argType="integer"/>
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"

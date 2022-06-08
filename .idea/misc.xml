@@ -44,6 +44,9 @@
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/activity_view_pager.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/board_screen_recycler_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_create_new_task.xml" value="0.32314814814814813" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_edit_task.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_task.xml" value="0.25" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_authorization.xml" value="0.29814814814814816" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_board_screen.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_copy_of_create_account.xml" value="0.18802083333333333" />

@@ -11,6 +11,9 @@ import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickLi
 class InProgressRecyclerAdapter :
     RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
 
+    private var itemListener: InProgressFragment.OnTaskClickListener? = null
+    private var itemLongListener: InProgressFragment.OnLongTaskClickListener? = null
+
     private var burgerListener: OnBurgerClickListener? =
         null // Этот бургер будем навешивать на бургер
     // Настраивается он из фрагмента, через функцию setBurgerClickListener() в этом адаптере (И зануляется тоже)
@@ -44,6 +47,13 @@ class InProgressRecyclerAdapter :
                 burger.setOnClickListener {
                     burgerListener?.onBurgerClick(it as AppCompatImageButton) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
                 }
+                root.setOnClickListener {
+                    itemListener?.showTaskSheet(data)
+                }
+                root.setOnLongClickListener {
+                    itemLongListener?.showTaskEditSheet(data)
+                    true
+                }
             }
         }
     }
@@ -52,8 +62,18 @@ class InProgressRecyclerAdapter :
         this.burgerListener = param
     }
 
+    fun setItemListener(itemListener: InProgressFragment.OnTaskClickListener) {
+        this.itemListener = itemListener
+    }
+
+    fun setLongItemListener(itemLongListener: InProgressFragment.OnLongTaskClickListener) {
+        this.itemLongListener = itemLongListener
+    }
+
     fun removeClickListeners() {
         this.burgerListener = null
+        this.itemListener = null
+        this.itemLongListener = null
     }
 
     fun setData(data: List<TaskModel>) {

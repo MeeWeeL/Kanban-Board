@@ -2,6 +2,7 @@ package com.meeweel.kanban_board.ui.screens.mainfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
@@ -12,19 +13,24 @@ import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreen
 class MainScreenFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainScreenFragmentRecyclerAdapter.MainViewHolder>() {
 
-    private var dataList: MutableList<BoardModel> = mutableListOf() // Список данных, которые хотим отобразить ресайклером
-                                                                    // В нашем случает тут это список досок
+    private var dataList: MutableList<BoardModel> =
+        mutableListOf() // Список данных, которые хотим отобразить ресайклером
+    // В нашем случает тут это список досок
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val binding = MainScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding =
+            MainScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return MainViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) { // Вызывает заполнение лайаута
+    override fun onBindViewHolder(
+        holder: MainViewHolder,
+        position: Int
+    ) { // Вызывает заполнение лайаута
         holder.bind(dataList[position])
     }
 
@@ -39,8 +45,10 @@ class MainScreenFragmentRecyclerAdapter :
             binding.apply {
                 titleBoardScreen.text = data.name
                 root.setOnClickListener {
-                    board = data // BaseFragment.CompanionObject.board
-                    MAIN.navController.navigate(R.id.action_mainScreenFragment_to_taskScreenFragment)
+                    MAIN.navController.navigate(
+                        R.id.action_mainScreenFragment_to_taskScreenFragment,
+                        bundleOf(ARG_BOARD_ID to data.id)
+                    )
                 }
             }
         }
@@ -49,5 +57,9 @@ class MainScreenFragmentRecyclerAdapter :
     fun setData(data: List<BoardModel>) {
         dataList = data.toMutableList()
         notifyDataSetChanged()
+    }
+
+    companion object {
+        const val ARG_BOARD_ID = "Board ID"
     }
 }
