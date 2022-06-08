@@ -12,7 +12,7 @@ import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
 
 class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
-    Fragment(), View.OnClickListener {
+    Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
 
@@ -28,6 +28,24 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
         super.onViewCreated(view, savedInstanceState)
         onActionBarListener()
         listenerButtonLogOut()
+        setThemeAny()
+    }
+
+    private fun setThemeAny() {
+        with(binding) {
+            buttonThemeKanbanBoard.setOnClickListener {
+                requireActivity().setTheme(R.style.Theme_KanbanBoard)
+            }
+            buttonThemeAppCompatDialog.setOnClickListener {
+                requireActivity().setTheme(R.style.Theme_AppCompat_Dialog)
+            }
+            buttonThemeDesignLight.setOnClickListener {
+                requireActivity().setTheme(R.style.Theme_Design_Light)
+            }
+            buttonThemeMaterial3Light.setOnClickListener {
+                requireActivity().setTheme(R.style.Theme_Material3_Light)
+            }
+        }
     }
 
     private fun listenerButtonLogOut() {
@@ -40,25 +58,6 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
     private fun onActionBarListener() {
         binding.leftTopAppBarCopyOfCreateAccount.setNavigationOnClickListener {
             MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_mainScreenFragment)
-        }
-    }
-
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.buttonThemeKanbanBoard -> {
-                activity?.setTheme(R.style.Theme_KanbanBoard)
-            }
-            R.id.buttonThemeAppCompatDialog -> {
-                activity?.setTheme(R.style.Theme_AppCompat_Dialog)
-            }
-            R.id.buttonThemeDesignLight -> {
-                activity?.setTheme(R.style.Theme_Design_Light)
-            }
-            R.id.buttonThemeMaterial3Light -> {
-                activity?.setTheme(R.style.Theme_Material3_Light)
-            }
-
-
         }
     }
 }
