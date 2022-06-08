@@ -9,10 +9,11 @@ import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 
-abstract class BaseBoardScreenFragment(private val viewModel: BoardScreenFragmentViewModel) : Fragment() {
+abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragmentViewModel) : Fragment() {
 
     internal var _binding: FragmentListOfTasksBinding? = null
     internal open val binding: FragmentListOfTasksBinding
@@ -30,34 +31,24 @@ abstract class BaseBoardScreenFragment(private val viewModel: BoardScreenFragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAdapter()
         workLivedata()
     }
 
-    private fun workLivedata() {
-        setAdapter()
-
-        val observer =
-            Observer<TasksAppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
-                renderData(a)
-            }
-        viewModel.getData().observe(
-            viewLifecycleOwner,
-            observer
-        ) // Подписываем нашего подписчика на лайвдату из вьюмодели
-    }
+    abstract fun workLivedata()
 
     abstract fun setAdapter()
 
-    private fun renderData(data: TasksAppState) = when (data) {
-        is TasksAppState.Success -> {
+    internal fun renderData(data: BoardState) = when (data) {
+        is BoardState.Success -> {
             val dataList = data.data
             binding.loadingLayoutBoardScreen.visibility = View.GONE
             setAdapterData(dataList)
         }
-        is TasksAppState.Loading -> {
+        is BoardState.Loading -> {
             binding.loadingLayoutBoardScreen.visibility = View.VISIBLE
         }
-        is TasksAppState.Error -> {
+        is BoardState.Error -> {
             binding.loadingLayoutBoardScreen.visibility = View.GONE
 
         }

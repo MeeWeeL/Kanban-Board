@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Single
 interface Interactor {
 
     fun getBoards(): Single<List<BoardModel>>
+    fun getBoardById(boardId: Int): Single<BoardModel>
 
     fun addTask(boardId: Int, task: TaskModel) : Single<Boolean>
     fun addBoard(boardTitle: String) : Single<Boolean>

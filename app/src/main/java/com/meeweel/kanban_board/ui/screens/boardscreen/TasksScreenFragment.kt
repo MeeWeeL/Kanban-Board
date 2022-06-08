@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.taskscreen
+package com.meeweel.kanban_board.ui.screens.boardscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,17 +12,19 @@ import androidx.viewpager2.widget.ViewPager2
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentTasksScreenBinding
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done.DoneFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress.InProgressFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.todo.ToDoFragment
+import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragmentRecyclerAdapter.Companion.ARG_BOARD_ID
 
 class TasksScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentTasksScreenBinding
 
     private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
-        ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java) //
+        ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java).apply {
+            this.boardId = requireArguments().getInt(ARG_BOARD_ID)
+        } //
     }
 
     override fun onCreateView(
@@ -35,6 +37,7 @@ class TasksScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.synchronizeData()
         val viewPager = binding.viewPager
         viewPager.adapter = ViewPagerAdapter(this)
 

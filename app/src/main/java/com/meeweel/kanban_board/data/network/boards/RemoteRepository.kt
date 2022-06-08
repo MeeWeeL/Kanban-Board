@@ -8,6 +8,7 @@ interface RemoteRepository {
 
     fun getFakeBoards(): Single<List<BoardModel>>
     fun getBoards(login: String, password: String): Single<List<BoardModel>>
+    fun getBoardById(boardId: Int, login: String, password: String): Single<BoardModel>
 
     fun addTask(boardId: Int, task: TaskModel, login: String, password: String) : Single<Boolean>
     fun addBoard(boardTitle: String, login: String, password: String) : Single<Boolean>

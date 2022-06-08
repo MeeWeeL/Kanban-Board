@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.PopupMenu
+import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.domain.basemodels.states.BoardState
+import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
@@ -38,6 +41,17 @@ class ToDoFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFra
         super.onViewCreated(view, savedInstanceState)
         fabToDo()
         burgerClick()
+    }
+
+    override fun workLivedata() {
+        val observer =
+            Observer<BoardState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+                renderData(a)
+            }
+        viewModel.getToDoData().observe(
+            viewLifecycleOwner,
+            observer
+        )
     }
 
     private fun burgerClick() {
@@ -91,10 +105,5 @@ class ToDoFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFra
         super.onDestroy()
         _binding = null
         adapter.removeClickListeners()
-    }
-
-
-    companion object {
-        var board: BoardModel? = null
     }
 }

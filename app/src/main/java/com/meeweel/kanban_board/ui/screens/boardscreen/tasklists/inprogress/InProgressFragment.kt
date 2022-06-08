@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.PopupMenu
+import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
@@ -38,6 +40,17 @@ class InProgressFragment(viewModel: BoardScreenFragmentViewModel) :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         burgerClick()
+    }
+
+    override fun workLivedata() {
+        val observer =
+            Observer<BoardState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+                renderData(a)
+            }
+        viewModel.getInProgressData().observe(
+            viewLifecycleOwner,
+            observer
+        )
     }
 
     private fun burgerClick() {

@@ -16,6 +16,13 @@ interface KanbanApi {
         @Query("my_password") password: String
     ) : Single<List<Response>>
 
+    @GET("api.php?q=get_board_by_id")
+    fun getBoardById(
+        @Query("my_login") login: String,
+        @Query("my_password") password: String,
+        @Query("board_id") boardId: Int
+    ) : Single<Response>
+
     @GET("api.php?q=add_task")
     fun addTask(
         @Query("my_login") login: String,

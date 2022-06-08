@@ -2,20 +2,23 @@ package com.meeweel.kanban_board.data.network.boards
 
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.domain.convertResponseListToBoardModelList
+import com.meeweel.kanban_board.domain.responsemodels.toBoardModel
+import com.meeweel.kanban_board.domain.responsemodels.toBoardModelList
 import io.reactivex.rxjava3.core.Single
 
 class RemoteRepositoryImpl(private val service: KanbanApi = BoardsService().getService()) :
     RemoteRepository {
+
     override fun getFakeBoards(): Single<List<BoardModel>> {
-        return service.getFakeBoards().map {
-            convertResponseListToBoardModelList(it)
-        }
+        return service.getFakeBoards().map { it.toBoardModelList() }
     }
+
     override fun getBoards(login: String, password: String): Single<List<BoardModel>> {
-        return service.getBoards(login, password).map {
-            convertResponseListToBoardModelList(it)
-        }
+        return service.getBoards(login, password).map { it.toBoardModelList() }
+    }
+
+    override fun getBoardById(boardId: Int, login: String, password: String): Single<BoardModel> {
+        return service.getBoardById(login, password, boardId).map { it.toBoardModel() }
     }
 
     override fun addTask(boardId: Int, task: TaskModel, login: String, password: String): Single<Boolean> {

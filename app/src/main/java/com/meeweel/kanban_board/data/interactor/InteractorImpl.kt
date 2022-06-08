@@ -21,6 +21,10 @@ class InteractorImpl(
         return remoteRepo.getBoards(user.login, user.password)
     }
 
+    override fun getBoardById(boardId: Int): Single<BoardModel> {
+        return remoteRepo.getBoardById(boardId, user.login, user.password)
+    }
+
     override fun addTask(boardId: Int, task: TaskModel): Single<Boolean> {
         return remoteRepo.addTask(boardId, task, user.login, user.password)
     }
