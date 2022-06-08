@@ -8,12 +8,13 @@ interface Interactor {
 
     fun getBoards(): Single<List<BoardModel>>
 
-//    fun createTask(): TaskModel
-//    fun updateTask(): TaskModel
-//    fun deleteTask(): String
+    fun addTask(boardId: Int, task: TaskModel) : Single<Boolean>
+    fun addBoard(boardTitle: String) : Single<Boolean>
 
-//    fun addBoard(): BoardModel
-//    fun createBoard(): BoardModel
-//    fun updateBoard(): BoardModel
-//    fun deleteBoard(): String
+    fun changeTask(task: TaskModel) : Single<Boolean>
+    fun changeBoard(board: BoardModel) : Single<Boolean>
+
+    fun deleteTask(taskId: Int) : Single<Boolean>
+    fun deleteBoard(boardId: Int) : Single<Boolean>
+    fun deleteUser() : Single<Boolean>
 }
