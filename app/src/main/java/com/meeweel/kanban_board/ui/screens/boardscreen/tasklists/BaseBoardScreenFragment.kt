@@ -6,8 +6,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -16,6 +14,7 @@ import com.meeweel.kanban_board.databinding.BottomSheetEditTaskBinding
 import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
 import com.meeweel.kanban_board.domain.basemodels.Priority
+import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
@@ -43,31 +42,28 @@ abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTaskPopupListener()
         setAdapter()
         workLivedata()
         burgerClick()
     }
 
-    private fun setTaskPopupListener() {
+    private fun setTaskPopupListener(task: TaskModel) {
         taskPopupListener = PopupMenu.OnMenuItemClickListener {
             when (it.itemId) {
                 R.id.to_done -> {
-                    Toast.makeText(requireContext(), "To Done", Toast.LENGTH_SHORT).show()
+                    viewModel.updateTask(task.also { task -> task.status = Status.DONE })
                 }
                 R.id.to_in_progress -> {
-                    Toast.makeText(requireContext(), "To InProgress", Toast.LENGTH_SHORT).show()
+                    viewModel.updateTask(task.also { task -> task.status = Status.IN_PROGRESS })
                 }
                 R.id.to_todo -> {
-                    Toast.makeText(requireContext(), "To ToDo", Toast.LENGTH_SHORT)
-                        .show()
+                    viewModel.updateTask(task.also { task -> task.status = Status.TO_DO })
                 }
                 R.id.edit -> {
-                    Toast.makeText(requireContext(), "Edit", Toast.LENGTH_SHORT)
-                        .show()
+                    showEditBottomSheet(task)
                 }
                 R.id.delete -> {
-                    Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
+                    viewModel.removeTask(task.id)
                 }
             }
             true
@@ -76,7 +72,8 @@ abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragme
 
     private fun burgerClick() {
         adapter.setBurgerClickListener(object : OnBurgerClickListener {
-            override fun onBurgerClick(view: AppCompatImageButton) {
+            override fun onBurgerClick(view: View, task: TaskModel) {
+                setTaskPopupListener(task)
                 val popupMenu = PopupMenu(
                     requireContext(),
                     view,
@@ -164,6 +161,10 @@ abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragme
 
     interface OnLongTaskClickListener {
         fun showTaskEditSheet(task: TaskModel)
+    }
+
+    interface OnBurgerClickListener {
+        fun onBurgerClick(view: View, task: TaskModel)
     }
 
     override fun onDestroy() {

@@ -2,7 +2,6 @@ package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
@@ -12,7 +11,7 @@ class BaseBoardScreenAdapter :
 
     private var itemListener: BaseBoardScreenFragment.OnTaskClickListener? = null
     private var itemLongListener: BaseBoardScreenFragment.OnLongTaskClickListener? = null
-    private var burgerListener: OnBurgerClickListener? = null
+    private var burgerListener: BaseBoardScreenFragment.OnBurgerClickListener? = null
 
     private var dataList: MutableList<TaskModel> = mutableListOf()
 
@@ -34,27 +33,27 @@ class BaseBoardScreenAdapter :
         return dataList.size
     }
 
-    inner class MainViewHolder(private val binding: BoardScreenRecyclerItemBinding) :
-        BaseViewHolder(binding.root) {
+    inner class MainViewHolder(private val itemBinding: BoardScreenRecyclerItemBinding) :
+        BaseViewHolder(itemBinding.root) {
 
-        override fun bind(data: TaskModel) {
-            binding.apply {
-                titleBoardScreen.text = data.name
+        override fun bind(task: TaskModel) {
+            itemBinding.apply {
+                titleBoardScreen.text = task.name
                 burger.setOnClickListener {
-                    burgerListener?.onBurgerClick(it as AppCompatImageButton)
+                    burgerListener?.onBurgerClick(itemBinding.burger, task)
                 }
                 root.setOnClickListener {
-                    itemListener?.showTaskSheet(data)
+                    itemListener?.showTaskSheet(task)
                 }
                 root.setOnLongClickListener {
-                    itemLongListener?.showTaskEditSheet(data)
+                    itemLongListener?.showTaskEditSheet(task)
                     true
                 }
             }
         }
     }
 
-    fun setBurgerClickListener(param: OnBurgerClickListener) {
+    fun setBurgerClickListener(param: BaseBoardScreenFragment.OnBurgerClickListener) {
         this.burgerListener = param
     }
 
