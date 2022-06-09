@@ -9,4 +9,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorAccent40Alfa">#EF3A3A</color>
     <color name="colorAccent">#7BB57D</color>
+    <color name="text_field_background">#512da8</color>
+    <color name="orange">#F89503</color>
+    <color name="color_blue">#80C4F9</color>
+
+<!--    Indigo-->
+    <color name="colorPrimaryIndigo">#3f51b5</color>
+    <color name="colorPrimaryDarkIndigo">#002984</color>
+    <color name="textColorPrimaryIndigo">#ffffff</color>
+    <color name="textColorSecondaryIndigo">#ffffff</color>
+
+
+<!--    Pink-->
+    <color name="pink">#e91e63</color>
+    <color name="pinkLight">#ff6090</color>
+    <color name="pink_dark">#531329</color>
 </resources>

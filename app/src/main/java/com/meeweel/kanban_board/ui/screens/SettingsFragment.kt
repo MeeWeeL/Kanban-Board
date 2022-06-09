@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.data.room.LocalUserRepository
 import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
-import com.meeweel.kanban_board.databinding.ActivityMainBinding
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
 
