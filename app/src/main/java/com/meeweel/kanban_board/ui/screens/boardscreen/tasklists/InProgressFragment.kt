@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done
+package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +7,10 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
-import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseBoardScreenFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragmentViewModel
 
-class DoneFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFragment(viewModel) {
-
+class InProgressFragment(viewModel: TasksScreenFragmentViewModel) :
+    BaseTaskListFragment(viewModel) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,23 +28,22 @@ class DoneFragment(viewModel: BoardScreenFragmentViewModel) : BaseBoardScreenFra
 
     override fun workLivedata() {
         val observer =
-            Observer<BoardState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+            Observer<BoardState> { a ->
                 renderData(a)
             }
-        viewModel.getDoneData().observe(
+        viewModel.getInProgressData().observe(
             viewLifecycleOwner,
             observer
         )
     }
 
-    override fun setAdapterData(dataList: List<TaskModel>) {
-        val list = mutableListOf<TaskModel>()
-        for (item in dataList) if (item.status == Status.DONE) list.add(item)
-        adapter.setData(list)
-    }
-
-
     override fun popupMenu(): Int {
         return R.menu.popup_menu_done
+    }
+
+    override fun setAdapterData(dataList: List<TaskModel>) {
+        val list = mutableListOf<TaskModel>()
+        for (item in dataList) if (item.status == Status.IN_PROGRESS) list.add(item)
+        adapter.setData(list)
     }
 }

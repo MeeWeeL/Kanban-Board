@@ -12,6 +12,8 @@ import com.meeweel.kanban_board.ui.MAIN
 class MainScreenFragmentRecyclerAdapter :
     RecyclerView.Adapter<MainScreenFragmentRecyclerAdapter.MainViewHolder>() {
 
+    private var burgerListener: BaseMainScreenFragment.OnBurgerClickListener? = null
+
     private var dataList: MutableList<BoardModel> =
         mutableListOf() // Список данных, которые хотим отобразить ресайклером
     // В нашем случает тут это список досок
@@ -40,17 +42,28 @@ class MainScreenFragmentRecyclerAdapter :
     inner class MainViewHolder(private val binding: MainScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(board: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
             binding.apply {
-                titleBoardScreen.text = data.name
+                titleBoardScreen.text = board.name
                 root.setOnClickListener {
                     MAIN.navController.navigate(
                         R.id.action_mainScreenFragment_to_taskScreenFragment,
-                        bundleOf(ARG_BOARD_ID to data.id)
+                        bundleOf(ARG_BOARD_ID to board.id)
                     )
+                }
+                burgerMainScreen.setOnClickListener {
+                    burgerListener?.onBurgerClick(it, board)
                 }
             }
         }
+    }
+
+    fun setBurgerClickListener(param: BaseMainScreenFragment.OnBurgerClickListener) {
+        this.burgerListener = param
+    }
+
+    fun removeListeners() {
+        this.burgerListener = null
     }
 
     fun setData(data: List<BoardModel>) {

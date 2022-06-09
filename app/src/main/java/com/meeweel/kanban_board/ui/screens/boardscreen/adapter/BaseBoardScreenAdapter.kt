@@ -1,17 +1,18 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
+package com.meeweel.kanban_board.ui.screens.boardscreen.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseTaskListFragment
 
 class BaseBoardScreenAdapter :
     RecyclerView.Adapter<BaseViewHolder>() {
 
-    private var itemListener: BaseBoardScreenFragment.OnTaskClickListener? = null
-    private var itemLongListener: BaseBoardScreenFragment.OnLongTaskClickListener? = null
-    private var burgerListener: BaseBoardScreenFragment.OnBurgerClickListener? = null
+    private var itemListener: BaseTaskListFragment.OnTaskClickListener? = null
+    private var itemLongListener: BaseTaskListFragment.OnLongTaskClickListener? = null
+    private var burgerListener: BaseTaskListFragment.OnBurgerClickListener? = null
 
     private var dataList: MutableList<TaskModel> = mutableListOf()
 
@@ -53,15 +54,15 @@ class BaseBoardScreenAdapter :
         }
     }
 
-    fun setBurgerClickListener(param: BaseBoardScreenFragment.OnBurgerClickListener) {
+    fun setBurgerClickListener(param: BaseTaskListFragment.OnBurgerClickListener) {
         this.burgerListener = param
     }
 
-    fun setItemListener(itemListener: BaseBoardScreenFragment.OnTaskClickListener) {
+    fun setItemListener(itemListener: BaseTaskListFragment.OnTaskClickListener) {
         this.itemListener = itemListener
     }
 
-    fun setLongItemListener(itemLongListener: BaseBoardScreenFragment.OnLongTaskClickListener) {
+    fun setLongItemListener(itemLongListener: BaseTaskListFragment.OnLongTaskClickListener) {
         this.itemLongListener = itemLongListener
     }
 

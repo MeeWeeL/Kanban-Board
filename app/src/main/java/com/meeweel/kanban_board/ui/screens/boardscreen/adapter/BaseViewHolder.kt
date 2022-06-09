@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
+package com.meeweel.kanban_board.ui.screens.boardscreen.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

@@ -17,10 +17,11 @@ import com.meeweel.kanban_board.domain.basemodels.Priority
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
-import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragmentViewModel
+import com.meeweel.kanban_board.ui.screens.boardscreen.adapter.BaseBoardScreenAdapter
 import com.meeweel.kanban_board.util.setBrands
 
-abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragmentViewModel) : Fragment() {
+abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentViewModel) : Fragment() {
 
     internal var taskPopupListener: PopupMenu.OnMenuItemClickListener? = null
     private var _binding: FragmentListOfTasksBinding? = null
