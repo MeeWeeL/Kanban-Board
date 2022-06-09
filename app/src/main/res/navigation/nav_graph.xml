@@ -13,17 +13,15 @@
         <action
             android:id="@+id/action_authorizationFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_out_left"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_textViewLoginRegistration_to_registrationFragment"
             app:destination="@id/registrationFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_out_left"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/taskScreen"
@@ -52,9 +50,9 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_taskScreenFragment"
             app:destination="@id/taskScreen"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainScreenFragment_to_copyOfCreateAccountFragment"
             app:destination="@id/copyOfCreateAccountFragment"
