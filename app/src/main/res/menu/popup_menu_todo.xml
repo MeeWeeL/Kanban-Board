@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/popupMenu">
+        <item
+            android:id="@+id/to_in_progress"
+            android:icon="@drawable/ic_baseline_arrow_forward"
+            android:title="In progress" />
+        <item
+            android:id="@+id/to_done"
+            android:icon="@drawable/ic_baseline_arrow_forward"
+            android:title="Done" />
+        <item
+            android:id="@+id/edit"
+            android:icon="@drawable/ic_baseline_change_history"
+            android:title="Edit" />
+        <item
+            android:id="@+id/delete"
+            android:icon="@drawable/ic_baseline_delete"
+            android:title="@string/delete" />
+    </group>
+</menu>

@@ -47,6 +47,7 @@
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_create_new_task.xml" value="0.32314814814814813" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_edit_task.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/bottom_sheet_task.xml" value="0.25" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/done_screen_recycler_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_authorization.xml" value="0.29814814814814816" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_board_screen.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/fragment_copy_of_create_account.xml" value="0.18802083333333333" />
@@ -60,6 +61,8 @@
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/main_screen_recycler_utem.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/layout/to_do_screen_recycler_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/menu/popup_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/menu/popup_menu_done.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/menu/popup_menu_in_progress.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1575" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/KanbanBoard/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1575" />
       </map>

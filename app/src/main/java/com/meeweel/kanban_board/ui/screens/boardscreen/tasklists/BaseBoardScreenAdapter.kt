@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress
+package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,22 +6,18 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.OnBurgerClickListener
 
-class InProgressRecyclerAdapter :
-    RecyclerView.Adapter<InProgressRecyclerAdapter.MainViewHolder>() {
+class BaseBoardScreenAdapter :
+    RecyclerView.Adapter<BaseViewHolder>() {
 
-    private var itemListener: InProgressFragment.OnTaskClickListener? = null
-    private var itemLongListener: InProgressFragment.OnLongTaskClickListener? = null
-
-    private var burgerListener: OnBurgerClickListener? =
-        null // Этот бургер будем навешивать на бургер
-    // Настраивается он из фрагмента, через функцию setBurgerClickListener() в этом адаптере (И зануляется тоже)
-    // Сам этот интерфейс создан тоже во фрагменте
+    private var itemListener: BaseBoardScreenFragment.OnTaskClickListener? = null
+    private var itemLongListener: BaseBoardScreenFragment.OnLongTaskClickListener? = null
+    private var burgerListener: OnBurgerClickListener? = null
 
     private var dataList: MutableList<TaskModel> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = BoardScreenRecyclerItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -30,7 +26,7 @@ class InProgressRecyclerAdapter :
         return MainViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.bind(dataList[position])
     }
 
@@ -39,13 +35,13 @@ class InProgressRecyclerAdapter :
     }
 
     inner class MainViewHolder(private val binding: BoardScreenRecyclerItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        BaseViewHolder(binding.root) {
 
-        fun bind(data: TaskModel) {
+        override fun bind(data: TaskModel) {
             binding.apply {
                 titleBoardScreen.text = data.name
                 burger.setOnClickListener {
-                    burgerListener?.onBurgerClick(it as AppCompatImageButton) // То есть при нажатии будет срабатывать то, что мы указали методом setBurgerClickListener()
+                    burgerListener?.onBurgerClick(it as AppCompatImageButton)
                 }
                 root.setOnClickListener {
                     itemListener?.showTaskSheet(data)
@@ -62,11 +58,11 @@ class InProgressRecyclerAdapter :
         this.burgerListener = param
     }
 
-    fun setItemListener(itemListener: InProgressFragment.OnTaskClickListener) {
+    fun setItemListener(itemListener: BaseBoardScreenFragment.OnTaskClickListener) {
         this.itemListener = itemListener
     }
 
-    fun setLongItemListener(itemLongListener: InProgressFragment.OnLongTaskClickListener) {
+    fun setLongItemListener(itemLongListener: BaseBoardScreenFragment.OnLongTaskClickListener) {
         this.itemLongListener = itemLongListener
     }
 

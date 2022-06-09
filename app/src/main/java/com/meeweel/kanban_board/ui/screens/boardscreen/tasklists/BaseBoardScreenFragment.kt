@@ -1,25 +1,37 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.meeweel.kanban_board.R
+import com.meeweel.kanban_board.databinding.BottomSheetEditTaskBinding
+import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.kanban_board.domain.basemodels.Priority
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
-import com.meeweel.kanban_board.domain.basemodels.states.TasksAppState
 import com.meeweel.kanban_board.ui.screens.boardscreen.BoardScreenFragmentViewModel
+import com.meeweel.kanban_board.util.setBrands
 
 abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragmentViewModel) : Fragment() {
 
-    internal var _binding: FragmentListOfTasksBinding? = null
+    internal var taskPopupListener: PopupMenu.OnMenuItemClickListener? = null
+    private var _binding: FragmentListOfTasksBinding? = null
     internal open val binding: FragmentListOfTasksBinding
         get() {
             return _binding!!
         }
+
+    internal val adapter =
+        BaseBoardScreenAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +43,99 @@ abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTaskPopupListener()
         setAdapter()
         workLivedata()
+        burgerClick()
+    }
+
+    private fun setTaskPopupListener() {
+        taskPopupListener = PopupMenu.OnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.to_done -> {
+                    Toast.makeText(requireContext(), "To Done", Toast.LENGTH_SHORT).show()
+                }
+                R.id.to_in_progress -> {
+                    Toast.makeText(requireContext(), "To InProgress", Toast.LENGTH_SHORT).show()
+                }
+                R.id.to_todo -> {
+                    Toast.makeText(requireContext(), "To ToDo", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                R.id.edit -> {
+                    Toast.makeText(requireContext(), "Edit", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                R.id.delete -> {
+                    Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
+        }
+    }
+
+    private fun burgerClick() {
+        adapter.setBurgerClickListener(object : OnBurgerClickListener {
+            override fun onBurgerClick(view: AppCompatImageButton) {
+                val popupMenu = PopupMenu(
+                    requireContext(),
+                    view,
+                    Gravity.CENTER
+                )
+                popupMenu.inflate(popupMenu())
+                popupMenu.setForceShowIcon(true)
+                popupMenu.setOnMenuItemClickListener(taskPopupListener)
+                popupMenu.show()
+            }
+        })
+    }
+
+    abstract fun popupMenu() : Int
+
+    internal fun showBottomSheet(task: TaskModel) {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bottomSheetBinding = BottomSheetTaskBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        bottomSheetBinding.apply {
+            taskTitle.text = task.name
+            taskDescription.text = task.description
+            taskPriority.text = task.priority.text
+            taskPerformer.text = task.performer
+        }
+        bottomSheetDialog.show()
+    }
+
+    internal fun showEditBottomSheet(task: TaskModel) {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bottomSheetBinding = BottomSheetEditTaskBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        val brands = Priority.values()
+        bottomSheetBinding.apply {
+            taskTitle.text = SpannableStringBuilder(task.name)
+            taskDescription.text = SpannableStringBuilder(task.description)
+            taskPriority.apply {
+                setBrands(requireContext(), brands.map { it.text })
+                setSelection(task.priority.int)
+            }
+            taskPerformer.text = SpannableStringBuilder(task.performer)
+            taskBtn.setOnClickListener {
+                viewModel.updateTask(
+                    TaskModel(
+                        task.id,
+                        taskTitle.text.toString(),
+                        taskDescription.text.toString(),
+                        task.status,
+                        brands[taskPriority.selectedItemPosition],
+                        taskPerformer.text.toString()
+                    )
+                )
+                bottomSheetDialog.dismiss()
+            }
+        }
+        bottomSheetDialog.show()
     }
 
     abstract fun workLivedata()
-
-    abstract fun setAdapter()
 
     internal fun renderData(data: BoardState) = when (data) {
         is BoardState.Success -> {
@@ -54,14 +152,23 @@ abstract class BaseBoardScreenFragment(internal val viewModel: BoardScreenFragme
         }
     }
 
+    private fun setAdapter() {
+        binding.boardScreenFragmentRecyclerView.adapter = adapter
+    }
+
     abstract fun setAdapterData(dataList: List<TaskModel>)
+
+    interface OnTaskClickListener {
+        fun showTaskSheet(task: TaskModel)
+    }
+
+    interface OnLongTaskClickListener {
+        fun showTaskEditSheet(task: TaskModel)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        var board: BoardModel? = null
+        adapter.removeClickListeners()
     }
 }
