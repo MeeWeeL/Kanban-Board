@@ -2,13 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/popupMenu">
         <item
-            android:id="@+id/moveTo"
+            android:id="@+id/to_done"
             android:icon="@drawable/ic_baseline_arrow_forward"
-            android:title="@string/moveTo" />
+            android:title="Done" />
         <item
-            android:id="@+id/changePriority"
+            android:id="@+id/to_todo"
+            android:icon="@drawable/ic_baseline_arrow_forward"
+            android:title="ToDo" />
+        <item
+            android:id="@+id/edit"
             android:icon="@drawable/ic_baseline_change_history"
-            android:title="@string/changePriority" />
+            android:title="Edit" />
         <item
             android:id="@+id/delete"
             android:icon="@drawable/ic_baseline_delete"

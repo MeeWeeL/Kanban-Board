@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -12,21 +11,20 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.BottomSheetCreateNewTaskBinding
-import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentTasksScreenBinding
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.done.DoneFragment
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.inprogress.InProgressFragment
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.todo.ToDoFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.DoneFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.InProgressFragment
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.ToDoFragment
 import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragmentRecyclerAdapter.Companion.ARG_BOARD_ID
 
 class TasksScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentTasksScreenBinding
 
-    private val viewModel: BoardScreenFragmentViewModel by lazy { // Вьюмодель
-        ViewModelProvider(this).get(BoardScreenFragmentViewModel::class.java).apply {
+    private val viewModel: TasksScreenFragmentViewModel by lazy { // Вьюмодель
+        ViewModelProvider(this).get(TasksScreenFragmentViewModel::class.java).apply {
             this.boardId = requireArguments().getInt(ARG_BOARD_ID)
         } //
     }
