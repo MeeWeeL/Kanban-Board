@@ -10,6 +10,7 @@ import com.meeweel.kanban_board.data.room.LocalUserRepository
 import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.ui.MainActivity
 
 class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
     Fragment() {
@@ -36,18 +37,20 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
     }
 
     private fun setThemeAny() {
-        with(binding) {
-            buttonThemeKanbanBoard.setOnClickListener {
-                requireActivity().setTheme(R.style.Theme_KanbanBoard)
-            }
-            buttonThemeAppCompatDialog.setOnClickListener {
-                requireActivity().setTheme(R.style.Theme_AppCompat_Dialog)
-            }
-            buttonThemeDesignLight.setOnClickListener {
-                requireActivity().setTheme(R.style.Theme_Design_Light)
-            }
-            buttonThemeMaterial3Light.setOnClickListener {
-                requireActivity().setTheme(R.style.Theme_Material3_Light)
+        (requireActivity() as? MainActivity)?.let { activity ->
+            with(binding) {
+                buttonThemeKanbanBoard.setOnClickListener {
+                    activity.changeTheme(R.style.Theme_KanbanBoard)
+                }
+                buttonThemeAppCompatDialog.setOnClickListener {
+                    activity.changeTheme(R.style.Theme_AppCompat_Dialog)
+                }
+                buttonThemeDesignLight.setOnClickListener {
+                    activity.changeTheme(R.style.Theme_Design_Light)
+                }
+                buttonThemeMaterial3Light.setOnClickListener {
+                    activity.changeTheme(R.style.Theme_Material3_Light)
+                }
             }
         }
     }

@@ -4,8 +4,7 @@ data class BoardModel(
     val id: Int,
     var name: String,
     val host: String,
-    val key: String,
-    val toDoList: MutableList<TaskModel> = mutableListOf<TaskModel>()
+    val toDoList: MutableList<TaskModel> = mutableListOf()
 )
 
 fun BoardModel.getTaskListByStatus(status: Status) : List<TaskModel> {

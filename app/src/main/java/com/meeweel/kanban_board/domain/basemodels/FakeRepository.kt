@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Single
 
 class FakeRepository {
     private val repo = mutableListOf(
-        BoardModel(0,"Board 1", "Bai777","KeyYk23",
+        BoardModel(0,"Board 1", "Bai777",
             mutableListOf(
                 TaskModel(0,"Task 1", "First task of project process", Status.DONE, Priority.NONE,"MeeWeeL"),
                 TaskModel(1,"Task 2", "Second task of project process", Status.DONE, Priority.NONE, "Bai777"),
@@ -16,7 +16,7 @@ class FakeRepository {
                 TaskModel(7,"Task 8", "8 task of project process", Status.TO_DO)
             )
         ),
-        BoardModel(1,"Board 2", "Bai777","KeyYk23",
+        BoardModel(1,"Board 2", "Bai777",
             mutableListOf(
                 TaskModel(0,"Task 1", "First task of project process", Status.DONE, Priority.NONE,"MeeWeeL"),
                 TaskModel(1,"Task 2", "Second task of project process", Status.DONE, Priority.NONE, "Bai777"),
