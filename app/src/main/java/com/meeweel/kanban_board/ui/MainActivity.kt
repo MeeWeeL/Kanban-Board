@@ -7,6 +7,7 @@ import androidx.navigation.Navigation
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        recreate()
+
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
