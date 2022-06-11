@@ -78,4 +78,18 @@ interface KanbanApi {
         @Query("my_login") login: String,
         @Query("my_password") password: String
     ) : Single<Boolean>
+
+    @GET("api.php?q=get_board_key")
+    fun createBoardKey(
+        @Query("board_id") boardId: Int,
+        @Query("my_login") login: String,
+        @Query("my_password") password: String
+    ) : Single<String>
+
+    @GET("api.php?q=add_board_by_key")
+    fun addBoardByKey(
+        @Query("board_key") boardKey: String,
+        @Query("my_login") login: String,
+        @Query("my_password") password: String
+    ) : Single<Boolean>
 }

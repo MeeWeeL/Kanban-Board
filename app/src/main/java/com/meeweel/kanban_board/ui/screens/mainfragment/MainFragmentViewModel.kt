@@ -15,9 +15,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
 
     private val liveDataToObserve: MutableLiveData<BoardsAppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
+    private val liveDataBoardKey: MutableLiveData<String> = MutableLiveData()  // Создаем ячейку памяти для хранения
 
     fun getData(): LiveData<BoardsAppState> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
         return liveDataToObserve
+    }
+
+    fun getKeyData(): LiveData<String> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
+        return liveDataBoardKey
     }
 
     fun getBoards() = getDataFromInterceptor() // Обновить данные во вьюмоделе
@@ -26,6 +31,22 @@ class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl(
     fun updateBoard(board: BoardModel) = changeBoardTitle(board)
     fun createBoard(boardName: String) = createNewBoard(boardName)
     fun removeBoard(boardId: Int) = deleteBoard(boardId)
+
+    fun createBoardKey(boardId: Int) = createABoardKey(boardId)
+    fun addBoardById(boardKey: String) = addABoardById(boardKey)
+
+    private fun createABoardKey(boardId: Int) {
+        interactor.createBoardKey(boardId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                liveDataBoardKey.postValue(it)
+            },{})
+    }
+
+    private fun addABoardById(boardKey: String) {
+        interactor.addBoardByKey(boardKey).sync()
+    }
 
     private fun getDataFromInterceptor() {
         interactor.getBoards()

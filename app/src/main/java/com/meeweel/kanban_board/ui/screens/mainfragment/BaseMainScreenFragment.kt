@@ -1,11 +1,13 @@
 package com.meeweel.kanban_board.ui.screens.mainfragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,12 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.*
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.Priority
 import com.meeweel.kanban_board.domain.basemodels.Status
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
-import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseTaskListFragment
-import com.meeweel.kanban_board.util.setBrands
 
 abstract class BaseMainScreenFragment : Fragment() {
 
@@ -78,6 +76,9 @@ abstract class BaseMainScreenFragment : Fragment() {
                 R.id.details -> {
                     showBottomSheet(board)
                 }
+                R.id.get_key -> {
+                    viewModel.createBoardKey(board.id)
+                }
             }
             true
         }
@@ -87,15 +88,34 @@ abstract class BaseMainScreenFragment : Fragment() {
         binding.mainScreenFragmentRecyclerView.adapter =
             adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
 
-        val observer =
+        val keyObserver =
+            Observer<String> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
+                renderKeyData(a)
+            }
+        val dataObserver =
             Observer<BoardsAppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
                 renderData(a)
             }
-        viewModel.getData().observe(
-            viewLifecycleOwner,
-            observer
-        ) // Подписываем нашего подписчика на лайвдату из вьюмодели
+        viewModel.getData().observe(viewLifecycleOwner, dataObserver)
+        viewModel.getKeyData().observe(viewLifecycleOwner, keyObserver)
         viewModel.getBoards() // Просим вьюмодель обновить свои данные (На всякий случай)
+    }
+
+    private fun renderKeyData(key: String) {
+        if (key == ERROR || key == NOT_HOST) key.toast()
+        else showKey(key)
+    }
+
+    private fun showKey(key: String) {
+        val dialog = Dialog(requireContext())
+        val dialogBind = ShowKeyDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBind.root)
+        dialogBind.key.text = key
+        dialogBind.copy.setOnClickListener {
+            "Not implemented yet".toast()
+            // TODO("SAVING KEY IN PHONE CACHE")
+        }
+        dialog.show()
     }
 
     private fun renderData(data: BoardsAppState) = when (data) {
@@ -113,7 +133,7 @@ abstract class BaseMainScreenFragment : Fragment() {
         }
     }
 
-    internal fun showBottomSheet(board: BoardModel) {
+    private fun showBottomSheet(board: BoardModel) {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         val bottomSheetBinding = BottomSheetBoardBinding.inflate(layoutInflater)
         bottomSheetDialog.setContentView(bottomSheetBinding.root)
@@ -155,8 +175,17 @@ abstract class BaseMainScreenFragment : Fragment() {
         fun onBurgerClick(view: View, board: BoardModel)
     }
 
+    private fun String.toast() {
+        Toast.makeText(requireContext(), this, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        const val ERROR = "Error"
+        const val NOT_HOST = "You are not host"
     }
 }

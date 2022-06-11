@@ -10,6 +10,10 @@
             android:icon="@drawable/ic_edit"
             android:title="Edit" />
         <item
+            android:id="@+id/get_key"
+            android:icon="@drawable/ic_key"
+            android:title="Get key" />
+        <item
             android:id="@+id/delete"
             android:icon="@drawable/ic_baseline_delete"
             android:title="@string/delete" />

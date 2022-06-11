@@ -86,6 +86,7 @@ class MainScreenFragment : BaseMainScreenFragment() {
         val dialogBind = NewBoardAddBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBind.root)
         dialogBind.addBoardLayout.setEndIconOnClickListener {
+            viewModel.addBoardById(dialogBind.addBoardKey.text.toString())
             dialog.dismiss()
         }
         dialog.show()
