@@ -6,87 +6,91 @@
     android:layout_height="match_parent"
     tools:context=".ui.screens.authorization.AuthorizationFragment">
 
-    <LinearLayout
-        android:id="@+id/mainLinearLayout"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_layout"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/textViewLogin"
-            android:textSize="@dimen/textFromAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@+id/editTextLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        app:counterMaxLength="20"
+        app:helperText="Required*"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="#D95959"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_input_a_login"
+            android:hint="Login"
             android:maxLength="20"
+            android:lines="1"
+            android:background="@drawable/text_input_selector"
             app:layout_constraintBottom_toTopOf="@id/textViewPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/textViewPassword"
-            android:textSize="@dimen/textFromAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextLogin" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_layout"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        app:counterMaxLength="20"
+        app:passwordToggleEnabled="true"
+        app:helperText="Required*"
+        app:helperTextTextColor="#D95959"
+        app:layout_constraintTop_toBottomOf="@id/login_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_input_a_password"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:maxLength="12"
+            android:maxLength="20"
+            android:lines="1"
+            android:background="@drawable/text_input_selector"
             app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSignUp"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buttonTextSignUp"
-            android:textAllCaps="false"
-            android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignIn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/buttonTextSignIn"
+        android:textAllCaps="false"
+        android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSignUp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSignIn"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buttonTextSignIn"
-            android:textAllCaps="false"
-            android:textSize="@dimen/sizeTextButtonAuthorizationFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignUp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/buttonTextSignUp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/loadingLayout"

@@ -62,5 +62,6 @@ class AuthorizationViewModel(private val interactor: AuthorizationInteractor = A
 //                liveDataToObserve.postValue(AuthorizationState.Success(data[0]))
 //                signIn(data[0].login, data[0].password)
         }
+        liveDataToObserve.postValue(AuthorizationState.Done)
     }
 }

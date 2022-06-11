@@ -38,7 +38,7 @@ class InProgressFragment(viewModel: TasksScreenFragmentViewModel) :
     }
 
     override fun popupMenu(): Int {
-        return R.menu.popup_menu_done
+        return R.menu.popup_menu_in_progress
     }
 
     override fun setAdapterData(dataList: List<TaskModel>) {
