@@ -1,7 +1,12 @@
 package com.meeweel.kanban_board.ui.screens.mainfragment
 
+import android.annotation.TargetApi
 import android.app.Dialog
+import android.content.ClipData
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.text.ClipboardManager
 import android.text.SpannableStringBuilder
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -18,6 +23,7 @@ import com.meeweel.kanban_board.databinding.*
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
+
 
 abstract class BaseMainScreenFragment : Fragment() {
 
@@ -112,10 +118,26 @@ abstract class BaseMainScreenFragment : Fragment() {
         dialog.setContentView(dialogBind.root)
         dialogBind.key.text = key
         dialogBind.copy.setOnClickListener {
-            "Not implemented yet".toast()
+            copyText(key)
+            "Copied to clipboard".toast()
             // TODO("SAVING KEY IN PHONE CACHE")
         }
         dialog.show()
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private fun copyText(copiedText: String) {
+        val sdk = Build.VERSION.SDK_INT
+        if (sdk < Build.VERSION_CODES.HONEYCOMB) {
+            val clipboard =
+                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.text = copiedText
+        } else {
+            val clipboard =
+                requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val clip = ClipData.newPlainText("TAG", copiedText)
+            clipboard.setPrimaryClip(clip)
+        }
     }
 
     private fun renderData(data: BoardsAppState) = when (data) {
