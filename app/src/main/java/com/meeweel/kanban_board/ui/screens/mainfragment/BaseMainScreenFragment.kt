@@ -119,8 +119,6 @@ abstract class BaseMainScreenFragment : Fragment() {
         dialogBind.key.text = key
         dialogBind.copy.setOnClickListener {
             copyText(key)
-            "Copied to clipboard".toast()
-            // TODO("SAVING KEY IN PHONE CACHE")
         }
         dialog.show()
     }
@@ -132,12 +130,15 @@ abstract class BaseMainScreenFragment : Fragment() {
             val clipboard =
                 requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.text = copiedText
+            COPIED.toast()
         } else {
             val clipboard =
                 requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
             val clip = ClipData.newPlainText("TAG", copiedText)
             clipboard.setPrimaryClip(clip)
+            COPIED.toast()
         }
+        ERROR.toast()
     }
 
     private fun renderData(data: BoardsAppState) = when (data) {
@@ -209,5 +210,6 @@ abstract class BaseMainScreenFragment : Fragment() {
     companion object {
         const val ERROR = "Error"
         const val NOT_HOST = "You are not host"
+        const val COPIED = "Copied to clipboard"
     }
 }
