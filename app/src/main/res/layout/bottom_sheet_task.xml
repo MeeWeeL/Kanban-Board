@@ -9,7 +9,7 @@
         android:layout_height="3dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="#696969"/>
+        android:background="#999999"/>
 
     <TextView
         android:id="@+id/task_title"

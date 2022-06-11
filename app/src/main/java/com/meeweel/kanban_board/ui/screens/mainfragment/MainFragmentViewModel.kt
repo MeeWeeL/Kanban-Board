@@ -46,7 +46,7 @@ class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl(
     }
 
     private fun deleteBoard(boardId: Int) {
-        interactor.deleteTask(boardId).sync()
+        interactor.deleteBoard(boardId).sync()
     }
 
     private fun changeBoardTitle(board: BoardModel) {

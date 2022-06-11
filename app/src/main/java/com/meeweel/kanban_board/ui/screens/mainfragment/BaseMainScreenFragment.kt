@@ -30,7 +30,7 @@ abstract class BaseMainScreenFragment : Fragment() {
             return _binding!!
         }
 
-    private val viewModel: MainFragmentViewModel by lazy { // Вьюмодель
+    internal val viewModel: MainFragmentViewModel by lazy { // Вьюмодель
         ViewModelProvider(this).get(MainFragmentViewModel::class.java) //
     }
     private val adapter = MainScreenFragmentRecyclerAdapter() // Адаптер

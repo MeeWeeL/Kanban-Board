@@ -121,6 +121,7 @@ class TasksScreenFragment : Fragment() {
                     bottomSheetBinding.taskDescription.text.toString()
                 )
             )
+            bottomSheetDialog.dismiss()
         }
         bottomSheetDialog.show()
     }
