@@ -48,4 +48,12 @@ class RemoteRepositoryImpl(private val service: KanbanApi = BoardsService().getS
     override fun deleteUser(login: String, password: String): Single<Boolean> {
         return service.deleteUser(login, password)
     }
+
+    override fun createBoardKey(boardId: Int, login: String, password: String): Single<String> {
+        return service.createBoardKey(boardId, login, password)
+    }
+
+    override fun addBoardByKey(boardKey: String, login: String, password: String): Single<Boolean> {
+        return service.addBoardByKey(boardKey, login, password)
+    }
 }

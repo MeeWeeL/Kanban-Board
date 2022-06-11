@@ -1,10 +1,8 @@
 package com.meeweel.kanban_board.ui.screens.authorization
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.meeweel.kanban_board.app.App.AppInstance.context
 import com.meeweel.kanban_board.data.interactor.AuthorizationInteractor
 import com.meeweel.kanban_board.data.interactor.AuthorizationInteractorImpl
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -57,10 +55,6 @@ class AuthorizationViewModel(private val interactor: AuthorizationInteractor = A
         val data = interactor.checkAuthorization()
         if (data.isNotEmpty()) {
             signIn(data[0].login, data[0].password)
-            Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
-//                liveDataToObserve.postValue(AuthorizationState.Success(data[0]))
-//                liveDataToObserve.postValue(AuthorizationState.Success(data[0]))
-//                signIn(data[0].login, data[0].password)
         }
         liveDataToObserve.postValue(AuthorizationState.Done)
     }

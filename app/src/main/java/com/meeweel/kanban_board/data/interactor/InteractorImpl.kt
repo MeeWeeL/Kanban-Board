@@ -52,4 +52,12 @@ class InteractorImpl(
     override fun deleteUser(): Single<Boolean> {
         return remoteRepo.deleteUser(user.login, user.password)
     }
+
+    override fun createBoardKey(boardId: Int): Single<String> {
+        return remoteRepo.createBoardKey(boardId, user.login, user.password)
+    }
+
+    override fun addBoardByKey(boardKey: String): Single<Boolean> {
+        return remoteRepo.addBoardByKey(boardKey, user.login, user.password)
+    }
 }

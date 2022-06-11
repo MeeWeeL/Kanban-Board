@@ -19,4 +19,7 @@ interface RemoteRepository {
     fun deleteTask(taskId: Int, login: String, password: String) : Single<Boolean>
     fun deleteBoard(boardId: Int, login: String, password: String) : Single<Boolean>
     fun deleteUser(login: String, password: String) : Single<Boolean>
+
+    fun createBoardKey(boardId: Int, login: String, password: String) : Single<String>
+    fun addBoardByKey(boardKey: String, login: String, password: String) : Single<Boolean>
 }

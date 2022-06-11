@@ -18,4 +18,7 @@ interface Interactor {
     fun deleteTask(taskId: Int) : Single<Boolean>
     fun deleteBoard(boardId: Int) : Single<Boolean>
     fun deleteUser() : Single<Boolean>
+
+    fun createBoardKey(boardId: Int) : Single<String>
+    fun addBoardByKey(boardKey: String) : Single<Boolean>
 }
