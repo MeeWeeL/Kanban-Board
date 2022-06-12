@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.Interactor
-import com.meeweel.kanban_board.data.interactor.InteractorImpl
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
+class MainFragmentViewModel(private val interactor: Interactor) : ViewModel() {
 
     private val liveDataToObserve: MutableLiveData<BoardsAppState> = MutableLiveData()
     private val liveDataBoardKey: MutableLiveData<String> = MutableLiveData()

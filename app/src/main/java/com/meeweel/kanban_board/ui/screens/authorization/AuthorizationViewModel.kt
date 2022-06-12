@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.AuthorizationInteractor
-import com.meeweel.kanban_board.data.interactor.AuthorizationInteractorImpl
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class AuthorizationViewModel(private val interactor: AuthorizationInteractor = AuthorizationInteractorImpl()) :
+class AuthorizationViewModel(private val interactor: AuthorizationInteractor) :
     ViewModel() {
 
     private val liveIsAuth: MutableLiveData<Boolean> = MutableLiveData()

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,17 +17,13 @@ import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.DoneFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.InProgressFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.ToDoFragment
 import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragmentRecyclerAdapter.Companion.ARG_BOARD_ID
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TasksScreenFragment : Fragment() {
 
     private var _binding: FragmentTasksScreenBinding? = null
     private val binding: FragmentTasksScreenBinding get() = _binding!!
-
-    private val viewModel: TasksScreenFragmentViewModel by lazy {
-        ViewModelProvider(this).get(TasksScreenFragmentViewModel::class.java).apply {
-            this.boardId = requireArguments().getInt(ARG_BOARD_ID)
-        }
-    }
+    private val viewModel: TasksScreenFragmentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +35,7 @@ class TasksScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.boardId = requireArguments().getInt(ARG_BOARD_ID)
         viewModel.synchronizeData()
         initPager()
         onActionBarListener()
@@ -86,7 +82,6 @@ class TasksScreenFragment : Fragment() {
             MAIN.navController.navigate(R.id.action_taskScreenFragment_to_mainScreenFragment)
         }
     }
-
     private fun workWhitItemMenuInToolbar() {
         binding.leftTopAppBarBoardScreen.inflateMenu(R.menu.menu_main_screen_add)
         binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {

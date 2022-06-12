@@ -7,21 +7,18 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.util.toast
 import java.util.regex.Pattern
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthorizationFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAuthorizationBinding? = null
     private val binding: FragmentAuthorizationBinding get() = _binding!!
-
-    private val viewModel: AuthorizationViewModel by lazy {
-        ViewModelProvider(this).get(AuthorizationViewModel::class.java)
-    }
+    private val viewModel: AuthorizationViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +30,6 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initObserver()
         binding.buttonSignUp.setOnClickListener(this)
         binding.buttonSignIn.setOnClickListener(this)

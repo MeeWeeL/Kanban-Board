@@ -1,22 +1,24 @@
-package com.meeweel.kanban_board.ui.screens
+package com.meeweel.kanban_board.ui.screens.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.data.room.LocalUserRepository
-import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
+import com.meeweel.kanban_board.domain.basemodels.states.SettingsState
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.MainActivity
+import com.meeweel.kanban_board.util.toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()) :
-    Fragment() {
+class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding: FragmentSettingsBinding get() = _binding!!
+    private val viewModel: SettingsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +30,31 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initObserver()
         onActionBarListener()
         listenerButtonLogOut()
         setThemeAny()
+    }
+
+    private fun initObserver() {
+        val observer = Observer<SettingsState> { renderData(it) }
+        viewModel.getData().observe(viewLifecycleOwner, observer)
+        viewModel.getUserName()
+    }
+
+    private fun renderData(state: SettingsState) = when (state) {
+        is SettingsState.UserName -> {
+            binding.userName.text = state.userName
+            binding.loadingLayout.visibility = View.GONE
+        }
+        is SettingsState.LoggedOut ->
+            MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
+        is SettingsState.AccountDeleted ->
+            MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
+        is SettingsState.Loading -> {
+            binding.loadingLayout.visibility = View.VISIBLE
+        }
+        is SettingsState.Error -> { state.error.message?.toast(requireContext()) }
     }
 
     private fun setThemeAny() {
@@ -54,8 +78,7 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
 
     private fun listenerButtonLogOut() {
         binding.buttonLogOut.setOnClickListener {
-            localRepo.logOut()
-            MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
+            viewModel.logOut()
         }
     }
 

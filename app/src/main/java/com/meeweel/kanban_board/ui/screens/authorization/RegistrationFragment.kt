@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.registration
+package com.meeweel.kanban_board.ui.screens.authorization
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,9 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentRegistrationBinding
 import com.meeweel.kanban_board.ui.MAIN
-import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.AUTHORIZATION_FAILED
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.ERROR
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.MIN_CHAR_LOGIN
@@ -21,19 +19,15 @@ import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.C
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.REQUIRED
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SPACE
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SYMBOLS
-import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationState
-import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationViewModel
 import com.meeweel.kanban_board.util.toast
 import java.util.regex.Pattern
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentRegistrationBinding? = null
     private val binding: FragmentRegistrationBinding get() = _binding!!
-
-    private val viewModel: AuthorizationViewModel by lazy {
-        ViewModelProvider(this).get(AuthorizationViewModel::class.java)
-    }
+    private val viewModel: AuthorizationViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

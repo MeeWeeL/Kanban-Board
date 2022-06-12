@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.*
@@ -23,16 +22,14 @@ import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
 import com.meeweel.kanban_board.util.toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class BaseMainScreenFragment : Fragment() {
 
     private var taskPopupListener: PopupMenu.OnMenuItemClickListener? = null
     private var _binding: FragmentMainScreenBinding? = null
     internal open val binding: FragmentMainScreenBinding get() = _binding!!
-
-    internal val viewModel: MainFragmentViewModel by lazy {
-        ViewModelProvider(this).get(MainFragmentViewModel::class.java)
-    }
+    internal val viewModel: MainFragmentViewModel by viewModel()
     private val adapter = MainScreenFragmentRecyclerAdapter()
 
     override fun onCreateView(

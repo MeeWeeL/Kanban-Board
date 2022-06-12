@@ -1,19 +1,18 @@
 package com.meeweel.kanban_board.data.interactor
 
 import com.meeweel.kanban_board.data.network.authorization.AuthorizationRepository
-import com.meeweel.kanban_board.data.network.authorization.AuthorizationRepositoryImpl
 import com.meeweel.kanban_board.data.room.LocalUserRepository
-import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
 import com.meeweel.kanban_board.data.room.UserEntity
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 class AuthorizationInteractorImpl(
-    private val remoteRepo: AuthorizationRepository = AuthorizationRepositoryImpl(),
-    private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()
+    private val remoteRepo: AuthorizationRepository,
+    private val localRepo: LocalUserRepository
 ) : AuthorizationInteractor {
 
-    override fun logOut() {
-        localRepo.logOut()
+    override fun logOut(): Completable {
+        return localRepo.logOut()
     }
 
     override fun checkAuthorization(): List<UserEntity> {
