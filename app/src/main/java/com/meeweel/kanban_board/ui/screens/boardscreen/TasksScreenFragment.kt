@@ -21,49 +21,40 @@ import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragmentRecycl
 
 class TasksScreenFragment : Fragment() {
 
-    private lateinit var binding: FragmentTasksScreenBinding
+    private var _binding: FragmentTasksScreenBinding? = null
+    private val binding: FragmentTasksScreenBinding get() = _binding!!
 
-    private val viewModel: TasksScreenFragmentViewModel by lazy { // Вьюмодель
+    private val viewModel: TasksScreenFragmentViewModel by lazy {
         ViewModelProvider(this).get(TasksScreenFragmentViewModel::class.java).apply {
             this.boardId = requireArguments().getInt(ARG_BOARD_ID)
-        } //
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTasksScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentTasksScreenBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.synchronizeData()
+        initPager()
+        onActionBarListener()
+        workWhitItemMenuInToolbar()
+    }
+
+    private fun initPager() {
         val viewPager = binding.viewPager
         viewPager.adapter = ViewPagerAdapter(this)
-
         viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            }
-
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 initPositionListener(position)
             }
-
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-            }
         })
-
-        onActionBarListener()
-        workWhitItemMenuInToolbar()
     }
 
     private fun initPositionListener(position: Int) {
@@ -143,6 +134,10 @@ class TasksScreenFragment : Fragment() {
         const val TODO = "ToDo"
         const val IN_PROGRESS = "In progress"
         const val DONE = "Done"
-        const val PUSH_BUTTON = "You push button"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

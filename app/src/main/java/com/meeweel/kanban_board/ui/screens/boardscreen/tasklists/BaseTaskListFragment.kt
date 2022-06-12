@@ -18,20 +18,15 @@ import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragmentViewModel
-import com.meeweel.kanban_board.ui.screens.boardscreen.adapter.BaseBoardScreenAdapter
+import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.adapter.BaseBoardScreenAdapter
 import com.meeweel.kanban_board.util.setBrands
 
 abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentViewModel) : Fragment() {
 
     internal var taskPopupListener: PopupMenu.OnMenuItemClickListener? = null
     private var _binding: FragmentListOfTasksBinding? = null
-    internal open val binding: FragmentListOfTasksBinding
-        get() {
-            return _binding!!
-        }
-
-    internal val adapter =
-        BaseBoardScreenAdapter()
+    internal open val binding: FragmentListOfTasksBinding get() = _binding!!
+    internal val adapter = BaseBoardScreenAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,21 +46,11 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
     private fun setTaskPopupListener(task: TaskModel) {
         taskPopupListener = PopupMenu.OnMenuItemClickListener {
             when (it.itemId) {
-                R.id.to_done -> {
-                    viewModel.updateTask(task.also { task -> task.status = Status.DONE })
-                }
-                R.id.to_in_progress -> {
-                    viewModel.updateTask(task.also { task -> task.status = Status.IN_PROGRESS })
-                }
-                R.id.to_todo -> {
-                    viewModel.updateTask(task.also { task -> task.status = Status.TO_DO })
-                }
-                R.id.edit -> {
-                    showEditBottomSheet(task)
-                }
-                R.id.delete -> {
-                    viewModel.removeTask(task.id)
-                }
+                R.id.to_done -> viewModel.updateTask(task.also { task -> task.status = Status.DONE })
+                R.id.to_in_progress -> viewModel.updateTask(task.also { task -> task.status = Status.IN_PROGRESS })
+                R.id.to_todo -> viewModel.updateTask(task.also { task -> task.status = Status.TO_DO })
+                R.id.edit -> showEditBottomSheet(task)
+                R.id.delete -> viewModel.removeTask(task.id)
             }
             true
         }
@@ -146,7 +131,6 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
         }
         is BoardState.Error -> {
             binding.loadingLayoutBoardScreen.visibility = View.GONE
-
         }
     }
 
@@ -154,7 +138,7 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
         binding.boardScreenFragmentRecyclerView.adapter = adapter
     }
 
-    abstract fun setAdapterData(dataList: List<TaskModel>)
+    private fun setAdapterData(dataList: List<TaskModel>) = adapter.setData(dataList)
 
     interface OnTaskClickListener {
         fun showTaskSheet(task: TaskModel)

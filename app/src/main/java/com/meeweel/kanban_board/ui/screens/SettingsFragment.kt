@@ -16,10 +16,7 @@ class SettingsFragment(private val localRepo: LocalUserRepository = LocalUserRep
     Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
-    private val binding: FragmentSettingsBinding
-        get() {
-            return _binding!!
-        }
+    private val binding: FragmentSettingsBinding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

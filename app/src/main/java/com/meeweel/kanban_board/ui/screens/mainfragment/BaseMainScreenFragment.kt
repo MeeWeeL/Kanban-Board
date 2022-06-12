@@ -12,7 +12,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,21 +22,18 @@ import com.meeweel.kanban_board.databinding.*
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
-
+import com.meeweel.kanban_board.util.toast
 
 abstract class BaseMainScreenFragment : Fragment() {
 
     private var taskPopupListener: PopupMenu.OnMenuItemClickListener? = null
     private var _binding: FragmentMainScreenBinding? = null
-    internal open val binding: FragmentMainScreenBinding
-        get() {
-            return _binding!!
-        }
+    internal open val binding: FragmentMainScreenBinding get() = _binding!!
 
-    internal val viewModel: MainFragmentViewModel by lazy { // Вьюмодель
-        ViewModelProvider(this).get(MainFragmentViewModel::class.java) //
+    internal val viewModel: MainFragmentViewModel by lazy {
+        ViewModelProvider(this).get(MainFragmentViewModel::class.java)
     }
-    private val adapter = MainScreenFragmentRecyclerAdapter() // Адаптер
+    private val adapter = MainScreenFragmentRecyclerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,42 +69,26 @@ abstract class BaseMainScreenFragment : Fragment() {
     private fun setBoardPopupListener(board: BoardModel) {
         taskPopupListener = PopupMenu.OnMenuItemClickListener {
             when (it.itemId) {
-                R.id.edit -> {
-                    showEditBottomSheet(board)
-                }
-                R.id.delete -> {
-                    viewModel.removeBoard(board.id)
-                }
-                R.id.details -> {
-                    showBottomSheet(board)
-                }
-                R.id.get_key -> {
-                    viewModel.createBoardKey(board.id)
-                }
+                R.id.edit -> showEditBottomSheet(board)
+                R.id.delete -> viewModel.removeBoard(board.id)
+                R.id.details -> showBottomSheet(board)
+                R.id.get_key -> viewModel.createBoardKey(board.id)
             }
             true
         }
     }
 
     private fun workLivedata() {
-        binding.mainScreenFragmentRecyclerView.adapter =
-            adapter // Приаттачиваем наш адаптер к ресайклеру, чтобы ресайклер знал, что делать
-
-        val keyObserver =
-            Observer<String> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
-                renderKeyData(a)
-            }
-        val dataObserver =
-            Observer<BoardsAppState> { a -> // Создаём подписчика и говорим ему что делать если данные обновились
-                renderData(a)
-            }
+        binding.mainScreenFragmentRecyclerView.adapter = adapter
+        val keyObserver = Observer<String> { a -> renderKeyData(a) }
+        val dataObserver = Observer<BoardsAppState> { a -> renderData(a) }
         viewModel.getData().observe(viewLifecycleOwner, dataObserver)
         viewModel.getKeyData().observe(viewLifecycleOwner, keyObserver)
-        viewModel.getBoards() // Просим вьюмодель обновить свои данные (На всякий случай)
+        viewModel.getBoards()
     }
 
     private fun renderKeyData(key: String) {
-        if (key == ERROR || key == NOT_HOST) key.toast()
+        if (key == ERROR || key == NOT_HOST) key.toast(requireContext())
         else showKey(key)
     }
 
@@ -130,15 +110,14 @@ abstract class BaseMainScreenFragment : Fragment() {
             val clipboard =
                 requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.text = copiedText
-            COPIED.toast()
+            COPIED.toast(requireContext())
         } else {
             val clipboard =
                 requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
             val clip = ClipData.newPlainText("TAG", copiedText)
             clipboard.setPrimaryClip(clip)
-            COPIED.toast()
+            COPIED.toast(requireContext())
         }
-        ERROR.toast()
     }
 
     private fun renderData(data: BoardsAppState) = when (data) {
@@ -147,13 +126,8 @@ abstract class BaseMainScreenFragment : Fragment() {
             binding.loadingLayoutMainScreen.visibility = View.GONE
             adapter.setData(dataList)
         }
-        is BoardsAppState.Loading -> {
-            binding.loadingLayoutMainScreen.visibility = View.VISIBLE
-        }
-        is BoardsAppState.Error -> {
-            binding.loadingLayoutMainScreen.visibility = View.GONE
-
-        }
+        is BoardsAppState.Loading -> binding.loadingLayoutMainScreen.visibility = View.VISIBLE
+        is BoardsAppState.Error -> binding.loadingLayoutMainScreen.visibility = View.GONE
     }
 
     private fun showBottomSheet(board: BoardModel) {
@@ -198,13 +172,10 @@ abstract class BaseMainScreenFragment : Fragment() {
         fun onBurgerClick(view: View, board: BoardModel)
     }
 
-    private fun String.toast() {
-        Toast.makeText(requireContext(), this, Toast.LENGTH_SHORT).show()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        adapter.removeListeners()
     }
 
     companion object {

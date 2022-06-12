@@ -14,12 +14,8 @@ class AuthorizationViewModel(private val interactor: AuthorizationInteractor = A
     private val liveIsAuth: MutableLiveData<Boolean> = MutableLiveData()
     private val liveDataToObserve: MutableLiveData<AuthorizationState> = MutableLiveData()
 
-    fun isAuth(): LiveData<Boolean> {
-        return liveIsAuth
-    }
-    fun getData(): LiveData<AuthorizationState> {
-        return liveDataToObserve
-    }
+    fun isAuth(): LiveData<Boolean> = liveIsAuth
+    fun getData(): LiveData<AuthorizationState> = liveDataToObserve
 
     fun signIn(login: String, password: String) {
         interactor.signIn(login, password)
@@ -46,9 +42,7 @@ class AuthorizationViewModel(private val interactor: AuthorizationInteractor = A
                 } else {
                     liveDataToObserve.postValue(AuthorizationState.Done)
                 }
-            }, {
-
-            })
+            }, {})
     }
 
     fun checkAuthorization() {

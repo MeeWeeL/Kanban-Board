@@ -13,29 +13,18 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class TasksScreenFragmentViewModel(
-    private val interactor: Interactor = InteractorImpl()) : ViewModel() {
+class TasksScreenFragmentViewModel(private val interactor: Interactor = InteractorImpl())
+    : ViewModel() {
 
     var boardId: Int? = null
 
-    private val toDoLiveData: MutableLiveData<BoardState> =
-        MutableLiveData()
-    private val inProgressLiveData: MutableLiveData<BoardState> =
-        MutableLiveData()
-    private val doneLiveData: MutableLiveData<BoardState> =
-        MutableLiveData()
+    private val toDoLiveData: MutableLiveData<BoardState> = MutableLiveData()
+    private val inProgressLiveData: MutableLiveData<BoardState> = MutableLiveData()
+    private val doneLiveData: MutableLiveData<BoardState> = MutableLiveData()
 
-    fun getToDoData(): LiveData<BoardState> {
-        return toDoLiveData
-    }
-
-    fun getInProgressData(): LiveData<BoardState> {
-        return inProgressLiveData
-    }
-
-    fun getDoneData(): LiveData<BoardState> {
-        return doneLiveData
-    }
+    fun getToDoData(): LiveData<BoardState> = toDoLiveData
+    fun getInProgressData(): LiveData<BoardState> = inProgressLiveData
+    fun getDoneData(): LiveData<BoardState> = doneLiveData
 
     fun synchronizeData() = getDataFromInterceptor()
 
@@ -65,17 +54,11 @@ class TasksScreenFragmentViewModel(
         }
     }
 
-    private fun editTask(task: TaskModel) {
-        interactor.changeTask(task).sync()
-    }
+    private fun editTask(task: TaskModel) = interactor.changeTask(task).sync()
 
-    private fun createNewTask(task: TaskModel) {
-        interactor.addTask(boardId!!, task).sync()
-    }
+    private fun createNewTask(task: TaskModel) = interactor.addTask(boardId!!, task).sync()
 
-    private fun deleteTask(taskId: Int) {
-        interactor.deleteTask(taskId).sync()
-    }
+    private fun deleteTask(taskId: Int) = interactor.deleteTask(taskId).sync()
 
     private fun Single<Boolean>.sync() {
         this
