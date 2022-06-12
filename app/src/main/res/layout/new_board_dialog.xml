@@ -10,16 +10,22 @@
         android:layout_height="wrap_content"
         android:text="New Board"
         android:layout_margin="20dp"
+        android:textSize="22sp"
+        android:textStyle="italic"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/create"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create"
+        android:textStyle="italic"
+        android:textAllCaps="false"
         android:layout_margin="20dp"
+        app:strokeColor="@color/teal_700"
         app:layout_constraintTop_toBottomOf="@id/text_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/add"
@@ -27,10 +33,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:textStyle="italic"
+        android:textAllCaps="false"
         android:layout_margin="20dp"
+        app:strokeColor="@color/teal_700"
         app:layout_constraintTop_toBottomOf="@id/text_label"
         app:layout_constraintStart_toEndOf="@id/create"
         app:layout_constraintEnd_toEndOf="parent"
