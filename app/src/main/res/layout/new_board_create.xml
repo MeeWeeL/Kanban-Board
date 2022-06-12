@@ -11,9 +11,9 @@
         android:id="@+id/new_title"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
         android:hint="Title of new board"
         android:maxLength="20"
-        android:ems="10"
         android:lines="1"
         android:background="@drawable/text_input_selector"/>
 </com.google.android.material.textfield.TextInputLayout>

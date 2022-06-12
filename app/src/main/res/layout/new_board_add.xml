@@ -11,6 +11,7 @@
         android:id="@+id/add_board_key"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
         android:hint="Enter a board key"
         android:maxLength="20"
         android:lines="1"

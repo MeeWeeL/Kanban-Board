@@ -11,7 +11,7 @@
         android:layout_margin="5dp"
         android:background="#999999"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/task_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:textSize="18sp"
         android:gravity="center"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/task_performer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,10 +56,14 @@
             android:textSize="18sp"/>
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/task_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:translationZ="4dp"
+        android:textStyle="italic"
         android:layout_gravity="end"
         android:layout_margin="20dp"
         android:text="Save"

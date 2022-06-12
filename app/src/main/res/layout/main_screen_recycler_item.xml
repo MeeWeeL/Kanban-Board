@@ -16,8 +16,9 @@
 
         <TextView
             android:id="@+id/titleBoardScreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
             android:hint="Default text of description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/burgerMainScreen"
@@ -29,7 +30,8 @@
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/teal_200"
+            android:background="@color/teal_700"
+            android:backgroundTintMode="src_over"
             android:src="@drawable/ic_hamburger"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
