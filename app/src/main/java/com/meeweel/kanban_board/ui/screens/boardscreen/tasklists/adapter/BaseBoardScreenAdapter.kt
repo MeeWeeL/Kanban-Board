@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.ui.screens.boardscreen.adapter
+package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,6 @@ class BaseBoardScreenAdapter :
 
     private var dataList: MutableList<TaskModel> = mutableListOf()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = BoardScreenRecyclerItemBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -26,13 +25,10 @@ class BaseBoardScreenAdapter :
         return MainViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) =
         holder.bind(dataList[position])
-    }
 
-    override fun getItemCount(): Int {
-        return dataList.size
-    }
+    override fun getItemCount(): Int = dataList.size
 
     inner class MainViewHolder(private val itemBinding: BoardScreenRecyclerItemBinding) :
         BaseViewHolder(itemBinding.root) {

@@ -13,17 +13,23 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentRegistrationBinding
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.AUTHORIZATION_FAILED
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.ERROR
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.MIN_CHAR_LOGIN
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.MIN_CHAR_PASS
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.PASSWORDS
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.REQUIRED
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SPACE
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SYMBOLS
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationState
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationViewModel
+import com.meeweel.kanban_board.util.toast
 import java.util.regex.Pattern
 
 class RegistrationFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentRegistrationBinding? = null
-    private val binding: FragmentRegistrationBinding
-        get() {
-            return _binding!!
-        }
+    private val binding: FragmentRegistrationBinding get() = _binding!!
 
     private val viewModel: AuthorizationViewModel by lazy {
         ViewModelProvider(this).get(AuthorizationViewModel::class.java)
@@ -32,7 +38,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRegistrationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -57,10 +63,9 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     private fun renderIsSingIn(b: Boolean) {
         if (!b) {
             binding.loadingLayout.visibility = View.GONE
-            Toast.makeText(requireContext(), "Authorization failed", Toast.LENGTH_SHORT).show()
-        } else {
+            Toast.makeText(requireContext(), AUTHORIZATION_FAILED, Toast.LENGTH_SHORT).show()
+        } else
             MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
-        }
     }
 
     private fun initFocusListeners() {
@@ -79,46 +84,36 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         val passwordConfirmText = binding.editTextConfirmPassword.editableText.toString()
         val passwordText = binding.editTextPassword.editableText.toString()
         if (passwordConfirmText.isEmpty()) {
-            return "Required*"
+            return REQUIRED
         }
         if (passwordText != passwordConfirmText) {
-            return "Пароли не совпадают"
+            return PASSWORDS
         }
         return null
     }
 
     private fun validLogin(): CharSequence? {
         val loginText = binding.editTextLogin.editableText.toString()
-        val p = Pattern.compile(AuthorizationFragment.WHITESPACE)
-        val k = Pattern.compile("[a-zA-Z0-9.\\-_]+")
-        if (loginText.isEmpty()) {
-            return "Required*"
+        val p = Pattern.compile(AuthorizationFragment.WHITESPACE_REGEX)
+        val k = Pattern.compile(SYMBOLS)
+        return when {
+            loginText.isEmpty() -> return REQUIRED
+            !p.matcher(loginText).matches() -> SPACE
+            !k.matcher(loginText).matches() -> SYMBOLS
+            loginText.length < 6 -> MIN_CHAR_LOGIN
+            else -> null
         }
-        if (!p.matcher(loginText).matches()) {
-            return "Don't use space"
-        }
-        if (!k.matcher(loginText).matches()) {
-            return "Don't use symbols"
-        }
-        if (loginText.length < 6) {
-            return "Minimum 6 Character Login"
-        }
-        return null
     }
 
     private fun validPassword(): CharSequence? {
         val passwordText = binding.editTextPassword.editableText.toString()
-        val p = Pattern.compile(AuthorizationFragment.WHITESPACE)
-        if (passwordText.isEmpty()) {
-            return "Required*"
+        val p = Pattern.compile(AuthorizationFragment.WHITESPACE_REGEX)
+        return when {
+            passwordText.isEmpty() -> REQUIRED
+            !p.matcher(passwordText).matches() -> SPACE
+            passwordText.length < 6 -> MIN_CHAR_PASS
+            else -> null
         }
-        if (!p.matcher(passwordText).matches()) {
-            return "Don't use space"
-        }
-        if (passwordText.length < 6) {
-            return "Minimum 6 Character Password"
-        }
-        return null
     }
 
     private fun renderAuth(state: AuthorizationState) {
@@ -128,12 +123,22 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
                 binding.editTextLogin.setText(state.data.login)
                 binding.editTextPassword.setText(state.data.password)
             }
-            is AuthorizationState.Loading -> {
-                binding.loadingLayout.visibility = View.VISIBLE
-            }
-            is AuthorizationState.Done -> {
-                binding.loadingLayout.visibility = View.GONE
-            }
+            is AuthorizationState.Loading -> binding.loadingLayout.visibility = View.VISIBLE
+            is AuthorizationState.Done -> binding.loadingLayout.visibility = View.GONE
+            else -> ERROR.toast(requireContext())
+        }
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.buttonSignUp -> if
+                (validLogin() == null && validPassword() == null && validConfirmPassword() == null)
+                    viewModel.signUp(
+                        binding.editTextLogin.text.toString(),
+                        binding.editTextPassword.text.toString()
+                    )
+            R.id.buttonSignIn -> MAIN.navController
+                .navigate(R.id.action_registrationFragment_to_textViewLoginRegistration)
         }
     }
 
@@ -141,18 +146,4 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         super.onDestroy()
         _binding = null
     }
-
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.buttonSignUp -> {
-                if (validLogin() == null && validPassword() == null && validConfirmPassword() == null) {
-                    viewModel.signUp(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
-                }
-            }
-            R.id.buttonSignIn -> {
-                MAIN.navController.navigate(R.id.action_registrationFragment_to_textViewLoginRegistration)
-            }
-        }
-    }
-
 }

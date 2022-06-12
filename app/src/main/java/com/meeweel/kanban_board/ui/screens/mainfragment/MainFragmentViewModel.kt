@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.Interactor
 import com.meeweel.kanban_board.data.interactor.InteractorImpl
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
@@ -14,19 +13,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl()) : ViewModel() {
 
-    private val liveDataToObserve: MutableLiveData<BoardsAppState> = MutableLiveData()  // Создаем ячейку памяти для хранения
-    private val liveDataBoardKey: MutableLiveData<String> = MutableLiveData()  // Создаем ячейку памяти для хранения
+    private val liveDataToObserve: MutableLiveData<BoardsAppState> = MutableLiveData()
+    private val liveDataBoardKey: MutableLiveData<String> = MutableLiveData()
 
-    fun getData(): LiveData<BoardsAppState> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
-        return liveDataToObserve
-    }
+    fun getData(): LiveData<BoardsAppState> = liveDataToObserve
+    fun getKeyData(): LiveData<String> = liveDataBoardKey
 
-    fun getKeyData(): LiveData<String> {  // Отдаёт наружу лайвдату, через которую можно следить за изменениями данных
-        return liveDataBoardKey
-    }
-
-    fun getBoards() = getDataFromInterceptor() // Обновить данные во вьюмоделе
-
+    fun getBoards() = getDataFromInterceptor()
 
     fun updateBoard(board: BoardModel) = changeBoardTitle(board)
     fun createBoard(boardName: String) = createNewBoard(boardName)
@@ -44,9 +37,7 @@ class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl(
             },{})
     }
 
-    private fun addABoardById(boardKey: String) {
-        interactor.addBoardByKey(boardKey).sync()
-    }
+    private fun addABoardById(boardKey: String) = interactor.addBoardByKey(boardKey).sync()
 
     private fun getDataFromInterceptor() {
         interactor.getBoards()
@@ -62,17 +53,11 @@ class MainFragmentViewModel(private val interactor: Interactor = InteractorImpl(
             })
     }
 
-    private fun createNewBoard(boardName: String) {
-        interactor.addBoard(boardName).sync()
-    }
+    private fun createNewBoard(boardName: String) = interactor.addBoard(boardName).sync()
 
-    private fun deleteBoard(boardId: Int) {
-        interactor.deleteBoard(boardId).sync()
-    }
+    private fun deleteBoard(boardId: Int) = interactor.deleteBoard(boardId).sync()
 
-    private fun changeBoardTitle(board: BoardModel) {
-        interactor.changeBoard(board).sync()
-    }
+    private fun changeBoardTitle(board: BoardModel) = interactor.changeBoard(board).sync()
 
     private fun Single<Boolean>.sync() {
         this

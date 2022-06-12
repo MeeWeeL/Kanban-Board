@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,15 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentAuthorizationBinding
 import com.meeweel.kanban_board.ui.MAIN
+import com.meeweel.kanban_board.util.toast
 import java.util.regex.Pattern
 
 class AuthorizationFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAuthorizationBinding? = null
-    private val binding: FragmentAuthorizationBinding
-        get() {
-            return _binding!!
-        }
+    private val binding: FragmentAuthorizationBinding get() = _binding!!
 
     private val viewModel: AuthorizationViewModel by lazy {
         ViewModelProvider(this).get(AuthorizationViewModel::class.java)
@@ -63,43 +60,33 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
 
     private fun validLogin(): CharSequence? {
         val loginText = binding.editTextLogin.editableText.toString()
-        val p = Pattern.compile(WHITESPACE)
-        val k = Pattern.compile("[a-zA-Z0-9.\\-_]+")
-        if (loginText.isEmpty()) {
-            return "Required*"
+        val p = Pattern.compile(WHITESPACE_REGEX)
+        val k = Pattern.compile(SYMBOLS_REGEX)
+        return when {
+            loginText.isEmpty() -> REQUIRED
+            !p.matcher(loginText).matches() -> SPACE
+            !k.matcher(loginText).matches() -> SYMBOLS
+            loginText.length < 6 -> MIN_CHAR_LOGIN
+            else -> null
         }
-        if (!p.matcher(loginText).matches()) {
-            return "Don't use space"
-        }
-        if (!k.matcher(loginText).matches()) {
-            return "Don't use symbols"
-        }
-        if (loginText.length < 6) {
-            return "Minimum 6 Character Login"
-        }
-        return null
+
     }
 
     private fun validPassword(): CharSequence? {
         val passwordText = binding.editTextPassword.editableText.toString()
-        val p = Pattern.compile(WHITESPACE)
-        if (passwordText.isEmpty()) {
-            return "Required*"
+        val p = Pattern.compile(WHITESPACE_REGEX)
+        return when {
+            passwordText.isEmpty() -> REQUIRED
+            !p.matcher(passwordText).matches() -> SPACE
+            passwordText.length < 6 -> MIN_CHAR_PASS
+            else -> null
         }
-        if (!p.matcher(passwordText).matches()) {
-            return "Don't use space"
-        }
-        if (passwordText.length < 6) {
-            return "Minimum 6 Character Password"
-        }
-        return null
     }
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.buttonSignUp -> {
+            R.id.buttonSignUp ->
                 MAIN.navController.navigate(R.id.action_textViewLoginRegistration_to_registrationFragment)
-            }
             R.id.buttonSignIn -> {
                 if (validLogin() == null && validPassword() == null) {
                     viewModel.signIn(binding.editTextLogin.text.toString(), binding.editTextPassword.text.toString())
@@ -115,22 +102,17 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
                 binding.editTextLogin.setText(state.data.login)
                 binding.editTextPassword.setText(state.data.password)
             }
-            is AuthorizationState.Loading -> {
-                binding.loadingLayout.visibility = View.VISIBLE
-            }
-            is AuthorizationState.Done -> {
-                binding.loadingLayout.visibility = View.GONE
-            }
+            is AuthorizationState.Loading -> binding.loadingLayout.visibility = View.VISIBLE
+            is AuthorizationState.Done -> binding.loadingLayout.visibility = View.GONE
+            else -> ERROR.toast(requireContext())
         }
     }
 
     private fun renderIsSingIn(b: Boolean) {
         if (!b) {
             binding.loadingLayout.visibility = View.GONE
-            Toast.makeText(requireContext(), "Authorization failed", Toast.LENGTH_SHORT).show()
-        } else {
-            MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
-        }
+            AUTHORIZATION_FAILED.toast(requireContext())
+        } else MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
     }
 
     override fun onDestroy() {
@@ -139,6 +121,15 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        const val WHITESPACE = "^\\S+$"
+        const val WHITESPACE_REGEX = "^\\S+$"
+        const val SYMBOLS_REGEX = "[a-zA-Z0-9.\\-_]+"
+        const val REQUIRED = "Required*"
+        const val SPACE = "Don't use space"
+        const val SYMBOLS = "Don't use symbols"
+        const val PASSWORDS = "Пароли не совпадают"
+        const val MIN_CHAR_PASS = "Minimum 6 Character Password"
+        const val MIN_CHAR_LOGIN = "Minimum 6 Character Login"
+        const val ERROR = "Error"
+        const val AUTHORIZATION_FAILED = "Authorization failed"
     }
 }

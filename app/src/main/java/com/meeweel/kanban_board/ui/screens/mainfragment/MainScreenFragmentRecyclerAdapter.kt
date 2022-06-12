@@ -14,13 +14,11 @@ class MainScreenFragmentRecyclerAdapter :
 
     private var burgerListener: BaseMainScreenFragment.OnBurgerClickListener? = null
 
-    private var dataList: MutableList<BoardModel> =
-        mutableListOf() // Список данных, которые хотим отобразить ресайклером
-    // В нашем случает тут это список досок
+    private var dataList: MutableList<BoardModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding =
-            MainScreenRecyclerItemBinding.inflate( // Создает лайаут который нужно заполнить
+            MainScreenRecyclerItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -31,18 +29,16 @@ class MainScreenFragmentRecyclerAdapter :
     override fun onBindViewHolder(
         holder: MainViewHolder,
         position: Int
-    ) { // Вызывает заполнение лайаута
+    ) {
         holder.bind(dataList[position])
     }
 
-    override fun getItemCount(): Int { // Порядковый номер в списке
-        return dataList.size
-    }
+    override fun getItemCount(): Int = dataList.size
 
-    inner class MainViewHolder(private val binding: MainScreenRecyclerItemBinding) : // Возвращает заполненный лайаут итема
+    inner class MainViewHolder(private val binding: MainScreenRecyclerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(board: BoardModel) { // Заполнение лайаута итема, здесь надо прокидывать данные на другой экран по id
+        fun bind(board: BoardModel) {
             binding.apply {
                 titleBoardScreen.text = board.name
                 root.setOnClickListener {

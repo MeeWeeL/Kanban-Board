@@ -8,14 +8,11 @@ import androidx.navigation.Navigation
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
-        get() {
-            return _binding!!
-        }
+        get() = _binding!!
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,14 +24,14 @@ class MainActivity : AppCompatActivity() {
         MAIN = this
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     fun changeTheme(@StyleRes th: Int) {
         ThemeHolder.theme = th
         recreate()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object ThemeHolder {
