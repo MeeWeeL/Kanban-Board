@@ -11,7 +11,7 @@
             android:title="Done" />
         <item
             android:id="@+id/edit"
-            android:icon="@drawable/ic_baseline_change_history"
+            android:icon="@drawable/ic_edit"
             android:title="Edit" />
         <item
             android:id="@+id/delete"
