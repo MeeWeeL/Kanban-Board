@@ -19,6 +19,7 @@ import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.C
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.REQUIRED
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SPACE
 import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SYMBOLS
+import com.meeweel.kanban_board.ui.screens.authorization.AuthorizationFragment.Companion.SYMBOLS_REGEX
 import com.meeweel.kanban_board.util.toast
 import java.util.regex.Pattern
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,7 +60,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             binding.loadingLayout.visibility = View.GONE
             Toast.makeText(requireContext(), AUTHORIZATION_FAILED, Toast.LENGTH_SHORT).show()
         } else
-            MAIN.navController.navigate(R.id.action_authorizationFragment_to_mainScreenFragment)
+            MAIN.navController.navigate(R.id.action_registrationFragment_to_mainScreenFragment)
     }
 
     private fun initFocusListeners() {
@@ -89,11 +90,11 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     private fun validLogin(): CharSequence? {
         val loginText = binding.editTextLogin.editableText.toString()
         val p = Pattern.compile(AuthorizationFragment.WHITESPACE_REGEX)
-//        val k = Pattern.compile(SYMBOLS)
+        val k = Pattern.compile(SYMBOLS_REGEX)
         return when {
             loginText.isEmpty() -> return REQUIRED
             !p.matcher(loginText).matches() -> SPACE
-//            !k.matcher(loginText).matches() -> SYMBOLS
+            !k.matcher(loginText).matches() -> SYMBOLS
             loginText.length < 6 -> MIN_CHAR_LOGIN
             else -> null
         }
