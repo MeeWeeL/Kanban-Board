@@ -89,11 +89,11 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     private fun validLogin(): CharSequence? {
         val loginText = binding.editTextLogin.editableText.toString()
         val p = Pattern.compile(AuthorizationFragment.WHITESPACE_REGEX)
-        val k = Pattern.compile(SYMBOLS)
+//        val k = Pattern.compile(SYMBOLS)
         return when {
             loginText.isEmpty() -> return REQUIRED
             !p.matcher(loginText).matches() -> SPACE
-            !k.matcher(loginText).matches() -> SYMBOLS
+//            !k.matcher(loginText).matches() -> SYMBOLS
             loginText.length < 6 -> MIN_CHAR_LOGIN
             else -> null
         }

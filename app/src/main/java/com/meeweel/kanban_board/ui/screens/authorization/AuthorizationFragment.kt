@@ -117,7 +117,7 @@ class AuthorizationFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        const val WHITESPACE_REGEX = "^\\S+$"
+        const val WHITESPACE_REGEX = "[a-zA-Z0-9\\S]+"
         const val SYMBOLS_REGEX = "[a-zA-Z0-9.\\-_]+"
         const val REQUIRED = "Required*"
         const val SPACE = "Don't use space"
