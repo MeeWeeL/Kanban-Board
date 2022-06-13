@@ -24,4 +24,11 @@
     <color name="pink">#e91e63</color>
     <color name="pinkLight">#ff6090</color>
     <color name="pink_dark">#531329</color>
+
+<!--  Priority  -->
+    <color name="priorityWhite">#00FFFFFF</color>
+    <color name="priorityGreen">#2333FF3B</color>
+    <color name="priorityYellow">#74FFDD00</color>
+    <color name="priorityOrange">#A8FFA500</color>
+    <color name="priorityRed">#B0FF0000</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.meeweel.kanban_board.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         MAIN = this
+        setColors()
+    }
+
+    private fun setColors() {
+        white = resources.getColor(R.color.white)
+        green = resources.getColor(R.color.priorityGreen)
+        yellow = resources.getColor(R.color.priorityYellow)
+        orange = resources.getColor(R.color.priorityOrange)
+        red = resources.getColor(R.color.priorityRed)
     }
 
     fun changeTheme(@StyleRes th: Int) {
@@ -36,5 +46,11 @@ class MainActivity : AppCompatActivity() {
 
     companion object ThemeHolder {
         var theme = R.style.Theme_KanbanBoard
+
+        var white: Int = 0
+        var green: Int = 0
+        var yellow: Int = 0
+        var orange: Int = 0
+        var red: Int = 0
     }
 }

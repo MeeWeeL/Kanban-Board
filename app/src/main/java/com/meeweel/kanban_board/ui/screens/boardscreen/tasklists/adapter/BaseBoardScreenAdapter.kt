@@ -1,10 +1,17 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
+import com.meeweel.kanban_board.domain.basemodels.Priority
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.green
+import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.orange
+import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.red
+import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.white
+import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.yellow
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.BaseTaskListFragment
 
 class BaseBoardScreenAdapter :
@@ -36,6 +43,13 @@ class BaseBoardScreenAdapter :
         override fun bind(task: TaskModel) {
             itemBinding.apply {
                 titleBoardScreen.text = task.name
+                statusColor.setBackgroundColor(when (task.priority) {
+                    Priority.NONE -> white
+                    Priority.GREEN -> green
+                    Priority.YELLOW -> yellow
+                    Priority.ORANGE -> orange
+                    Priority.RED -> red
+                })
                 burger.setOnClickListener {
                     burgerListener?.onBurgerClick(itemBinding.burger, task)
                 }
