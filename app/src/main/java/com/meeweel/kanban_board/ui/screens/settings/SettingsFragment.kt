@@ -1,5 +1,6 @@
 package com.meeweel.kanban_board.ui.screens.settings
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
+import com.meeweel.kanban_board.databinding.NewBoardDialogBinding
 import com.meeweel.kanban_board.domain.basemodels.states.SettingsState
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.MainActivity
@@ -34,12 +36,32 @@ class SettingsFragment : Fragment() {
         onActionBarListener()
         listenerButtonLogOut()
         setThemeAny()
+        binding.buttonDeleteMyAccount.setOnClickListener {
+            alertDialogWithCustomStyle()
+        }
     }
 
     private fun initObserver() {
         val observer = Observer<SettingsState> { renderData(it) }
         viewModel.getData().observe(viewLifecycleOwner, observer)
         viewModel.getUserName()
+    }
+
+    private fun alertDialogWithCustomStyle() {
+        val dialog = Dialog(requireContext())
+        val dialogBind = NewBoardDialogBinding.inflate(layoutInflater)
+        dialogBind.textLabel.text = "Вы уверены, что хотите удалить свой аккаунт?"
+        dialogBind.create.text = "Да"
+        dialogBind.add.text = "Нет"
+        dialog.setContentView(dialogBind.root)
+        dialogBind.add.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialogBind.create.setOnClickListener {
+            viewModel.deleteAccount()
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun renderData(state: SettingsState) = when (state) {
@@ -50,7 +72,7 @@ class SettingsFragment : Fragment() {
         is SettingsState.LoggedOut ->
             MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
         is SettingsState.AccountDeleted ->
-            MAIN.navController.navigate(R.id.action_copyOfCreateAccountFragment_to_authorizationScreen)
+            viewModel.logOut()
         is SettingsState.Loading -> {
             binding.loadingLayout.visibility = View.VISIBLE
         }
