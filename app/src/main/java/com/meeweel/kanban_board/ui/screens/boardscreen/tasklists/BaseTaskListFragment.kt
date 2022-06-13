@@ -41,6 +41,9 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
         setAdapter()
         workLivedata()
         burgerClick()
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.synchronizeData()
+        }
     }
 
     private fun setTaskPopupListener(task: TaskModel) {
@@ -122,6 +125,7 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
 
     internal fun renderData(data: BoardState) = when (data) {
         is BoardState.Success -> {
+            binding.refreshLayout.isRefreshing = false
             val dataList = data.data
             binding.loadingLayoutBoardScreen.visibility = View.GONE
             setAdapterData(dataList)
@@ -130,6 +134,7 @@ abstract class BaseTaskListFragment(internal val viewModel: TasksScreenFragmentV
             binding.loadingLayoutBoardScreen.visibility = View.VISIBLE
         }
         is BoardState.Error -> {
+            binding.refreshLayout.isRefreshing = false
             binding.loadingLayoutBoardScreen.visibility = View.GONE
         }
     }

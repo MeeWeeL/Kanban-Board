@@ -19,48 +19,55 @@
             app:navigationIcon="@drawable/ic_baseline_account" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainScreenFragmentRecyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/main_screen_recycler_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        android:layout_marginBottom="60dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainScreenFragmentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/main_screen_recycler_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:maxImageSize="30dp"
-        android:visibility="gone"
         android:layout_marginEnd="@dimen/margin_main_screen_end"
         android:layout_marginBottom="140dp"
         android:contentDescription="@string/fab_main_screen_description"
-        android:src="@drawable/ic_home" />
+        android:src="@drawable/ic_home"
+        android:visibility="gone"
+        app:maxImageSize="30dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:maxImageSize="30dp"
-        android:visibility="gone"
         android:layout_marginEnd="@dimen/margin_main_screen_end"
         android:layout_marginBottom="80dp"
         android:contentDescription="@string/fab_main_screen_description"
-        android:src="@drawable/ic_plus_fab" />
+        android:src="@drawable/ic_plus_fab"
+        android:visibility="gone"
+        app:maxImageSize="30dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMainScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:maxImageSize="40dp"
         android:layout_marginEnd="@dimen/margin_main_screen_end"
         android:layout_marginBottom="@dimen/margin_main_screen_bottom"
         android:contentDescription="@string/fab_main_screen_description"
-        android:src="@drawable/ic_touch" />
+        android:src="@drawable/ic_touch"
+        app:maxImageSize="40dp" />
 
     <FrameLayout
         android:id="@+id/loadingLayoutMainScreen"

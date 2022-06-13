@@ -44,6 +44,9 @@ abstract class BaseMainScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         workLivedata()
         burgerClick()
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.getBoards()
+        }
     }
 
     private fun burgerClick() {
@@ -119,12 +122,16 @@ abstract class BaseMainScreenFragment : Fragment() {
 
     private fun renderData(data: BoardsAppState) = when (data) {
         is BoardsAppState.Success -> {
+            binding.refreshLayout.isRefreshing = false
             val dataList = data.data
             binding.loadingLayoutMainScreen.visibility = View.GONE
             adapter.setData(dataList)
         }
         is BoardsAppState.Loading -> binding.loadingLayoutMainScreen.visibility = View.VISIBLE
-        is BoardsAppState.Error -> binding.loadingLayoutMainScreen.visibility = View.GONE
+        is BoardsAppState.Error -> {
+            binding.refreshLayout.isRefreshing = false
+            binding.loadingLayoutMainScreen.visibility = View.GONE
+        }
     }
 
     private fun showBottomSheet(board: BoardModel) {
