@@ -1,6 +1,5 @@
 package com.meeweel.kanban_board.domain.basemodels.states
 
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 
 sealed class BoardState {

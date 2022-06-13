@@ -11,23 +11,16 @@ class AuthorizationInteractorImpl(
     private val localRepo: LocalUserRepository
 ) : AuthorizationInteractor {
 
-    override fun logOut(): Completable {
-        return localRepo.logOut()
-    }
+    override fun logOut(): Completable = localRepo.logOut()
 
-    override fun checkAuthorization(): List<UserEntity> {
-        return localRepo.getUser()
-    }
+    override fun checkAuthorization(): List<UserEntity> = localRepo.getUser()
 
-    override fun saveAuthorization(login: String, password: String) {
+    override fun saveAuthorization(login: String, password: String) =
         localRepo.saveAuthorization(login, password)
-    }
 
-    override fun signIn(login: String, password: String): Single<Boolean> {
-        return remoteRepo.signIn(login, password)
-    }
+    override fun signIn(login: String, password: String): Single<Boolean> =
+        remoteRepo.signIn(login, password)
 
-    override fun signUp(login: String, password: String): Single<Boolean> {
-        return remoteRepo.signUp(login, password)
-    }
+    override fun signUp(login: String, password: String): Single<Boolean> =
+        remoteRepo.signUp(login, password)
 }

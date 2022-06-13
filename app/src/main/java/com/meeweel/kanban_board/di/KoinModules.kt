@@ -25,9 +25,11 @@ const val DB_NAME = "UserRepo.db"
 val application = module {
 
     // Local data
-    single { Room.databaseBuilder(
-        get(), UserEntityDataBases::class.java, DB_NAME
-    ).allowMainThreadQueries().build().entityDao() }
+    single {
+        Room.databaseBuilder(
+            get(), UserEntityDataBases::class.java, DB_NAME
+        ).allowMainThreadQueries().build().entityDao()
+    }
     single<LocalUserRepository> { LocalUserRepositoryImpl(get()) }
 
     // Remote data

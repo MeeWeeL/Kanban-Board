@@ -5,7 +5,6 @@ import com.meeweel.kanban_board.data.network.BaseRetrofitService
 
 class BoardsService : BaseRetrofitService() {
 
-    fun getService(): KanbanApi {
-        return createRetrofit(BaseInterceptor.interceptor).create(KanbanApi::class.java)
-    }
+    fun getService(): KanbanApi =
+        createRetrofit(BaseInterceptor.interceptor).create(KanbanApi::class.java)
 }
