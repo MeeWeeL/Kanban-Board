@@ -92,4 +92,42 @@
         app:layout_constraintBottom_toBottomOf="@id/position"
         app:layout_constraintTop_toTopOf="@id/position"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="30dp"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/margin_main_screen_end"
+        android:layout_marginBottom="140dp"
+        android:contentDescription="@string/fab_main_screen_description"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="30dp"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/margin_main_screen_end"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="@string/fab_main_screen_description"
+        android:src="@drawable/ic_plus_fab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMainScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="40dp"
+        android:layout_marginEnd="@dimen/margin_main_screen_end"
+        android:layout_marginBottom="@dimen/margin_main_screen_bottom"
+        android:contentDescription="@string/fab_main_screen_description"
+        android:src="@drawable/ic_touch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,17 +19,19 @@ import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.DoneFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.InProgressFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.ToDoFragment
 import com.meeweel.kanban_board.ui.screens.mainfragment.MainScreenFragmentRecyclerAdapter.Companion.ARG_BOARD_ID
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TasksScreenFragment : Fragment() {
 
+    private var isClicked = false
+    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_open_anim) }
+    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_close_anim) }
+    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.from_bottom_anim) }
+    private val tpBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.to_bottom_anim) }
+
     private var _binding: FragmentTasksScreenBinding? = null
     private val binding: FragmentTasksScreenBinding get() = _binding!!
-
-    private val viewModel: TasksScreenFragmentViewModel by lazy {
-        ViewModelProvider(this).get(TasksScreenFragmentViewModel::class.java).apply {
-            this.boardId = requireArguments().getInt(ARG_BOARD_ID)
-        }
-    }
+    private val viewModel: TasksScreenFragmentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +43,12 @@ class TasksScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.boardId = requireArguments().getInt(ARG_BOARD_ID)
         viewModel.synchronizeData()
         initPager()
         onActionBarListener()
         workWhitItemMenuInToolbar()
+        onFabListener()
     }
 
     private fun initPager() {
@@ -86,7 +91,6 @@ class TasksScreenFragment : Fragment() {
             MAIN.navController.navigate(R.id.action_taskScreenFragment_to_mainScreenFragment)
         }
     }
-
     private fun workWhitItemMenuInToolbar() {
         binding.leftTopAppBarBoardScreen.inflateMenu(R.menu.menu_main_screen_add)
         binding.leftTopAppBarBoardScreen.setOnMenuItemClickListener {
@@ -128,6 +132,52 @@ class TasksScreenFragment : Fragment() {
             }
             return fragment
         }
+    }
+
+    private fun onFabListener() {
+        binding.fabMainScreen.setOnClickListener {
+            mainFabClicked()
+        }
+        binding.fabAdd.setOnClickListener {
+            showCreatingSheet()
+        }
+        binding.fabBack.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_taskScreenFragment_to_mainScreenFragment)
+        }
+    }
+
+    private fun mainFabClicked() {
+        setVisibility(isClicked)
+        setAnimation(isClicked)
+        setClickable(isClicked)
+        isClicked = !isClicked
+    }
+
+    private fun setVisibility(clicked: Boolean) {
+        if (!clicked) {
+            binding.fabBack.visibility = View.VISIBLE
+            binding.fabAdd.visibility = View.VISIBLE
+        } else {
+            binding.fabBack.visibility = View.GONE
+            binding.fabAdd.visibility = View.GONE
+        }
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        if (!clicked) {
+            binding.fabBack.startAnimation(fromBottom)
+            binding.fabAdd.startAnimation(fromBottom)
+            binding.fabMainScreen.startAnimation(rotateOpen)
+        } else {
+            binding.fabBack.startAnimation(tpBottom)
+            binding.fabAdd.startAnimation(tpBottom)
+            binding.fabMainScreen.startAnimation(rotateClose)
+        }
+    }
+
+    private fun setClickable(clicked: Boolean) {
+        binding.fabBack.isClickable = !clicked
+        binding.fabAdd.isClickable = !clicked
     }
 
     companion object {

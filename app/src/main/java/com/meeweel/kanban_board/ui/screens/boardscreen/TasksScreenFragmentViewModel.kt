@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meeweel.kanban_board.data.interactor.Interactor
-import com.meeweel.kanban_board.data.interactor.InteractorImpl
 import com.meeweel.kanban_board.domain.basemodels.Status
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
 import com.meeweel.kanban_board.domain.basemodels.getTaskListByStatus
@@ -13,7 +12,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class TasksScreenFragmentViewModel(private val interactor: Interactor = InteractorImpl())
+class TasksScreenFragmentViewModel(private val interactor: Interactor)
     : ViewModel() {
 
     var boardId: Int? = null

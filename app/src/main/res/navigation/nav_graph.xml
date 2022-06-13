@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/copyOfCreateAccountFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.SettingsFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.settings.SettingsFragment"
         android:label="fragment_copy_of_create_account"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -95,7 +95,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.meeweel.kanban_board.ui.screens.registration.RegistrationFragment"
+        android:name="com.meeweel.kanban_board.ui.screens.authorization.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action

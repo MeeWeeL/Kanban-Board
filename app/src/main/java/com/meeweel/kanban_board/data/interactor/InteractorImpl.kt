@@ -1,20 +1,23 @@
 package com.meeweel.kanban_board.data.interactor
 
 import com.meeweel.kanban_board.data.network.boards.RemoteRepository
-import com.meeweel.kanban_board.data.network.boards.RemoteRepositoryImpl
 import com.meeweel.kanban_board.data.room.LocalUserRepository
-import com.meeweel.kanban_board.data.room.LocalUserRepositoryImpl
 import com.meeweel.kanban_board.domain.basemodels.BoardModel
 import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 class InteractorImpl(
-    private val remoteRepo: RemoteRepository = RemoteRepositoryImpl(),
-    private val localRepo: LocalUserRepository = LocalUserRepositoryImpl()
+    private val remoteRepo: RemoteRepository,
+    private val localRepo: LocalUserRepository
 ) : Interactor {
 
     private val user by lazy {
         localRepo.getUser()[0]
+    }
+
+    override fun getUserLogin(): Single<String> {
+        return Single.just(localRepo.getUser()[0].login)
     }
 
     override fun getBoards(): Single<List<BoardModel>> {
@@ -59,5 +62,9 @@ class InteractorImpl(
 
     override fun addBoardByKey(boardKey: String): Single<Boolean> {
         return remoteRepo.addBoardByKey(boardKey, user.login, user.password)
+    }
+
+    override fun logOut(): Completable {
+        return localRepo.logOut()
     }
 }

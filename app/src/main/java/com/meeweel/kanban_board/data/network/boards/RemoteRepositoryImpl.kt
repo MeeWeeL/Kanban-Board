@@ -6,7 +6,7 @@ import com.meeweel.kanban_board.domain.responsemodels.toBoardModel
 import com.meeweel.kanban_board.domain.responsemodels.toBoardModelList
 import io.reactivex.rxjava3.core.Single
 
-class RemoteRepositoryImpl(private val service: KanbanApi = BoardsService().getService()) :
+class RemoteRepositoryImpl(private val service: KanbanApi) :
     RemoteRepository {
 
     override fun getFakeBoards(): Single<List<BoardModel>> {
