@@ -3,9 +3,9 @@ package com.meeweel.kanban_board.ui.screens.mainfragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.meeweel.kanban_board.data.interactor.Interactor
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
+import com.meeweel.data.interactor.Interactor
+import com.meeweel.core.basemodels.BoardModel
+import com.meeweel.core.basemodels.states.BoardsAppState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers

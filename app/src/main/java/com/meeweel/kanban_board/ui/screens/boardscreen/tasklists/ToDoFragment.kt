@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.domain.basemodels.states.BoardState
+import com.meeweel.core.basemodels.TaskModel
+import com.meeweel.core.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragmentViewModel
 
 class ToDoFragment(viewModel: TasksScreenFragmentViewModel) : BaseTaskListFragment(viewModel) {
@@ -18,18 +18,11 @@ class ToDoFragment(viewModel: TasksScreenFragmentViewModel) : BaseTaskListFragme
         adapter.setLongItemListener(object : OnLongTaskClickListener {
             override fun showTaskEditSheet(task: TaskModel) { showEditBottomSheet(task) }
         })
-        fabToDo()
     }
 
     override fun workLivedata() {
         val observer = Observer<BoardState> { a -> renderData(a) }
         viewModel.getToDoData().observe(viewLifecycleOwner, observer)
-    }
-
-    private fun fabToDo() {
-//        binding.fabToDo.setOnClickListener {
-//            Toast.makeText(context, "FabToDo", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     override fun popupMenu(): Int {

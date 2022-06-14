@@ -6,7 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.MainScreenRecyclerItemBinding
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
+import com.meeweel.core.basemodels.BoardModel
 import com.meeweel.kanban_board.ui.MAIN
 
 class MainScreenFragmentRecyclerAdapter :

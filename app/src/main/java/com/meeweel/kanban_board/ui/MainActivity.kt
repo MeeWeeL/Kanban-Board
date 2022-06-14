@@ -1,6 +1,5 @@
 package com.meeweel.kanban_board.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity

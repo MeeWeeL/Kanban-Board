@@ -14,7 +14,6 @@ subprojects {
                 defaultConfig {
                     minSdkVersion Config.min_sdk
                     targetSdkVersion Config.target_sdk
-                    applicationId Config.application_id
                     versionCode Releases.version_code
                     versionName Releases.version_name
 
@@ -35,7 +34,6 @@ subprojects {
                 kotlinOptions {
                     jvmTarget = '1.8'
                 }
-                namespace 'com.meeweel.kanban_board'
             }
         }
     }

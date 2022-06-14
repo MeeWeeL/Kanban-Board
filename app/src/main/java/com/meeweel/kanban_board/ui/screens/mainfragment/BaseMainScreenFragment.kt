@@ -18,9 +18,9 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.*
-import com.meeweel.kanban_board.domain.basemodels.BoardModel
-import com.meeweel.kanban_board.domain.basemodels.Status
-import com.meeweel.kanban_board.domain.basemodels.states.BoardsAppState
+import com.meeweel.core.basemodels.BoardModel
+import com.meeweel.core.basemodels.Status
+import com.meeweel.core.basemodels.states.BoardsAppState
 import com.meeweel.kanban_board.util.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

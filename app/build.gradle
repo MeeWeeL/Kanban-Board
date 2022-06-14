@@ -8,26 +8,18 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace Config.application_id
 }
 
 dependencies {
+
+    implementation project(Modules.core)
+    implementation project(Modules.data)
 
     // Koin for Android
     implementation Koin.core
     implementation Koin.android
     implementation Koin.android_compat
-    
-    //Room
-    implementation Room.runtime
-    implementation Room.rxjava3
-    kapt Room.compiler_kapt
-
-    // Retrofit
-    implementation Retrofit.retrofit
-    implementation Retrofit.converter_gson
-    implementation Retrofit.adapter_rxjava3
-    implementation OkHttp.okhttp3
-    implementation OkHttp.logging_interceptor
 
     // RxJava 3
     implementation RxJava3.rxjava

@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.FragmentSettingsBinding
 import com.meeweel.kanban_board.databinding.NewBoardDialogBinding
-import com.meeweel.kanban_board.domain.basemodels.states.SettingsState
+import com.meeweel.core.basemodels.states.SettingsState
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.MainActivity
 import com.meeweel.kanban_board.util.toast

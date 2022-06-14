@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.BottomSheetCreateNewTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentTasksScreenBinding
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.core.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.MAIN
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.DoneFragment
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.InProgressFragment

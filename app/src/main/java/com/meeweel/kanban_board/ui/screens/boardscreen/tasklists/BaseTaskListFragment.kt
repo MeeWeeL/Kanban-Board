@@ -13,10 +13,10 @@ import com.meeweel.kanban_board.R
 import com.meeweel.kanban_board.databinding.BottomSheetEditTaskBinding
 import com.meeweel.kanban_board.databinding.BottomSheetTaskBinding
 import com.meeweel.kanban_board.databinding.FragmentListOfTasksBinding
-import com.meeweel.kanban_board.domain.basemodels.Priority
-import com.meeweel.kanban_board.domain.basemodels.Status
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.domain.basemodels.states.BoardState
+import com.meeweel.core.basemodels.Priority
+import com.meeweel.core.basemodels.Status
+import com.meeweel.core.basemodels.TaskModel
+import com.meeweel.core.basemodels.states.BoardState
 import com.meeweel.kanban_board.ui.screens.boardscreen.TasksScreenFragmentViewModel
 import com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.adapter.BaseBoardScreenAdapter
 import com.meeweel.kanban_board.util.setBrands

@@ -3,7 +3,7 @@ package com.meeweel.kanban_board.ui.screens.authorization
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.meeweel.kanban_board.data.interactor.AuthorizationInteractor
+import com.meeweel.data.interactor.AuthorizationInteractor
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
