@@ -1,0 +1,38 @@
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+}
+
+dependencies {
+
+    implementation project(Modules.core)
+
+    implementation Room.runtime
+    implementation Room.rxjava3
+    kapt Room.compiler_kapt
+
+    implementation RxJava3.rxjava
+    implementation RxJava3.rxAndroid
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.converter_gson
+    implementation Retrofit.adapter_rxjava3
+
+    implementation OkHttp.okhttp3
+    implementation OkHttp.logging_interceptor
+
+    // AndroidX
+    implementation Base.appcompat
+
+    // Legacy
+    implementation Base.legacy
+
+    // Kotlin
+    implementation Base.core_ktx
+
+    // Test
+    testImplementation Tests.junit_androidTestImplementation
+    androidTestImplementation Tests.junit_testImplementation
+    androidTestImplementation Tests.espresso_androidTestImplementation
+}

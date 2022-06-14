@@ -3,11 +3,11 @@ package com.meeweel.kanban_board.ui.screens.boardscreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.meeweel.kanban_board.data.interactor.Interactor
-import com.meeweel.kanban_board.domain.basemodels.Status
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
-import com.meeweel.kanban_board.domain.basemodels.getTaskListByStatus
-import com.meeweel.kanban_board.domain.basemodels.states.BoardState
+import com.meeweel.data.interactor.Interactor
+import com.meeweel.core.basemodels.Status
+import com.meeweel.core.basemodels.TaskModel
+import com.meeweel.core.basemodels.getTaskListByStatus
+import com.meeweel.core.basemodels.states.BoardState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers

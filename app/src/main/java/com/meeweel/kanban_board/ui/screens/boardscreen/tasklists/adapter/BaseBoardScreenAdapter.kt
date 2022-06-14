@@ -1,12 +1,11 @@
 package com.meeweel.kanban_board.ui.screens.boardscreen.tasklists.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meeweel.kanban_board.databinding.BoardScreenRecyclerItemBinding
-import com.meeweel.kanban_board.domain.basemodels.Priority
-import com.meeweel.kanban_board.domain.basemodels.TaskModel
+import com.meeweel.core.basemodels.Priority
+import com.meeweel.core.basemodels.TaskModel
 import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.green
 import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.orange
 import com.meeweel.kanban_board.ui.MainActivity.ThemeHolder.red

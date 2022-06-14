@@ -1,13 +1,13 @@
 package com.meeweel.kanban_board.di
 
 import androidx.room.Room
-import com.meeweel.kanban_board.data.interactor.AuthorizationInteractor
-import com.meeweel.kanban_board.data.interactor.AuthorizationInteractorImpl
-import com.meeweel.kanban_board.data.interactor.Interactor
-import com.meeweel.kanban_board.data.interactor.InteractorImpl
-import com.meeweel.kanban_board.data.network.authorization.AuthorizationRepository
-import com.meeweel.kanban_board.data.network.authorization.AuthorizationRepositoryImpl
-import com.meeweel.kanban_board.data.network.authorization.AuthorizationService
+import com.meeweel.data.interactor.AuthorizationInteractor
+import com.meeweel.data.interactor.AuthorizationInteractorImpl
+import com.meeweel.data.interactor.Interactor
+import com.meeweel.data.interactor.InteractorImpl
+import com.meeweel.data.network.authorization.AuthorizationRepository
+import com.meeweel.data.network.authorization.AuthorizationRepositoryImpl
+import com.meeweel.data.network.authorization.AuthorizationService
 import com.meeweel.kanban_board.data.network.boards.BoardsService
 import com.meeweel.kanban_board.data.network.boards.RemoteRepository
 import com.meeweel.kanban_board.data.network.boards.RemoteRepositoryImpl
