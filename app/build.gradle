@@ -21,6 +21,9 @@ dependencies {
     implementation Koin.android
     implementation Koin.android_compat
 
+    // Room
+    implementation Room.runtime
+
     // RxJava 3
     implementation RxJava3.rxjava
     implementation RxJava3.rxAndroid
