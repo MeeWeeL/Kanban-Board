@@ -1,9 +1,9 @@
-package com.meeweel.kanban_board.data.network.boards
+package com.meeweel.data.network.boards
 
 import com.meeweel.core.basemodels.BoardModel
 import com.meeweel.core.basemodels.TaskModel
-import com.meeweel.kanban_board.domain.responsemodels.toBoardModel
-import com.meeweel.kanban_board.domain.responsemodels.toBoardModelList
+import com.meeweel.data.responsemodels.toBoardModel
+import com.meeweel.data.responsemodels.toBoardModelList
 import io.reactivex.rxjava3.core.Single
 
 class RemoteRepositoryImpl(private val service: KanbanApi) :

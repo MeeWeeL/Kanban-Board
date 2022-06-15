@@ -1,7 +1,6 @@
 package com.meeweel.core
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
 /**

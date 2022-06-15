@@ -1,7 +1,7 @@
 package com.meeweel.data.network.authorization
 
-import com.meeweel.kanban_board.data.network.BaseInterceptor
-import com.meeweel.kanban_board.data.network.BaseRetrofitService
+import com.meeweel.data.network.BaseInterceptor
+import com.meeweel.data.network.BaseRetrofitService
 
 class AuthorizationService : BaseRetrofitService() {
 

@@ -1,6 +1,6 @@
 package com.meeweel.kanban_board.ui.screens.authorization
 
-import com.meeweel.kanban_board.data.room.UserEntity
+import com.meeweel.data.room.UserEntity
 
 sealed class AuthorizationState {
     data class Success(val data: UserEntity) : AuthorizationState()

@@ -1,6 +1,6 @@
-package com.meeweel.kanban_board.data.network.boards
+package com.meeweel.data.network.boards
 
-import com.meeweel.kanban_board.domain.responsemodels.Response
+import com.meeweel.data.responsemodels.Response
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

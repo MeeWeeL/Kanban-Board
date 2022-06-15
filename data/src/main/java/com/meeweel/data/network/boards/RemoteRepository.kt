@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data.network.boards
+package com.meeweel.data.network.boards
 
 import com.meeweel.core.basemodels.BoardModel
 import com.meeweel.core.basemodels.TaskModel

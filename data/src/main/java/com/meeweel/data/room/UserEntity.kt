@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data.room
+package com.meeweel.data.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

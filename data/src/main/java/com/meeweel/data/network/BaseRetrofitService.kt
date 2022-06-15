@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data.network
+package com.meeweel.data.network
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

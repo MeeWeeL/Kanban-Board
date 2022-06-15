@@ -5,5 +5,10 @@ plugins {
 
 dependencies {
 
+    // Test
+    testImplementation Tests.junit_androidTestImplementation
+    androidTestImplementation Tests.junit_testImplementation
+    androidTestImplementation Tests.espresso_androidTestImplementation
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
