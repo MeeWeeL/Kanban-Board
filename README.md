@@ -1,24 +1,15 @@
 # KanBan-Board
 ---------------
-## **Introduction**
-##### Канбан — это система организации задач, основанная на визуализации проекта в виде досок, разделенных на участки, и задач в виде записок, расположенных на этих участках в зависимости от их состояния.
 
-##### Канбан-доски бывают физическими и электронными. В первом случае это обычная доска со столбцами. Задания пишут на стикерах и наклеивают в нужный раздел, перемещая по мере необходимости.
+## Getting Started
 
-![](https://allaboutourladies.ru/wp-content/uploads/2020/11/scale_1200-1.jpg)
+---------------
 
-##### Электронные доски обладают аналогичными функциями, но по сравнению с физическими всегда доступны — удалённые сотрудники могут непрерывно участвовать в рабочем процессе.
+[Download](https://kanban.pserver.ru/app/KanBan.apk) and run the app.
 
-![](https://www.unisender.com/wp-content/uploads/2020/09/kanban-3-768x367.png)
-
-##### Данное приложение реализует простейшую форму системы KanBan, а именно - всего три столбца:
-
-- В очереди
-- В процессе
-- Выполнено
-
-
+---
 ## <b>Стэк основных технологий:</b>
+---------------
 
 - MVVM
 - Clean Architecture
@@ -30,17 +21,28 @@
 - Navigation component
 - ViewPager2
 
+---
 
-
-Getting Started
+## **Introduction**
 ---------------
+##### Канбан — это система организации задач, основанная на визуализации проекта в виде досок, разделенных на участки, и задач в виде записок, расположенных на этих участках в зависимости от их состояния.
 
-[Download](https://kanban.pserver.ru/app/KanBan.apk) and run the app.
+##### Канбан-доски бывают физическими и электронными. В первом случае это обычная доска со столбцами. Задания пишут на стикерах и наклеивают в нужный раздел, перемещая по мере необходимости.
+
+![](https://allaboutourladies.ru/wp-content/uploads/2020/11/scale_1200-1.jpg)
+
+##### Электронные доски обладают аналогичными функциями, но по сравнению с физическими всегда доступны — удалённые сотрудники могут непрерывно участвовать в рабочем процессе.
+
+![](https://www.unisender.com/wp-content/uploads/2020/09/kanban-3-768x367.png)
+
+#### Данное приложение реализует простейшую форму системы KanBan, а именно - всего три столбца:
+
+- В очереди
+- В процессе
+- Выполнено
 
 
-
----------------
-
+ ---
 ## **Description**
 ---------------
 
@@ -60,7 +62,7 @@ Getting Started
 
 ##### На этом экране показаны все доски пользователя и доски, к которым пользователь присоединился.
 
-<img src="https://kanban.pserver.ru/pictures/boardsscreen.jpg" width="200"/>
+![](https://kanban.pserver.ru/pictures/boardsscreen_short.jpg)
 
 В верхнем меню приложения расположены две кнопки:
 1) Домой - открывает экран настроек
@@ -68,7 +70,7 @@ Getting Started
 
 ##### Для удобства пользовательского опыта в нижнем правом углу расположена кнопка, вызывающая меню, которое дублирует функции верхнего меню приложения.
 
-![Boards fab](https://kanban.pserver.ru/gifs/kanbangif2boardsfab.gif)
+![Boards fab](https://kanban.pserver.ru/gifs/kanbangif2boardsfab_short.gif)
 
 #### Добавление новой доски:
 ##### Есть два способа добавить доску:
@@ -87,7 +89,7 @@ Getting Started
 
 #### У каждой доски есть своя кнопка, вызывающая дополнительные функци:
 
-![Board Popup](https://kanban.pserver.ru/gifs/kanbangif3boardpopup.gif)
+![Board Popup](https://kanban.pserver.ru/gifs/kanbangif3boardpopup_short.gif)
 
 - Details - показывает логин создателя, количество и состояние задач
 - Edit - вызывает редактор названия доски
@@ -111,8 +113,8 @@ Getting Started
 
 #### У каждой задачи есть своя кнопка, вызывающая дополнительные функци:
 
-![](https://kanban.pserver.ru/gifs/kanbangif10taskMove.gif)
-![](https://kanban.pserver.ru/gifs/kanbangif10taskEdit.gif)
+![](https://kanban.pserver.ru/gifs/kanbangif10taskMove.gif) |
+![](https://kanban.pserver.ru/gifs/kanbangif10taskEdit.gif) |
 ![](https://kanban.pserver.ru/gifs/kanbangif10taskDelete.gif)
 
 - ToDo - перемещает задачу в список ToDo
