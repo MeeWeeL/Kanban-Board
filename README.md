@@ -3,11 +3,9 @@
 
 ## Getting Started
 
----------------
 
 [Download](https://kanban.pserver.ru/app/KanBan.apk) and run the app.
 
----
 ## <b>Стэк основных технологий:</b>
 ---------------
 
@@ -21,7 +19,6 @@
 - Navigation component
 - ViewPager2
 
----
 
 ## **Introduction**
 ---------------
@@ -42,7 +39,6 @@
 - Выполнено
 
 
- ---
 ## **Description**
 ---------------
 
