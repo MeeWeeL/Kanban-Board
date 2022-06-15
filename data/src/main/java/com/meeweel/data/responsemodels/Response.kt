@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.domain.responsemodels
+package com.meeweel.data.responsemodels
 
 import com.meeweel.core.basemodels.BoardModel
 

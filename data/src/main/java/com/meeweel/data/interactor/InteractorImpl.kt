@@ -1,7 +1,7 @@
 package com.meeweel.data.interactor
 
-import com.meeweel.kanban_board.data.network.boards.RemoteRepository
-import com.meeweel.kanban_board.data.room.LocalUserRepository
+import com.meeweel.data.network.boards.RemoteRepository
+import com.meeweel.data.room.LocalUserRepository
 import com.meeweel.core.basemodels.BoardModel
 import com.meeweel.core.basemodels.TaskModel
 import io.reactivex.rxjava3.core.Completable

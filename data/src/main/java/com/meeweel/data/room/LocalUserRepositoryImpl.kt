@@ -1,4 +1,4 @@
-package com.meeweel.kanban_board.data.room
+package com.meeweel.data.room
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single

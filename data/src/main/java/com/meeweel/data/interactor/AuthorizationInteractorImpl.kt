@@ -1,8 +1,8 @@
 package com.meeweel.data.interactor
 
 import com.meeweel.data.network.authorization.AuthorizationRepository
-import com.meeweel.kanban_board.data.room.LocalUserRepository
-import com.meeweel.kanban_board.data.room.UserEntity
+import com.meeweel.data.room.LocalUserRepository
+import com.meeweel.data.room.UserEntity
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 

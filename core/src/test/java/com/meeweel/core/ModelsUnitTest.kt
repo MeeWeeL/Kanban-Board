@@ -6,7 +6,7 @@ import com.meeweel.core.basemodels.TaskModel
 import org.junit.Assert
 import org.junit.Test
 
-class ModelsTest {
+class ModelsUnitTest {
 
     // Priority
 
