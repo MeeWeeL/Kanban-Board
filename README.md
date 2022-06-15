@@ -18,6 +18,27 @@
 - Выполнено
 
 
+## <b>Стэк основных технологий:</b>
+
+- MVVM
+- Clean Architecture
+- Koin
+- RxJava
+- Retrofit
+- OkHttp
+- Room
+- Navigation component
+- ViewPager2
+
+
+
+Getting Started
+---------------
+
+[Download](https://kanban.pserver.ru/app/KanBan.apk) and run the app.
+
+
+
 ---------------
 
 ## **Description**
@@ -68,26 +89,34 @@
 
 ![Board Popup](https://kanban.pserver.ru/gifs/kanbangif3boardpopup.gif)
 
-- Details - Показывает логин создателя, количество и состояние задач
-- Edit - Вызывает редактор названия доски
+- Details - показывает логин создателя, количество и состояние задач
+- Edit - вызывает редактор названия доски
 - Get key - генерирует одноразовый ключ, для приглашения присоединиться другого пользователя. Сгенерировать ключ может только создатель доски
 - Delete - удаляет доску. В случае, если пользователь является создателем, доска удаляется у всех пользователей, присоединившихся к этой доске
 
-## <b>Стэк основных технологий:</b>
+### Экран списка задач:
 
-- MVVM
-- Clean Architecture
-- Koin
-- RxJava
-- Retrofit
-- OkHttp
-- Room
-- Navigation component
-- ViewPager2
+##### Нажав на доску из экрана досок, пользовател попадает на экран задач.
 
+![](https://kanban.pserver.ru/gifs/kanbangif8boardtasks.gif)
 
+##### На этом экране показаны все задачи данной доски в виде трёх списков
+- В очереди
+- В процессе
+- Выполнено
 
-Getting Started
----------------
+![](https://kanban.pserver.ru/gifs/kanbangif9tasklists.gif)
 
-1. Download and run the app.
+#### Для создания новой задачи достаточно нажать плюсик в верхнем мени или в спомогательном меню в нижнем правом углу экрана
+
+#### У каждой задачи есть своя кнопка, вызывающая дополнительные функци:
+
+![](https://kanban.pserver.ru/gifs/kanbangif10taskMove.gif)
+![](https://kanban.pserver.ru/gifs/kanbangif10taskEdit.gif)
+![](https://kanban.pserver.ru/gifs/kanbangif10taskDelete.gif)
+
+- ToDo - перемещает задачу в список ToDo
+- In Progress - перемещает задачу в список In Progress
+- Done - перемещает задачу в список Done
+- Edit - вызывает редактор задачи, в котором можно изменить название, описание, приоритет и имя исполнителя
+- Delete - кдаляет задачу
